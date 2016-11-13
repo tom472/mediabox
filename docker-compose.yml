@@ -1,6 +1,6 @@
 ##
 ## -------------------------
-## |       MEDIABOX        |
+## |   M E D I A B O X     |
 ## -------------------------
 ##
 ## Container based media tools configuration
@@ -116,6 +116,24 @@ services:
       - /disks/movies:/data/movies
       - /dockervols/plex:/config
       
+    # ----------------------------------------
+    # PORTAINER
+    # ----------------------------------------
+    portainer:
+    container_name: portainer
+    entrypoint:
+        - /portainer
+    environment:
+        - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    image: portainer/portainer
+    log_driver: json-file
+    ports:
+        - 9000:9000/tcp
+    restart: always
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /
+    
     # ----------------------------------------
     # SICKRAGE
     # ----------------------------------------
