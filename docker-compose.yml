@@ -78,7 +78,7 @@ services:
         image: linuxserver/plex
         restart: always
         container_name: plex
-        net: 'host'
+        network_mode: "host"
         environment:
             - VERSION=latest
             - PUID=
