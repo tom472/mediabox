@@ -78,10 +78,11 @@ services:
         image: linuxserver/plex
         restart: always
         container_name: plex
+        net: 'host'
         environment:
             - VERSION=latest
-            - PUID=1000
-            - PGID=1000
+            - PUID=
+            - PGID=
         volumes:
             - '/dockervols/plex:/config'
             - '/disks/tv:/data/tvshows'
@@ -111,8 +112,8 @@ services:
             - '/disks/tv:/tv'
             - '/etc/localtime:/etc/localtime:ro'
         environment:
-            - PGID=1000
-            - PUID=1000
+            - PGID=
+            - PUID=
         restart: always
         ports:
             - '8081:8081'
