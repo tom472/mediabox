@@ -51,6 +51,8 @@ services:
             - '58846:58846'
         container_name: delugevpn
         restart: always
+        cap_add:
+            - NET_ADMIN
         volumes:
             - '/dockervols/delugevpn/data:/data'
             - '/dockervols/delugevpn/config:/config'
