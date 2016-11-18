@@ -48,3 +48,11 @@ printf "The PIA Username is: $piauname\n"
 printf "The PIA Password is: $piapass\n"
 printf "The Hostname is: $thishost\n"
 
+# Create the .env file
+
+echo "IP_ADDRESS=$locip" > .env
+echo "PUID=$PUID" >> .env
+echo "GUID=$GUID" >> .env
+echo "PIAUNAME=$piauname" >> .env
+echo "PIAPASS=$piapass" >> .env
+echo "CIDR_ADDRESS=$lannet" >> .env
