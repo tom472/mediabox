@@ -45,8 +45,8 @@ services:
     # ----------------------------------------
     arch-delugevpn:
         image: binhex/arch-delugevpn
-	container_name: delugevpn
-	restart: always
+        container_name: delugevpn
+        restart: always
         ports:
             - '${IP_ADDRESS}:8112:8112'
             - '${IP_ADDRESS}:8118:8118'
@@ -68,7 +68,7 @@ services:
             - DEBUG=false
             - PUID=${PUID}
             - PGID=${PGID}
-	volumes:
+        volumes:
             - './delugevpn/data:/data'
             - './delugevpn/data/downloading:/data'
             - './delugevpn/config:/config'
