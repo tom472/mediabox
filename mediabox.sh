@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Must be root to use this tool
-if [[ ! $EUID -eq 0 ]];then
-  if [ -x "$(command -v sudo)" ];then
-		export SUDO="sudo"
-  else
-    echo "::: Please install sudo or run this as root."
-    exit 1
-  fi
-fi
-
 # Get local Username
 localuname=`id -u -n`
 
@@ -17,7 +7,7 @@ localuname=`id -u -n`
 PUID=`id -u $localuname`
 
 # Get GUID
-GUID=`id -g $localuname`
+PGID=`id -g $localuname`
 
 # Get Hostname
 thishost=`hostname`
@@ -31,28 +21,60 @@ lannet=`hostname -I | awk '{print $1}' | sed 's/\.[0-9]*$/.0\/24/'`
 # Uncomment the line below and enter your CIDR info so the line looks like: lannet=xxx.xxx.xxx.0/24
 #lannet=
 
-# Install Docker
-# $SUDO curl -fsSL https://get.docker.com/ | sh
-
 read -p "What is your PIA Username?: " piauname
 read -s -p "What is you PIA Password? (Will not be echoed): " piapass
 printf "\n\n"
-printf "### Collected Variable are below. ###\n"
-printf "\n"
-printf "The username is: $localuname\n"
-printf "The PUID is: $PUID\n"
-printf "The GUID is: $GUID\n"
-printf "The IP address is: $locip\n"
-printf "The CIDR address is: $lannet\n"
-printf "The PIA Username is: $piauname\n"
-printf "The PIA Password is: $piapass\n"
-printf "The Hostname is: $thishost\n"
+
+###################
+# TROUBLESHOOTING #
+###################
+# If you are having issues with any containers starting
+# Or the .env file is not being populated with the correct values
+# Uncomment the necessary line(s) below to see what values are being generated
+
+# printf "### Collected VariableS are echoed below. ###\n"
+# printf "\n"
+# printf "The username is: $localuname\n"
+# printf "The PUID is: $PUID\n"
+# printf "The PGID is: $PGID\n"
+# printf "The IP address is: $locip\n"
+# printf "The CIDR address is: $lannet\n"
+# printf "The PIA Username is: $piauname\n"
+# printf "The PIA Password is: $piapass\n"
+# printf "The Hostname is: $thishost\n"
 
 # Create the .env file
-
+echo "Creating the .env file with the values we have gathered"
 echo "IP_ADDRESS=$locip" > .env
 echo "PUID=$PUID" >> .env
-echo "GUID=$GUID" >> .env
+echo "PGID=$PGID" >> .env
 echo "PIAUNAME=$piauname" >> .env
 echo "PIAPASS=$piapass" >> .env
 echo "CIDR_ADDRESS=$lannet" >> .env
+echo ".env file creation complete"
+
+# Launch the containers
+echo "The containers will now launch"
+read -p "Press any key to continue... " -n1 -s
+`docker-compose up -d`
+
+# Echo the configuration
+printf "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n"
+printf "%% Container URLs and Ports %%\n"
+printf "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n"
+printf "The Couchpotato container is available at: $locip:5050\n"
+printf "The DelugeVPN container is available at: $locip:8112\n"
+printf " # A PRIVOXY proxy service is available at: $locip:8118\n"
+printf " # The Deluge deamon port available at: $locip:58846 - (For Couchpotato)\n"
+printf "The PLEX container is available at: $locip:32400/web\n"
+printf "The Sickrage container is available at: $locip:8081\n"
+printf "To manage and monitor your containers - Portainer is available at: $locip:9000\n"
+
+# Access usernames & passwords
+printf "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n"
+printf "%% Default Usernames & Passwords %%\n"
+printf "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n"
+printf "Deluge = The default password for the webui is | deluge |"
+printf "Deluge = The username for the deamon (needed in Couchpotato) is | cp |"
+printf "Deluge = The password for the deamon (needed in Couchpotato) is | deluge |"
+echo "cp:deluge:10" >> ./delugevpn/config/auth
