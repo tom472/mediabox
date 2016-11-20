@@ -27,37 +27,32 @@ services:
     # ----------------------------------------
     couchpotato:
         image: linuxserver/couchpotato
-        restart: always
         container_name: couchpotato
+        restart: always
         ports:
             - '${IP_ADDRESS}:5050:5050'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
         volumes:
             - './couchpotato:/config'
             - './delugevpn/data/complete:/downloads'
             - './movies:/movies'
             - '/etc/localtime:/etc/localtime:ro'
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
     
     # ----------------------------------------
     # DELUGEVPN
     # ----------------------------------------
     arch-delugevpn:
         image: binhex/arch-delugevpn
+	    container_name: delugevpn
+	    restart: always
         ports:
             - '${IP_ADDRESS}:8112:8112'
             - '${IP_ADDRESS}:8118:8118'
             - '${IP_ADDRESS}:58846:58846'
-        container_name: delugevpn
-        restart: always
         cap_add:
             - NET_ADMIN
-        volumes:
-            - './delugevpn/data:/data'
-            - './delugevpn/data/downloading:/data'
-            - './delugevpn/config:/config'
-            - '/etc/localtime:/etc/localtime:ro'
         environment:
             - VPN_ENABLED=yes
             - VPN_USER=${PIAUNAME}
@@ -73,14 +68,19 @@ services:
             - DEBUG=false
             - PUID=${PUID}
             - PGID=${PGID}
-      
+	    volumes:
+            - './delugevpn/data:/data'
+            - './delugevpn/data/downloading:/data'
+            - './delugevpn/config:/config'
+            - '/etc/localtime:/etc/localtime:ro'
+     
     # ----------------------------------------
     # PLEX
     # ----------------------------------------
     plex:
         image: linuxserver/plex
-        restart: always
         container_name: plex
+        restart: always
         network_mode: "host"
         environment:
             - VERSION=latest
@@ -97,10 +97,10 @@ services:
     # ----------------------------------------
     portainer:
         image: portainer/portainer
-        ports:
-            - '${IP_ADDRESS}:9000:9000'
         container_name: portainer
         restart: always
+        ports:
+            - '${IP_ADDRESS}:9000:9000'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
             - '/etc/localtime:/etc/localtime:ro'
@@ -111,14 +111,15 @@ services:
     sickrage:
         image: linuxserver/sickrage
         container_name: sickrage
+        restart: always
+        ports:
+            - '${IP_ADDRESS}:8081:8081'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
         volumes:
             - './sickrage:/config'
             - './delugevpn/data/complete:/downloads'
             - './tv:/tv'
             - '/etc/localtime:/etc/localtime:ro'
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-        restart: always
-        ports:
-            - '${IP_ADDRESS}:8081:8081'
+            
