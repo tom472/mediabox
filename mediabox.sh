@@ -45,7 +45,7 @@ printf "\n\n"
 
 # Create the .env file
 echo "Creating the .env file with the values we have gathered"
-echo "IP_ADDRESS=$locip" > .env
+echo "IP_ADDRESS=$locip" >> .env
 echo "PUID=$PUID" >> .env
 echo "PGID=$PGID" >> .env
 echo "PIAUNAME=$piauname" >> .env
