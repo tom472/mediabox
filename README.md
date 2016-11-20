@@ -9,7 +9,7 @@ Components include:
   * Portainer
   
 # Prerequisites
-**mediabox** has been tested to work on Ubuntu
+**mediabox** has been tested to work on Ubuntu - Server and Desktop
 
 Packages you will need available are:
   * Git
@@ -20,31 +20,30 @@ Packages you will need available are:
 **PLEASE NOTE**
 
 The methods shown here to installs the above packages may not make everyone happy (Yes - there will be curl -> bash used)
-
 These are by far not the only methods to install these packages and if you are interested in finding other methods then feel free to do so, come on back here once the 4 packages mentioned are installed.
 
 ### Installs:
 
 Start off by making sure your system is currently up to date:
 ```bash
-sudo apt-get update && sudo apt-get -y upgrade
+$ sudo apt-get update && sudo apt-get -y upgrade
 ```
 
-#### GIT
+##### GIT
 ```bash
 $ sudo apt-get install git
 ```
 
-#### Docker
+##### Docker
 ```bash
 $ curl -fsSL https://get.docker.com/ | sh
 ```
-#### Python-Pip
+##### Python-Pip
 ```bash
 $ sudo apt-get install python-pip
 ```
 
-#### Docker-Compose
+##### Docker-Compose
 ```bash
 $ sudo pip install docker-compose
 ```
