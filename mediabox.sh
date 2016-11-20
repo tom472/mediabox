@@ -44,7 +44,7 @@ printf "\n\n"
 # printf "The Hostname is: $thishost\n"
 
 # Create the .env file
-echo "Creating the .env file with the values we have gathered"
+echo "Creating the .env file with the values we have gathered\n"
 echo "IP_ADDRESS=$locip" >> .env
 echo "PUID=$PUID" >> .env
 echo "PGID=$PGID" >> .env
@@ -52,16 +52,17 @@ echo "PIAUNAME=$piauname" >> .env
 echo "PIAPASS=$piapass" >> .env
 echo "CIDR_ADDRESS=$lannet" >> .env
 echo ".env file creation complete"
+printf "\n\n"
 
 # Launch the containers
 echo "The containers will now launch"
 read -p "Press any key to continue... " -n1 -s
-`docker-compose up -d`
+echo `docker-compose up -d`
+printf "\n\n"
 
 # Echo the configuration
-printf "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n"
-printf "%% Container URLs and Ports %%\n"
-printf "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n"
+printf " Container URLs and Ports \n"
+printf "\n"
 printf "The Couchpotato container is available at: $locip:5050\n"
 printf "The DelugeVPN container is available at: $locip:8112\n"
 printf " # A PRIVOXY proxy service is available at: $locip:8118\n"
@@ -71,10 +72,9 @@ printf "The Sickrage container is available at: $locip:8081\n"
 printf "To manage and monitor your containers - Portainer is available at: $locip:9000\n"
 
 # Access usernames & passwords
-printf "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n"
-printf "%% Default Usernames & Passwords %%\n"
-printf "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n"
-printf "Deluge = The default password for the webui is | deluge |"
-printf "Deluge = The username for the deamon (needed in Couchpotato) is | cp |"
-printf "Deluge = The password for the deamon (needed in Couchpotato) is | deluge |"
+printf " Default Usernames & Passwords \n"
+printf "\n"
+printf "Deluge = The default password for the webui is - deluge\n"
+printf "Deluge = The username for the deamon (needed in Couchpotato) is - cp\n"
+printf "Deluge = The password for the deamon (needed in Couchpotato) is - deluge\n"
 echo "cp:deluge:10" >> ./delugevpn/config/auth
