@@ -30,15 +30,15 @@ services:
         restart: always
         container_name: couchpotato
         ports:
-            - '5050:5050'
+            - '${IP_ADDRESS}:5050:5050'
         volumes:
+            - './couchpotato:/config'
+            - './delugevpn/data/complete:/downloads'
+            - './movies:/movies'
             - '/etc/localtime:/etc/localtime:ro'
-            - '/dockervols/couchpotato:/config'
-            - '/dockervols/delugevpn/data/complete:/downloads'
-            - '/disks/movies:/movies'
         environment:
-            - PGID=
-            - PUID=
+            - PUID=${PUID}
+            - PGID=${PGID}
     
     # ----------------------------------------
     # DELUGEVPN
@@ -46,30 +46,33 @@ services:
     arch-delugevpn:
         image: binhex/arch-delugevpn
         ports:
-            - '8112:8112'
-            - '8118:8118'
-            - '58846:58846'
+            - '${IP_ADDRESS}:8112:8112'
+            - '${IP_ADDRESS}:8118:8118'
+            - '${IP_ADDRESS}:58846:58846'
         container_name: delugevpn
         restart: always
         cap_add:
             - NET_ADMIN
         volumes:
-            - '/dockervols/delugevpn/data:/data'
-            - '/dockervols/delugevpn/config:/config'
+            - './delugevpn/data:/data'
+            - './delugevpn/data/downloading:/data'
+            - './delugevpn/config:/config'
             - '/etc/localtime:/etc/localtime:ro'
         environment:
             - VPN_ENABLED=yes
-            - VPN_USER=
-            - VPN_PASS=
+            - VPN_USER=${piauname}
+            - VPN_PASS=${piapass}
             - VPN_REMOTE=us-east.privateinternetaccess.com
-            - VPN_PORT=1194
+            - VPN_PORT=1198
             - VPN_PROTOCOL=udp
             - VPN_PROV=pia
+            - STRONG_CERTS=no
             - ENABLE_PRIVOXY=yes
-            - LAN_NETWORK=192.168.10.0/24
+            - LAN_NETWORK=${lannet}
+            - 'NAME_SERVERS=8.8.8.8,8.8.4.4'
             - DEBUG=false
-            - PUID=
-            - PGID=
+            - PUID=${PUID}
+            - PGID=${PGID}
       
     # ----------------------------------------
     # PLEX
@@ -81,12 +84,13 @@ services:
         network_mode: "host"
         environment:
             - VERSION=latest
-            - PUID=
-            - PGID=
+            - PUID=${PUID}
+            - PGID=${PGID}
         volumes:
-            - '/dockervols/plex:/config'
-            - '/disks/tv:/data/tvshows'
-            - '/disks/movies:/data/movies'
+            - './plex:/config'
+            - './tv:/data/tvshows'
+            - './movies:/data/movies'
+            - '/etc/localtime:/etc/localtime:ro'
       
     # ----------------------------------------
     # PORTAINER
@@ -94,11 +98,12 @@ services:
     portainer:
         image: portainer/portainer
         ports:
-            - '9000:9000'
+            - '${IP_ADDRESS}:9000:9000'
         container_name: portainer
         restart: always
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
+            - '/etc/localtime:/etc/localtime:ro'
     
     # ----------------------------------------
     # SICKRAGE
@@ -107,13 +112,13 @@ services:
         image: linuxserver/sickrage
         container_name: sickrage
         volumes:
-            - '/dockervols/sickrage:/config'
-            - '/dockervols/delugevpn/data/complete:/downloads'
-            - '/disks/tv:/tv'
+            - './sickrage:/config'
+            - './delugevpn/data/complete:/downloads'
+            - './tv:/tv'
             - '/etc/localtime:/etc/localtime:ro'
         environment:
-            - PGID=
-            - PUID=
+            - PUID=${PUID}
+            - PGID=${PGID}
         restart: always
         ports:
-            - '8081:8081'
+            - '${IP_ADDRESS}:8081:8081'
