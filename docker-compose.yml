@@ -60,15 +60,15 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
         environment:
             - VPN_ENABLED=yes
-            - VPN_USER=${piauname}
-            - VPN_PASS=${piapass}
+            - VPN_USER=${PIAUNAME}
+            - VPN_PASS=${PIAPASS}
             - VPN_REMOTE=us-east.privateinternetaccess.com
             - VPN_PORT=1198
             - VPN_PROTOCOL=udp
             - VPN_PROV=pia
             - STRONG_CERTS=no
             - ENABLE_PRIVOXY=yes
-            - LAN_NETWORK=${lannet}
+            - LAN_NETWORK=${CIDR_ADDRESS}
             - 'NAME_SERVERS=8.8.8.8,8.8.4.4'
             - DEBUG=false
             - PUID=${PUID}
