@@ -2,16 +2,12 @@
 
 # Get local Username
 localuname=`id -u -n`
-
 # Get PUID
 PUID=`id -u $localuname`
-
 # Get GUID
 PGID=`id -g $localuname`
-
 # Get Hostname
 thishost=`hostname`
-
 # Get IP Address
 locip=`hostname -I | awk '{print $1}'`
 
@@ -44,7 +40,8 @@ printf "\n\n"
 # printf "The Hostname is: $thishost\n"
 
 # Create the .env file
-echo "Creating the .env file with the values we have gathered\n"
+echo "Creating the .env file with the values we have gathered"
+printf "\n"
 echo "IP_ADDRESS=$locip" >> .env
 echo "PUID=$PUID" >> .env
 echo "PGID=$PGID" >> .env
@@ -54,10 +51,12 @@ echo "CIDR_ADDRESS=$lannet" >> .env
 echo ".env file creation complete"
 printf "\n\n"
 
-# Launch the containers
-echo "The containers will now launch"
+# Download & Launch the containers
+echo "The containers will now be pulled and launched"
+echo "This may take a while depending on your download speed"
 read -p "Press any key to continue... " -n1 -s
-echo `docker-compose up -d`
+printf "\n\n"
+`docker-compose up -d`
 printf "\n\n"
 
 # Echo the configuration
@@ -70,6 +69,7 @@ printf " # The Deluge deamon port available at: $locip:58846 - (For Couchpotato)
 printf "The PLEX container is available at: $locip:32400/web\n"
 printf "The Sickrage container is available at: $locip:8081\n"
 printf "To manage and monitor your containers - Portainer is available at: $locip:9000\n"
+printf "\n\n"
 
 # Access usernames & passwords
 printf " Default Usernames & Passwords \n"
@@ -77,4 +77,6 @@ printf "\n"
 printf "Deluge = The default password for the webui is - deluge\n"
 printf "Deluge = The username for the deamon (needed in Couchpotato) is - cp\n"
 printf "Deluge = The password for the deamon (needed in Couchpotato) is - deluge\n"
-echo "cp:deluge:10" >> ./delugevpn/config/auth
+
+# Still working on how to fix this
+#echo "cp:deluge:10" >> ./delugevpn/config/auth
