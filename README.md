@@ -24,27 +24,9 @@ These are by far not the only methods to install these packages and if you are i
 
 ### Installs:
 
-Start off by making sure your system is currently up to date:
-```bash
-$ sudo apt-get update && sudo apt-get -y upgrade
-```
+Start off by making sure your system is currently up to date: `$ sudo apt-get update && sudo apt-get -y upgrade`
 
-##### GIT
-```bash
-$ sudo apt-get install git
-```
-
-##### Docker
-```bash
-$ curl -fsSL https://get.docker.com/ | sh
-```
-##### Python-Pip
-```bash
-$ sudo apt-get install python-pip
-```
-
-##### Docker-Compose
-```bash
-$ sudo pip install docker-compose
-```
-
+##### GIT: `$ sudo apt-get install git`
+##### Docker: `$ curl -fsSL https://get.docker.com/ | sh`
+##### Python-Pip: `$ sudo apt-get install python-pip`
+##### Docker-Compose: `$ sudo pip install docker-compose`
