@@ -47,7 +47,7 @@ Start off by making sure your system is currently up to date:
 Once the prerequisites are all taken care of you can move forward with using mediabox.
 
 1. In your terminal clone the mediabox repo: `$ git clone https://github.com/tom472/mediabox.git`
-2. Change directory into mediabox: `$ cd /mediabox`
+2. Change directory into mediabox: `$ cd mediabox/`
 3. Make the mediabox.sh script executable: `$ chmod +x mediabox.sh`
 4. Run the mediabox.sh script: `$ ./mediabox.sh`
 
