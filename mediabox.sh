@@ -87,5 +87,5 @@ printf "Deluge = The username for the deamon (needed in Couchpotato) will be - $
 printf "Deluge = The password for the deamon (needed in Couchpotato) will be - $deamonpass\n"
 
 # Push the Deluge Deamon Access infor the to Auth file
-echo "To complete the Deluge deamon access - copy and paste the line below to your terminal\n"
-printf "echo $deamonun:$deamonpass:10" >> ./delugevpn/config/auth
+printf "To complete the Deluge deamon access - copy and paste the line below to your terminal\n"
+printf "$ echo $deamonun:$deamonpass:10 >> ./delugevpn/config/auth"
