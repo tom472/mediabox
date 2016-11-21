@@ -73,12 +73,19 @@ printf "The Sickrage container is available at: $locip:8081\n"
 printf "To manage and monitor your containers - Portainer is available at: $locip:9000\n"
 printf "\n\n"
 
+# Let's configure the access to the Deluge Deamon for CouchPotato
+echo "CouchPotato requires access to the Deluge deamon port and needs credentials set."
+read -p "What would you like to use as the deamon access username?: " deamonun
+read -p "What would you like to use as the deamon access password?: " deamonpass
+printf "\n\n"
+
 # Access usernames & passwords
 printf " Default Usernames & Passwords \n"
 printf "\n"
 printf "Deluge = The default password for the webui is - deluge\n"
-printf "Deluge = The username for the deamon (needed in Couchpotato) is - cp\n"
-printf "Deluge = The password for the deamon (needed in Couchpotato) is - deluge\n"
+printf "Deluge = The username for the deamon (needed in Couchpotato) will be - $deamonun\n"
+printf "Deluge = The password for the deamon (needed in Couchpotato) will be - $deamonpass\n"
 
-# Still working on how to fix this
-#echo "cp:deluge:10" >> ./delugevpn/config/auth
+# Push the Deluge Deamon Access infor the to Auth file
+echo "To complete the Deluge deamon access - copy and paste the line below to your terminal\n"
+printf "echo $deamonun:$deamonpass:10" >> ./delugevpn/config/auth
