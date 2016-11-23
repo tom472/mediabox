@@ -53,6 +53,6 @@ Once the prerequisites are all taken care of you can move forward with using med
 
 As the script runs you will be prompted for your Private Internet Access credentials.
 
-And credentials for the Deluge deamon - this is needed for the CouchPotato container.
+And credentials for the Deluge daemon - this is needed for the CouchPotato container.
 
 The script will complete and launch your mediabox containers.
