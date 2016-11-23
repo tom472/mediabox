@@ -28,7 +28,7 @@ printf "\n\n"
 # Or the .env file is not being populated with the correct values
 # Uncomment the necessary line(s) below to see what values are being generated
 
-# printf "### Collected VariableS are echoed below. ###\n"
+# printf "### Collected Variables are echoed below. ###\n"
 # printf "\n"
 # printf "The username is: $localuname\n"
 # printf "The PUID is: $PUID\n"
@@ -67,25 +67,25 @@ printf "\n"
 printf "The Couchpotato container is available at: $locip:5050\n"
 printf "The DelugeVPN container is available at: $locip:8112\n"
 printf " # A PRIVOXY proxy service is available at: $locip:8118\n"
-printf " # The Deluge deamon port available at: $locip:58846 - (For Couchpotato)\n"
+printf " # The Deluge daemon port available at: $locip:58846 - (For Couchpotato)\n"
 printf "The PLEX container is available at: $locip:32400/web\n"
 printf "The Sickrage container is available at: $locip:8081\n"
 printf "To manage and monitor your containers - Portainer is available at: $locip:9000\n"
 printf "\n\n"
 
 # Let's configure the access to the Deluge Deamon for CouchPotato
-echo "CouchPotato requires access to the Deluge deamon port and needs credentials set."
-read -p "What would you like to use as the deamon access username?: " deamonun
-read -p "What would you like to use as the deamon access password?: " deamonpass
+echo "CouchPotato requires access to the Deluge daemon port and needs credentials set."
+read -p "What would you like to use as the daemon access username?: " daemonun
+read -p "What would you like to use as the daemon access password?: " daemonpass
 printf "\n\n"
 
 # Access usernames & passwords
 printf " Default Usernames & Passwords \n"
 printf "\n"
 printf "Deluge = The default password for the webui is - deluge\n"
-printf "Deluge = The username for the deamon (needed in Couchpotato) will be - $deamonun\n"
-printf "Deluge = The password for the deamon (needed in Couchpotato) will be - $deamonpass\n"
+printf "Deluge = The username for the daemon (needed in Couchpotato) will be - $daemonun\n"
+printf "Deluge = The password for the daemon (needed in Couchpotato) will be - $daemonpass\n"
 
 # Push the Deluge Deamon Access infor the to Auth file
-printf "To complete the Deluge deamon access - copy and paste the line below to your terminal\n"
-printf "$ echo $deamonun:$deamonpass:10 >> ./delugevpn/config/auth"
+printf "To complete the Deluge daemon access - copy and paste the line below to your terminal\n"
+printf "$ echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth"
