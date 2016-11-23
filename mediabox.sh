@@ -18,7 +18,7 @@ lannet=`hostname -I | awk '{print $1}' | sed 's/\.[0-9]*$/.0\/24/'`
 #lannet=
 
 read -p "What is your PIA Username?: " piauname
-read -s -p "What is you PIA Password? (Will not be echoed): " piapass
+read -s -p "What is your PIA Password? (Will not be echoed): " piapass
 printf "\n\n"
 
 ###################
