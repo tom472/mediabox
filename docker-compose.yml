@@ -57,11 +57,12 @@ services:
             - VPN_REMOTE=us-east.privateinternetaccess.com
             - VPN_PORT=1198
             - VPN_PROTOCOL=udp
+            - VPN_DEVICE_TYPE=tun
             - VPN_PROV=pia
             - STRONG_CERTS=no
             - ENABLE_PRIVOXY=yes
             - LAN_NETWORK=${CIDR_ADDRESS}
-            - 'NAME_SERVERS=8.8.8.8,8.8.4.4'
+            - NAME_SERVERS=8.8.8.8,8.8.4.4
             - DEBUG=false
             - PUID=${PUID}
             - PGID=${PGID}
