@@ -26,6 +26,7 @@ services:
         image: linuxserver/couchpotato
         container_name: couchpotato
         restart: always
+        network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:5050:5050'
         environment:
@@ -44,6 +45,7 @@ services:
         image: binhex/arch-delugevpn
         container_name: delugevpn
         restart: always
+        network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:8112:8112'
             - '${IP_ADDRESS}:8118:8118'
@@ -97,6 +99,7 @@ services:
         image: portainer/portainer
         container_name: portainer
         restart: always
+        network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:9000:9000'
         volumes:
@@ -110,6 +113,7 @@ services:
         image: linuxserver/sickrage
         container_name: sickrage
         restart: always
+        network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:8081:8081'
         environment:
