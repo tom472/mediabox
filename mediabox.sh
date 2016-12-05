@@ -89,3 +89,7 @@ printf "Deluge = The password for the daemon (needed in Couchpotato) will be - $
 # Push the Deluge Deamon Access infor the to Auth file
 printf "To complete the Deluge daemon access - copy and paste the line below to your terminal\n"
 printf "$ echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth"
+printf "\n"
+
+# Remove the stray core.conf~ that ends up in DelugeVPN
+`rm delugevpn/config/core.conf~`
