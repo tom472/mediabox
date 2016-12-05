@@ -81,7 +81,14 @@ services:
         image: linuxserver/plex
         container_name: plex
         restart: always
-        network_mode: "host"
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}32400:32400'
+            - '${IP_ADDRESS}32400:32400/udp'
+            - '${IP_ADDRESS}32469:32469'
+            - '${IP_ADDRESS}32469:32469/udp'
+            - '${IP_ADDRESS}5353:5353/udp'
+            - '${IP_ADDRESS}1900:1900/udp'
         environment:
             - VERSION=latest
             - PUID=${PUID}
