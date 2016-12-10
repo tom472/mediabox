@@ -34,8 +34,8 @@ services:
             - PGID=${PGID}
         volumes:
             - './couchpotato:/config'
-            - './delugevpn/data/complete:/downloads'
-            - './movies:/movies'
+            - './content/downloads:/downloads'
+            - './content/movies:/movies'
             - '/etc/localtime:/etc/localtime:ro'
     
     # ----------------------------------------
@@ -69,8 +69,7 @@ services:
             - PUID=${PUID}
             - PGID=${PGID}
         volumes:
-            - './delugevpn/data:/data'
-            - './delugevpn/data/downloading:/data'
+            - './content:/data'
             - './delugevpn/config:/config'
             - '/etc/localtime:/etc/localtime:ro'
      
@@ -95,8 +94,8 @@ services:
             - PGID=${PGID}
         volumes:
             - './plex:/config'
-            - './tv:/data/tvshows'
-            - './movies:/data/movies'
+            - './content/tv:/data/tvshows'
+            - './content/movies:/data/movies'
             - '/etc/localtime:/etc/localtime:ro'
       
     # ----------------------------------------
@@ -128,7 +127,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './sickrage:/config'
-            - './delugevpn/data/complete:/downloads'
-            - './tv:/tv'
+            - './content/downloads:/downloads'
+            - './content/tv:/tv'
             - '/etc/localtime:/etc/localtime:ro'
             
