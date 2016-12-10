@@ -21,6 +21,13 @@ read -p "What is your PIA Username?: " piauname
 read -s -p "What is your PIA Password? (Will not be echoed): " piapass
 printf "\n\n"
 
+# Create the content file structure
+`mkdir -p ./content/complete`
+`mkdir -p ./content/downloading`
+`mkdir -p ./content/movies`
+`mkdir -p ./content/tv`
+`chmod -R 0777 content/`
+
 ###################
 # TROUBLESHOOTING #
 ###################
