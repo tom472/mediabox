@@ -26,7 +26,7 @@ printf "\n\n"
 `mkdir -p ./content/downloads`
 `mkdir -p ./content/movies`
 `mkdir -p ./content/tv`
-`chmod -R 0777 content/`
+`chmod -R 0777 ./content`
 
 ###################
 # TROUBLESHOOTING #
