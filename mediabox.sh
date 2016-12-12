@@ -26,7 +26,6 @@ printf "\n\n"
 `mkdir -p content/downloads`
 `mkdir -p content/movies`
 `mkdir -p content/tv`
-`chmod -R 0777 content/`
 
 ###################
 # TROUBLESHOOTING #
@@ -99,4 +98,7 @@ printf "$ echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth"
 printf "\n"
 
 # Remove the stray core.conf~ that ends up in DelugeVPN
-`rm delugevpn/config/core.conf~`
+if test -f "delugevpn/config/core.conf~"; then `rm delugevpn/config/core.conf~`;fi
+
+# Adjust the permissions on the content folder
+`chmod -R 0777 content/`
