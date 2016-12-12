@@ -98,7 +98,7 @@ printf "$ echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth"
 printf "\n"
 
 # Remove the stray core.conf~ that ends up in DelugeVPN
-if test -f "delugevpn/config/core.conf~"; then `rm delugevpn/config/core.conf~`;fi
+`rm delugevpn/config/core.conf~`
 
 # Adjust the permissions on the content folder
 `chmod -R 0777 content/`
