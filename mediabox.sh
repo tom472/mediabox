@@ -93,9 +93,10 @@ printf "Deluge = The username for the daemon (needed in Couchpotato) will be - $
 printf "Deluge = The password for the daemon (needed in Couchpotato) will be - $daemonpass\n"
 
 # Push the Deluge Deamon Access infor the to Auth file
-printf "To complete the Deluge daemon access - copy and paste the line below to your terminal\n"
-printf "$ echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth"
-printf "\n"
+# printf "To complete the Deluge daemon access - copy and paste the line below to your terminal\n"
+# printf "$ echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth"
+`echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth`
+# printf "\n"
 
 # Configure the DelugeVPN file paths, Set Daemon access on, delete the core.conf~ file
 `docker stop delugevpn`
