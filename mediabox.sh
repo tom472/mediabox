@@ -99,10 +99,10 @@ printf "\n"
 
 # Configure the DelugeVPN file paths, Set Daemon access on, delete the core.conf~ file
 `docker stop delugevpn`
-`rm delugevpn/config/core.conf~`
+`rm delugevpn/config/core.conf~ > /dev/null`
 `sed -i 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config/core.conf`
-`sed -i 's/"download_location": "/home/nobody/Incompletes",/"download_location": "/data/in_progress",/g' delugevpn/config/core.conf`
-`sed -i 's/"move_completed_path": "/home/nobody/Completed",/"move_completed_path": "/data/downloads",/g' delugevpn/config/core.conf`
+`sed -i 's/"\/home\/nobody\/Incompletes"/"\/data\/in_progress"/g' delugevpn/config/core.conf`
+`sed -i 's/"\/home\/nobody\/Completed"/"\/data\/downloads"/g' delugevpn/config/core.conf`
 `docker start delugevpn`
 
 # Adjust the permissions on the content folder
