@@ -97,8 +97,13 @@ printf "To complete the Deluge daemon access - copy and paste the line below to 
 printf "$ echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth"
 printf "\n"
 
-# Remove the stray core.conf~ that ends up in DelugeVPN
+# Configure the DelugeVPN file paths, Set Daemon access on, delete the core.conf~ file
+`docker stop delugevpn`
 `rm delugevpn/config/core.conf~`
+`sed -i 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config/core.conf`
+`sed -i 's/"download_location": "/home/nobody/Incompletes",/"download_location": "/data/in_progress",/g' delugevpn/config/core.conf`
+`sed -i 's/"move_completed_path": "/home/nobody/Completed",/"move_completed_path": "/data/downloads",/g' delugevpn/config/core.conf`
+`docker start delugevpn`
 
 # Adjust the permissions on the content folder
 `chmod -R 0777 content/`
