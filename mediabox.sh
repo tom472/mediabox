@@ -66,8 +66,8 @@ echo "PIAUNAME=$piauname" >> .env
 echo "PIAPASS=$piapass" >> .env
 echo "CIDR_ADDRESS=$lannet" >> .env
 echo "TZ=$tz" >> .env
-echo "PMS_TAG=$pmstag" >> .env
-echo "TOKEN=$pmstoken" >> .env
+echo "PMSTAG=$pmstag" >> .env
+echo "PMSTOKEN=$pmstoken" >> .env
 echo ".env file creation complete"
 printf "\n\n"
 
