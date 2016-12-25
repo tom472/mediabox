@@ -23,7 +23,7 @@ read -s -p "What is your PIA Password? (Will not be echoed): " piapass
 printf "\n\n"
 
 # Get info needed for PLEX Official image
-read -p "What is your Time Zone?: " tz
+read -p "What is your Timezone?: " tz
 read -p "Which PLEX do you want to run? (latest, public, plexpass): " pmstag
 read -p "If you have PLEXPASS what is your Claim Token: " pmstoken
 
