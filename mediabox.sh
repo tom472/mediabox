@@ -17,9 +17,15 @@ lannet=`hostname -I | awk '{print $1}' | sed 's/\.[0-9]*$/.0\/24/'`
 # Uncomment the line below and enter your CIDR info so the line looks like: lannet=xxx.xxx.xxx.0/24
 #lannet=
 
+# Get Private Internet Access Info
 read -p "What is your PIA Username?: " piauname
 read -s -p "What is your PIA Password? (Will not be echoed): " piapass
 printf "\n\n"
+
+# Get info needed for PLEX Official image
+read -p "What is your Time Zone?: " tz
+read -p "Which PLEX do you want to run? (latest, public, plexpass): " pmstag
+read -p "If you have PLEXPASS what is your Claim Token: " pmstoken
 
 # Create the content file structure
 `mkdir -p content/in_progress`
@@ -44,6 +50,9 @@ printf "\n\n"
 # printf "The PIA Username is: $piauname\n"
 # printf "The PIA Password is: $piapass\n"
 # printf "The Hostname is: $thishost\n"
+# printf "The Timezone is: $tz\n"
+# printf "The Plex version is: $pmstag\n"
+# printf "The Plexpass Claim token is: $pmstoken\n"
 
 # Create the .env file
 echo "Creating the .env file with the values we have gathered"
@@ -56,6 +65,9 @@ echo "PGID=$PGID" >> .env
 echo "PIAUNAME=$piauname" >> .env
 echo "PIAPASS=$piapass" >> .env
 echo "CIDR_ADDRESS=$lannet" >> .env
+echo "TZ=$tz" >> .env
+echo "PMS_TAG=$pmstag" >> .env
+echo "TOKEN=$pmstoken" >> .env
 echo ".env file creation complete"
 printf "\n\n"
 
