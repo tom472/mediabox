@@ -51,8 +51,11 @@ Once the prerequisites are all taken care of you can move forward with using med
 3. Make the mediabox.sh script executable: `$ chmod +x mediabox.sh`
 4. Run the mediabox.sh script: `$ ./mediabox.sh`
 
-As the script runs you will be prompted for your Private Internet Access credentials.
+As the script runs you will be prompted for:
 
-And credentials for the Deluge daemon - this is needed for the CouchPotato container.
+1. Your Private Internet Access credentials.
+2. Credentials for the Deluge daemon - this is needed for the CouchPotato container.
+3. The "Version" of Plex you want to run. (i.e. latest, public, plexpass)
+4. PLEX - CLIAM_TOKEN - if you choose plexpass as your version.
 
 The script will complete and launch your mediabox containers.
