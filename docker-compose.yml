@@ -100,7 +100,7 @@ services:
       - PLEX_GID=${PGID}
     hostname: ${HOSTNAME}
     volumes:
-      - './plex:/config
+      - './plex:/config'
       - './plex/transcode:/transcode'
       - './content/tv:/data/tvshows'
       - './content/movies:/data/movies'
