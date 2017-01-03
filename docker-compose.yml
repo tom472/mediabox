@@ -80,7 +80,7 @@ services:
         container_name: plex
         image: plexinc/pms-docker:${PMSTAG}
         restart: always
-        network_mode: "bridge"
+        network_mode: "host"
         ports:
             - ${IP_ADDRESS}:32400:32400/tcp
             - ${IP_ADDRESS}:3005:3005/tcp
@@ -92,7 +92,6 @@ services:
             - ${IP_ADDRESS}:32413:32413/udp
             - ${IP_ADDRESS}:32414:32414/udp
         environment:
-            - TZ=${TZ}
             - PLEX_CLAIM=${PMSTOKEN}
             - ADVERTISE_IP=http://${IP_ADDRESS}:32400/
             - ALLOWED_NETWORKS=${CIDR_ADDRESS}
