@@ -23,9 +23,14 @@ read -s -p "What is your PIA Password? (Will not be echoed): " piapass
 printf "\n\n"
 
 # Get info needed for PLEX Official image
-read -p "What is your Timezone?: " tz
-read -p "Which PLEX do you want to run? (latest, public, plexpass): " pmstag
-read -p "If you have PLEXPASS what is your Claim Token: " pmstoken
+# read -p "What is your Timezone?: " tz
+# Leaving Timezone out for now as we will be mountng /etc/localtime in the compose file
+read -p "Which PLEX release do you want to run? By default Public will be used. (latest, public, plexpass): " pmstag
+read -p "If you have PLEXPASS what is your Claim Token: (Optional) " pmstoken
+# If not set - set PMS Tag to Public:
+if [ -z "$pmstag" ]; then 
+   pmstag=public 
+fi
 
 # Create the content file structure
 `mkdir -p content/in_progress`
@@ -65,7 +70,7 @@ echo "PGID=$PGID" >> .env
 echo "PIAUNAME=$piauname" >> .env
 echo "PIAPASS=$piapass" >> .env
 echo "CIDR_ADDRESS=$lannet" >> .env
-echo "TZ=$tz" >> .env
+# echo "TZ=$tz" >> .env
 echo "PMSTAG=$pmstag" >> .env
 echo "PMSTOKEN=$pmstoken" >> .env
 echo ".env file creation complete"
@@ -101,10 +106,10 @@ printf "\n\n"
 printf " Default Usernames & Passwords \n"
 printf "\n"
 printf "Deluge = The default password for the webui is - deluge\n"
-printf "Deluge = The username for the daemon (needed in Couchpotato) will be - $daemonun\n"
-printf "Deluge = The password for the daemon (needed in Couchpotato) will be - $daemonpass\n"
+printf "Deluge = The username for the daemon (needed in Couchpotato) is: $daemonun\n"
+printf "Deluge = The password for the daemon (needed in Couchpotato) is: $daemonpass\n"
 
-# Push the Deluge Deamon Access infor the to Auth file
+# Push the Deluge Deamon Access info the to Auth file
 # printf "To complete the Deluge daemon access - copy and paste the line below to your terminal\n"
 # printf "$ echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth"
 `echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth`
