@@ -121,6 +121,7 @@ printf "Deluge = The password for the daemon (needed in Couchpotato) is: $daemon
 `sed -i 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config/core.conf`
 `sed -i 's/"\/home\/nobody\/Incompletes"/"\/data\/in_progress"/g' delugevpn/config/core.conf`
 `sed -i 's/"\/home\/nobody\/Completed"/"\/data\/downloads"/g' delugevpn/config/core.conf`
+`sed -i 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf`
 `docker start delugevpn > /dev/null 2>&1`
 
 # Adjust the permissions on the content folder
