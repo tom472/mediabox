@@ -33,9 +33,9 @@ if [ -z "$pmstag" ]; then
 fi
 
 # Get the info for the style of Portainer to use
-read -p "Which style of Portainer do you want to use? By default 'latest' will be used. (noauth, latest): " portainertag
+read -p "Which style of Portainer do you want to use? By default 'No Auth' will be used. (noauth, latest): " portainertag
 if [-z "$portainertag"]; then
-   portainertag=latest
+   portainertag=1.10.2
 elif [$portainertag == "noauth"]; then
    portainertag=1.10.2
 fi   
@@ -66,8 +66,8 @@ fi
 # printf "The Timezone is: $tz\n"
 # printf "The Plex version is: $pmstag\n"
 # printf "The Plexpass Claim token is: $pmstoken\n"
-# printf "The Protainer style is: $portainertag\n"
-# printf "Note: A Portainer style of '1.10.2' = the No Auth style\n"
+# printf "The Portainer style is: $portainertag\n"
+# printf "Note: A Portainer style of '1.10.2' = the 'No Auth' style\n"
 
 # Create the .env file
 echo "Creating the .env file with the values we have gathered"
