@@ -34,9 +34,9 @@ fi
 
 # Get the info for the style of Portainer to use
 read -p "Which style of Portainer do you want to use? By default 'No Auth' will be used. (noauth, latest): " portainertag
-if [-z "$portainertag"]; then
+if [ -z "$portainertag" ]; then
    portainertag=1.10.2
-elif [$portainertag == "noauth"]; then
+elif [ $portainertag == "noauth" ]; then
    portainertag=1.10.2
 fi   
 
@@ -80,7 +80,7 @@ echo "PGID=$PGID" >> .env
 echo "PIAUNAME=$piauname" >> .env
 echo "PIAPASS=$piapass" >> .env
 echo "CIDR_ADDRESS=$lannet" >> .env
-# echo "TZ=$tz" >> .env
+echo "TZ=$tz" >> .env
 echo "PMSTAG=$pmstag" >> .env
 echo "PMSTOKEN=$pmstoken" >> .env
 echo "PORTAINERTAG=$portainertag" >> .env
