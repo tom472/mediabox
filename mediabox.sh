@@ -25,12 +25,20 @@ printf "\n\n"
 # Get info needed for PLEX Official image
 # read -p "What is your Timezone?: " tz
 # Leaving Timezone out for now as we will be mountng /etc/localtime in the compose file
-read -p "Which PLEX release do you want to run? By default Public will be used. (latest, public, plexpass): " pmstag
+read -p "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
 read -p "If you have PLEXPASS what is your Claim Token: (Optional) " pmstoken
 # If not set - set PMS Tag to Public:
 if [ -z "$pmstag" ]; then 
    pmstag=public 
 fi
+
+# Get the info for the style of Portainer to use
+read -p "Which style of Portainer do you want to use? By default 'latest' will be used. (noauth, latest): " portainertag
+if [-z "$portainertag"]; then
+   portainertag=latest
+elif [$portainertag == "noauth"]; then
+   portainertag=1.10.2
+fi   
 
 # Create the content file structure
 `mkdir -p content/in_progress`
@@ -58,6 +66,8 @@ fi
 # printf "The Timezone is: $tz\n"
 # printf "The Plex version is: $pmstag\n"
 # printf "The Plexpass Claim token is: $pmstoken\n"
+# printf "The Protainer style is: $portainertag\n"
+# printf "Note: A Portainer style of '1.10.2' = the No Auth style\n"
 
 # Create the .env file
 echo "Creating the .env file with the values we have gathered"
@@ -73,6 +83,7 @@ echo "CIDR_ADDRESS=$lannet" >> .env
 # echo "TZ=$tz" >> .env
 echo "PMSTAG=$pmstag" >> .env
 echo "PMSTOKEN=$pmstoken" >> .env
+echo "PORTAINERTAG=$portainertag" >> .env
 echo ".env file creation complete"
 printf "\n\n"
 
