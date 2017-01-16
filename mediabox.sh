@@ -136,6 +136,7 @@ printf "Deluge = The password for the daemon (needed in Couchpotato) is: $daemon
 `docker start delugevpn > /dev/null 2>&1`
 
 # Configure MUXIMUX settings and Index file
+`docker stop muximux > /dev/null 2>&1`
 `mv muximux/www/muximux/settings.ini.php muximux/www/muximux/settings.ini.php-orig`
 `mv settings.ini.php muximux/www/muximux/settings.ini.php`
 `sed -i "s/locip/$locip/g" muximux/www/muximux/settings.ini.php`
@@ -144,6 +145,10 @@ printf "Deluge = The password for the daemon (needed in Couchpotato) is: $daemon
 `sed -i "s/locip/$locip/g" muximux/www/muximux/mediabox/index.php`
 `sed -i "s/daemonun/$daemonun/g" muximux/www/muximux/mediabox/index.php`
 `sed -i "s/daemonpass/$daemonpass/g" muximux/www/muximux/mediabox/index.php`
+`docker start muximux > /dev/null 2>&1`
 
 # Adjust the permissions on the content folder
 `chmod -R 0777 content/`
+
+printf "Setup Complete - Open a browser and go to: \n"
+printf "http://$locip OR http://$thishost \n"
