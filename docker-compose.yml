@@ -73,23 +73,23 @@ services:
             - './content:/data'
             - './delugevpn/config:/config'
             - '/etc/localtime:/etc/localtime:ro'
-            
+ 
     # ----------------------------------------
     # MUXIMUX
     # ----------------------------------------
     muximux:
-        container_name: muximux
         image: linuxserver/muximux
+        container_name: muximux
         restart: always
         network_mode: "bridge"
         ports:
-            - '${IP_ADDRESS}:80:80
+            - '${IP_ADDRESS}:80:80'
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
         volumes:
-            - './muximux:/config'          
-            
+            - './muximux:/config'
+                
     # ----------------------------------------
     # PLEX
     # ----------------------------------------
