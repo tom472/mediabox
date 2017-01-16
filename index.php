@@ -63,6 +63,6 @@ Click on the "gear" icon and select "Settings"<br />
 <br />
 <br />
 <p>Below are the variables in your .env file</p><br />
-<div><pre><?php include('../../../../../.env'); ?></pre></div>
+<div><pre><?php include('../../../../.env'); ?></pre></div>
 </body>
 </html>
