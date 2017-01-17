@@ -137,8 +137,7 @@ printf "Deluge = The password for the daemon (needed in Couchpotato) is: $daemon
 
 # Configure MUXIMUX settings and Index file
 `docker stop muximux > /dev/null 2>&1`
-`mv muximux/www/muximux/settings.ini.php muximux/www/muximux/settings.ini.php-orig`
-`mv settings.ini.php muximux/www/muximux/settings.ini.php`
+`mv -f settings.ini.php muximux/www/muximux/settings.ini.php`
 `sed -i "s/locip/$locip/g" muximux/www/muximux/settings.ini.php`
 `mkdir muximux/www/muximux/mediabox`
 `mv index.php muximux/www/muximux/mediabox/index.php` 
