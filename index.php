@@ -44,9 +44,19 @@ p {
 <body>
 <h1>Welcome to Mediabox!</h1>
 <h3>This page will help you manage your Mediabox server</h3>
-<b>Couchpotato:</b><br />
+<h3>Basic Information & Configuration</h3>  
+The Couchpotato container is available at: locip:5050<br />
+The DelugeVPN container is available at: locip:8112<br />
+# A PRIVOXY proxy service is available at: locip:8118<br />
+# The Deluge daemon port available at: locip:58846 - (For Couchpotato)<br />
+The PLEX container is available at: locip:32400/web<br />
+The Sickrage container is available at: locip:8081<br />
+To manage and monitor your containers - Portainer is available at: locip:9000<br />
+
+<h3>Manual Configuration steps:</h3>  
+<b><u>Couchpotato:</u></b><br />
 As you go through the Couchpotato Setup Wizard use these settings:<br />
-<ol><li> Turn on Deluge -- Click the "slider" to the right of the Deluge option</ol><br />
+<ol><li> Turn on Deluge -- Click the "slider" to the right of the Deluge option</ol>
 <ul><li> Host: locip:58846<br />
 <li> Username: daemonun<br />
 <li> Password: daemonpass<br />
@@ -63,6 +73,6 @@ Click on the "gear" icon and select "Settings"<br />
 <br />
 <br />
 <p>Below are the variables in your .env file</p><br />
-<div><pre><?php include('../../../../.env'); ?></pre></div>
+<div><pre><?php include('.env'); ?></pre></div>
 </body>
 </html>
