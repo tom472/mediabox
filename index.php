@@ -44,32 +44,32 @@ p {
 <body>
 <h1>Welcome to Mediabox!</h1>
 <h3>This page will help you manage your Mediabox server</h3>
-<h3>Basic Information & Configuration</h3>  
+<h3>Basic Information & Configuration</h3>
+<code>  
 The Couchpotato container is available at: locip:5050<br />
 The DelugeVPN container is available at: locip:8112<br />
-# A PRIVOXY proxy service is available at: locip:8118<br />
-# The Deluge daemon port available at: locip:58846 - (For Couchpotato)<br />
+<li>A PRIVOXY proxy service is available at: locip:8118<br />
+<li>The Deluge daemon port available at: locip:58846 - (For Couchpotato)<br />
 The PLEX container is available at: locip:32400/web<br />
 The Sickrage container is available at: locip:8081<br />
 To manage and monitor your containers - Portainer is available at: locip:9000<br />
-
+</code>
 <h3>Manual Configuration steps:</h3>  
 <b><u>Couchpotato:</u></b><br />
 As you go through the Couchpotato Setup Wizard use these settings:<br />
-<ol><li> Turn on Deluge -- Click the "slider" to the right of the Deluge option</ol>
-<ul><li> Host: locip:58846<br />
+<li> Turn on Deluge -- Click the "slider" to the right of the Deluge option<br />
+<li> Host: locip:58846<br />
 <li> Username: daemonun<br />
 <li> Password: daemonpass<br />
 <li> Directory: [Leave Bliank]<br />
 <li> Label: [Leave Blank]<br />
-</ul>
 <br />
 After the Wizard is complete:<br />
-Click on the "gear" icon and select "Settings"<br />
-* Go to > Downloaders > Deluge > & click the "Test Deluge" button to verify the connection.<br />
-* Go to > Renamer - and turn it on > Click the "slider" to the right<br />
-# In the From field: /downloads<br />
-# In the To field: /movies<br />
+<li> Click on the "gear" icon and select "Settings"<br />
+<li> Go to > Downloaders > Deluge > & click the "Test Deluge" button to verify the connection.<br />
+<li> Go to > Renamer - and turn it on > Click the "slider" to the right<br />
+<li># In the From field: /downloads<br />
+<li># In the To field: /movies<br />
 <br />
 <br />
 <p>Below are the variables in your .env file</p><br />
