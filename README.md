@@ -71,3 +71,4 @@ The script will complete and launch your mediabox containers.
 # Normal Disclaimer
 
 By using Mediabox - Not responsible if anything breaks.
+Don't do anything bad
