@@ -7,6 +7,7 @@ Components include:
   * PLEX
   * Sickrage
   * Portainer
+  * Muximux
   
 # Prerequisites
 **mediabox** has been tested to work on Ubuntu - Server and Desktop
