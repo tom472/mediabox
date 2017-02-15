@@ -88,7 +88,7 @@ MUXIMUX is a lightweight way to manage your HTPC - This is the interface that yo
 It provides a one-stop URL location that you can bookmark to be able to quickly access all of the individual HTPC components of Mediabox.<br />
 By using the links located in the banner at the top of this page.<br />
 <h1>Troubleshooting</h1>
-If you are having issue swith Mediabox or any of your continers please tak e look at the settings being used.<br />
+If you are having issues with Mediabox or any of your continers please tak e look at the settings being used.<br />
 Below are the variables in your .env file:
 <div><pre><?php include('.env'); ?></pre></div>
 </body>
