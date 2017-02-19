@@ -75,11 +75,11 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
  
     # ----------------------------------------
-    # NGINX
+    # http
     # ----------------------------------------
-    nginx:
-        image: nginx
-        container_name: nginx
+    uhttpd:
+        image: fnichol/uhttpd
+        container_name: uhttpd
         restart: always
         network_mode: "bridge"
         ports:
@@ -88,7 +88,7 @@ services:
             - PUID=${PUID}
             - PGID=${PGID}
         volumes:
-            - './nginx:/usr/share/nginx/html:ro'
+            - './www:/www'
                 
     # ----------------------------------------
     # PLEX

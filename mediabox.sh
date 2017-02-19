@@ -135,14 +135,14 @@ printf "Deluge = The password for the daemon (needed in Couchpotato) is: $daemon
 `sed -i 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf`
 `docker start delugevpn > /dev/null 2>&1`
 
-# Configure NGINX settings and Index file
-`docker stop nginx > /dev/null 2>&1`
-`mv index.html nginx/index.html` 
-`sed -i "s/locip/$locip/g" nginx/index.html`
-`sed -i "s/daemonun/$daemonun/g" nginx/index.html`
-`sed -i "s/daemonpass/$daemonpass/g" nginx/index.html`
-`cp .env nginx/env.txt`
-`docker start nginx > /dev/null 2>&1`
+# Configure UHTTPD settings and Index file
+`docker stop uhttpd > /dev/null 2>&1`
+`mv index.html www/index.html` 
+`sed -i "s/locip/$locip/g" www/index.html`
+`sed -i "s/daemonun/$daemonun/g" www/index.html`
+`sed -i "s/daemonpass/$daemonpass/g" www/index.html`
+`cp .env www/env.txt`
+`docker start uhttpd > /dev/null 2>&1`
 
 # Adjust the permissions on the content folder
 `chmod -R 0777 content/`
