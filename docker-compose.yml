@@ -75,11 +75,11 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
  
     # ----------------------------------------
-    # MUXIMUX
+    # NGINX
     # ----------------------------------------
-    muximux:
-        image: linuxserver/muximux
-        container_name: muximux
+    nginx:
+        image: nginx
+        container_name: nginx
         restart: always
         network_mode: "bridge"
         ports:
@@ -88,7 +88,7 @@ services:
             - PUID=${PUID}
             - PGID=${PGID}
         volumes:
-            - './muximux:/config'
+            - './nginx:/usr/share/nginx/html:ro'
                 
     # ----------------------------------------
     # PLEX
