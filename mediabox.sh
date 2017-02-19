@@ -45,6 +45,7 @@ fi
 `mkdir -p content/downloads`
 `mkdir -p content/movies`
 `mkdir -p content/tv`
+`mkdir -p www`
 
 ###################
 # TROUBLESHOOTING #
@@ -96,16 +97,16 @@ printf "\n\n"
 printf "\n\n"
 
 # Echo the configuration
-printf " Container URLs and Ports \n"
-printf "\n"
-printf "The Couchpotato container is available at: $locip:5050\n"
-printf "The DelugeVPN container is available at: $locip:8112\n"
-printf " # A PRIVOXY proxy service is available at: $locip:8118\n"
-printf " # The Deluge daemon port available at: $locip:58846 - (For Couchpotato)\n"
-printf "The PLEX container is available at: $locip:32400/web\n"
-printf "The Sickrage container is available at: $locip:8081\n"
-printf "To manage and monitor your containers - Portainer is available at: $locip:9000\n"
-printf "\n\n"
+# printf " Container URLs and Ports \n"
+# printf "\n"
+# printf "The Couchpotato container is available at: $locip:5050\n"
+# printf "The DelugeVPN container is available at: $locip:8112\n"
+# printf " # A PRIVOXY proxy service is available at: $locip:8118\n"
+# printf " # The Deluge daemon port available at: $locip:58846 - (For Couchpotato)\n"
+# printf "The PLEX container is available at: $locip:32400/web\n"
+# printf "The Sickrage container is available at: $locip:8081\n"
+# printf "To manage and monitor your containers - Portainer is available at: $locip:9000\n"
+# printf "\n\n"
 
 # Let's configure the access to the Deluge Deamon for CouchPotato
 echo "CouchPotato requires access to the Deluge daemon port and needs credentials set."
