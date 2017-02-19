@@ -121,7 +121,25 @@ services:
             - './content/tv:/data/tvshows'
             - './content/movies:/data/movies'
             - '/etc/localtime:/etc/localtime:ro'
-      
+
+    # ----------------------------------------
+    # plexpy
+    # ----------------------------------------
+    plexpy:
+        image: linuxserver/plexpy
+        container_name: plexpy
+        restart: always
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:8181:8181'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './plexpy:/config'
+            - './plex/Library/Application\ Support/Plex\ Media\ Server/Logs:logs:ro'
+            - '/etc/localtime:/etc/localtime:ro'
+
     # ----------------------------------------
     # PORTAINER
     # ----------------------------------------

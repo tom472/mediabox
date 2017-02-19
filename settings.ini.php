@@ -63,6 +63,16 @@ landingpage = "false"
 dd = "false"
 scale = 1.0
 
+[PlexPy]
+name = "PlexPy"
+url = "http://locip:8181"
+icon = "fa-play-circle"
+enabled = "true"
+default = "false"
+landingpage = "false"
+dd = "false"
+scale = 1.0
+
 [SickRage]
 name = "SickRage"
 url = "http://locip:8081"
