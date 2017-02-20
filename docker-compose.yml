@@ -95,17 +95,17 @@ services:
     # ----------------------------------------
     minio:
         image: minio/minio
-        container_name: ombi
+        container_name: minio
         restart: always
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:9009:9000'
-    environment:
-        - MINIO_ACCESS_KEY=minio
-        - MINIO_SECRET_KEY=minio123
-    volumes:
-        - '$PWD:/export'
-    command: server export
+        environment:
+            - MINIO_ACCESS_KEY=minio
+            - MINIO_SECRET_KEY=minio123
+        volumes:
+            - '$PWD:/export'
+        command: server export
 
     # ----------------------------------------
     # Ombi
