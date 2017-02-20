@@ -93,20 +93,8 @@ echo "The containers will now be pulled and launched"
 echo "This may take a while depending on your download speed"
 read -p "Press any key to continue... " -n1 -s
 printf "\n\n"
-`docker-compose up -d`
+`docker-compose up -d 2>&1`
 printf "\n\n"
-
-# Echo the configuration
-# printf " Container URLs and Ports \n"
-# printf "\n"
-# printf "The Couchpotato container is available at: $locip:5050\n"
-# printf "The DelugeVPN container is available at: $locip:8112\n"
-# printf " # A PRIVOXY proxy service is available at: $locip:8118\n"
-# printf " # The Deluge daemon port available at: $locip:58846 - (For Couchpotato)\n"
-# printf "The PLEX container is available at: $locip:32400/web\n"
-# printf "The Sickrage container is available at: $locip:8081\n"
-# printf "To manage and monitor your containers - Portainer is available at: $locip:9000\n"
-# printf "\n\n"
 
 # Let's configure the access to the Deluge Deamon for CouchPotato
 echo "CouchPotato requires access to the Deluge daemon port and needs credentials set."
@@ -114,12 +102,8 @@ read -p "What would you like to use as the daemon access username?: " daemonun
 read -p "What would you like to use as the daemon access password?: " daemonpass
 printf "\n\n"
 
-# Access usernames & passwords
-printf " Default Usernames & Passwords \n"
-printf "\n"
-printf "Deluge = The default password for the webui is - deluge\n"
-printf "Deluge = The username for the daemon (needed in Couchpotato) is: $daemonun\n"
-printf "Deluge = The password for the daemon (needed in Couchpotato) is: $daemonpass\n"
+# Finish up the config
+echo "Configuring Deluge daemon access - UHTTPD index file - Permsiisons"
 
 # Push the Deluge Deamon Access info the to Auth file
 # printf "To complete the Deluge daemon access - copy and paste the line below to your terminal\n"
