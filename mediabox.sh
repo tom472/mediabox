@@ -40,11 +40,18 @@ elif [ $portainertag == "noauth" ]; then
    portainertag=1.10.2
 fi   
 
-# Create the content file structure
+# Create the directory structure
 `mkdir -p content/in_progress`
 `mkdir -p content/downloads`
 `mkdir -p content/movies`
 `mkdir -p content/tv`
+`mkdir -p couchpotato`
+`mkdir -p delugnvpn`
+`mkdir -p ombi`
+`mkdir -p plex`
+`mkdir -p plexpy`
+`mkdir -p portainer`
+`mkdir -p sickrage`
 `mkdir -p www`
 
 ###################
@@ -98,7 +105,7 @@ printf "\n\n"
 `docker-compose up -d`
 printf "\n\n"
 
-# Let's configure the access to the Deluge Deamon for CouchPotato
+# Let's configure the access to the Deluge Daemon for CouchPotato
 echo "CouchPotato requires access to the Deluge daemon port and needs credentials set."
 read -p "What would you like to use as the daemon access username?: " daemonun
 read -p "What would you like to use as the daemon access password?: " daemonpass
@@ -107,7 +114,7 @@ printf "\n\n"
 # Finish up the config
 echo "Configuring Deluge daemon access - UHTTPD index file - Permsiisons"
 
-# Push the Deluge Deamon Access info the to Auth file
+# Push the Deluge Daemon Access info the to Auth file
 # printf "To complete the Deluge daemon access - copy and paste the line below to your terminal\n"
 # printf "$ echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth"
 `echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth`
