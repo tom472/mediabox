@@ -93,7 +93,7 @@ echo "The containers will now be pulled and launched"
 echo "This may take a while depending on your download speed"
 read -p "Press any key to continue... " -n1 -s
 printf "\n\n"
-`docker-compose up -d 2>&1`
+`docker-compose up -d`
 printf "\n\n"
 
 # Let's configure the access to the Deluge Deamon for CouchPotato
