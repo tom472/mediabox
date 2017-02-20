@@ -59,6 +59,7 @@ fi
 # printf "The username is: $localuname\n"
 # printf "The PUID is: $PUID\n"
 # printf "The PGID is: $PGID\n"
+# printf "The current directory is: $PWD\n"
 # printf "The IP address is: $locip\n"
 # printf "The CIDR address is: $lannet\n"
 # printf "The PIA Username is: $piauname\n"
@@ -78,6 +79,7 @@ echo "HOSTNAME=$thishost" >> .env
 echo "IP_ADDRESS=$locip" >> .env
 echo "PUID=$PUID" >> .env
 echo "PGID=$PGID" >> .env
+echo "PWD=$PWD" >> .env
 echo "PIAUNAME=$piauname" >> .env
 echo "PIAPASS=$piapass" >> .env
 echo "CIDR_ADDRESS=$lannet" >> .env
