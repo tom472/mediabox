@@ -105,7 +105,7 @@ services:
             - MINIO_SECRET_KEY=minio123
         volumes:
             - '${PWD}:/export'
-        command: server export
+        command: server /export
 
     # ----------------------------------------
     # Ombi
