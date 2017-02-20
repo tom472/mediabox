@@ -89,7 +89,23 @@ services:
             - PGID=${PGID}
         volumes:
             - './www:/www'
-                
+
+    # ----------------------------------------
+    # Ombi
+    # ----------------------------------------
+    ombi:
+        image: rogueosb/ombi
+        container_name: ombi
+        restart: always
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:3579:3579'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './ombi:/config'
+
     # ----------------------------------------
     # PLEX
     # ----------------------------------------
