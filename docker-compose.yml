@@ -170,7 +170,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './plexpy:/config'
-            - './plex/Library/Application\ Support/Plex\ Media\ Server/Logs:/logs:ro'
+            # - './plex/Library/Application\ Support/Plex\ Media\ Server/Logs:/logs:ro'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
