@@ -48,7 +48,7 @@ fi
 `mkdir -p couchpotato`
 `mkdir -p delugnvpn`
 `mkdir -p ombi`
-`mkdir -p plex`
+`mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"`
 `mkdir -p plexpy`
 `mkdir -p portainer`
 `mkdir -p sickrage`
