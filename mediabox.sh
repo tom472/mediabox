@@ -112,7 +112,7 @@ read -p "What would you like to use as the daemon access password?: " daemonpass
 printf "\n\n"
 
 # Finish up the config
-echo "Configuring Deluge daemon access - UHTTPD index file - Permsiisons"
+echo "Configuring Deluge daemon access - UHTTPD index file - Permissions"
 
 # Push the Deluge Daemon Access info the to Auth file
 # printf "To complete the Deluge daemon access - copy and paste the line below to your terminal\n"
