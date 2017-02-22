@@ -5,50 +5,28 @@
 body {
   font-family: "Open Sans", sans-serif;
 }
-pre {
-  font-size: 90%;
-  line-height: 1.2em;
-  font-family: "Courier 10 Pitch", Courier, monospace; 
-  white-space: pre; 
-  white-space: pre-wrap; 
-  white-space: -moz-pre-wrap; 
-  white-space: -o-pre-wrap; 
-
-  height:1%;
-  width: auto;
-  display: inline-block;
-  clear: both;
-  color: #555555;
-  padding: 1em 1em;
-  margin: auto 10px auto 10px;
-  background: #f4f4f4;
-  border: solid 1px #e1e1e1
-} 
-p {
-    border: 1px solid black;
-    display: inline-block;
-    padding: 5px
-}
 </style>
 </head>
 <body>
 <h1>Welcome to Mediabox!</h1>
 <h3><u>Basic Information & Configuration</u></h3>
-The Couchpotato container is available at: locip:5050<br />
-The DelugeVPN container is available at: locip:8112  -- Default Password is: deluge<br />
-A PRIVOXY proxy service is available at: locip:8118<br />
-The Deluge daemon port available at: locip:58846 - (For Couchpotato)<br />
-The PLEX container is available at: locip:32400/web<br />
-The Sickrage container is available at: locip:8081<br />
-The Portainer container is available at: locip:9000<br />
-The Muximux container is available at: locip<br />
+The <b><u>Couchpotato</b></u> container is available at: <a href="http://locip:5050" target="_blank">locip:5050</a><br />
+The <b><u>DelugeVPN</b></u> container is available at: <a href="http://locip:8112" target="_blank">locip:8112</a> -- Default Password is: deluge<br />
+A <b><u>PRIVOXY proxy</b></u> service is available at: locip:8118<br />
+The <b><u>Deluge daemon</b></u> port available at: locip:5884 -- (For Couchpotato)<br />
+The <b><u>PLEX</b></u> container is available at: <a href="http://locip:32400/web" target="_blank">locip:32400/web</a><br />
+The <b><u>PlexPy</b></u> container is available at: <a href="http://locip:8181" target="_blank">locip:8181</a><br />
+The <b><u>Sickrage</b></u> container is available at: <a href="http://locip:8081" target="_blank">locip:8081</a><br />
+The <b><u>Ombi</b></u> container is available at: <a href="http://locip:3579" target="_blank">locip:3579</a><br />
+The <b><u>Portainer</b></u> container is available at: <a href="http://locip:9000" target="_blank">locip:9000</a><br />
+The <b><u>Minio</b></u> (file browser) container is available at: <a href="http://locip:9009" target="_blank">locip:9009</a> -- Initial Login: minio / minio123 <br />
 <br />
 <h3><u>Manual Configuration steps:</u></h3>  
 <b><u>Couchpotato:</u></b><br />
 As you go through the Couchpotato Setup Wizard use these settings:<br />
 <ul>
 <li> Turn on Deluge -- Click the "slider" to the right of the Deluge option<br />
-<li> Host: locip:58846<br />
+<li> Host: locip:5884<br />
 <li> Username: daemonun<br />
 <li> Password: daemonpass<br />
 <li> Directory: [Leave Blank]<br />
@@ -78,18 +56,16 @@ When adding libraries to PLEX use these settings:
 <li>Movies = /data/movies
 <li>TV = /data/tvshows
 </ul>
-<h1>Mediabox Management Containers</h1>
+<h1>Mediabox Management Container</h1>
 <b><u>Portainer</u></b><br />
 To help you manage your Mediabox Docker containers Portainer is available.<br />
 Portainer is a Docker Management UI to help you work with the containers etc.
 <br />
-<b><u>MUXIMUX</u></b><br />
-MUXIMUX is a lightweight way to manage your HTPC - This is the interface that you are using now.<br />
-It provides a one-stop URL location that you can bookmark to be able to quickly access all of the individual HTPC components of Mediabox.<br />
-By using the links located in the banner at the top of this page.<br />
 <h1>Troubleshooting</h1>
-If you are having issues with Mediabox or any of your continers please tak e look at the settings being used.<br />
+If you are having issues with Mediabox or any of your continers please take look at the settings being used.<br />
 Below are the variables in your .env file:
-<div><pre><?php include('.env'); ?></pre></div>
+<div>
+<iframe src="env.txt" frameborder="0" height="500" width="75%"></iframe>
+</div>
 </body>
 </html>

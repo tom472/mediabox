@@ -40,11 +40,19 @@ elif [ $portainertag == "noauth" ]; then
    portainertag=1.10.2
 fi   
 
-# Create the content file structure
+# Create the directory structure
 `mkdir -p content/in_progress`
 `mkdir -p content/downloads`
 `mkdir -p content/movies`
 `mkdir -p content/tv`
+`mkdir -p couchpotato`
+`mkdir -p delugnvpn`
+`mkdir -p ombi`
+`mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"`
+`mkdir -p plexpy`
+`mkdir -p portainer`
+`mkdir -p sickrage`
+`mkdir -p www`
 
 ###################
 # TROUBLESHOOTING #
@@ -58,6 +66,7 @@ fi
 # printf "The username is: $localuname\n"
 # printf "The PUID is: $PUID\n"
 # printf "The PGID is: $PGID\n"
+# printf "The current directory is: $PWD\n"
 # printf "The IP address is: $locip\n"
 # printf "The CIDR address is: $lannet\n"
 # printf "The PIA Username is: $piauname\n"
@@ -77,6 +86,7 @@ echo "HOSTNAME=$thishost" >> .env
 echo "IP_ADDRESS=$locip" >> .env
 echo "PUID=$PUID" >> .env
 echo "PGID=$PGID" >> .env
+echo "PWD=$PWD" >> .env
 echo "PIAUNAME=$piauname" >> .env
 echo "PIAPASS=$piapass" >> .env
 echo "CIDR_ADDRESS=$lannet" >> .env
@@ -95,32 +105,16 @@ printf "\n\n"
 `docker-compose up -d`
 printf "\n\n"
 
-# Echo the configuration
-printf " Container URLs and Ports \n"
-printf "\n"
-printf "The Couchpotato container is available at: $locip:5050\n"
-printf "The DelugeVPN container is available at: $locip:8112\n"
-printf " # A PRIVOXY proxy service is available at: $locip:8118\n"
-printf " # The Deluge daemon port available at: $locip:58846 - (For Couchpotato)\n"
-printf "The PLEX container is available at: $locip:32400/web\n"
-printf "The Sickrage container is available at: $locip:8081\n"
-printf "To manage and monitor your containers - Portainer is available at: $locip:9000\n"
-printf "\n\n"
-
-# Let's configure the access to the Deluge Deamon for CouchPotato
+# Let's configure the access to the Deluge Daemon for CouchPotato
 echo "CouchPotato requires access to the Deluge daemon port and needs credentials set."
 read -p "What would you like to use as the daemon access username?: " daemonun
 read -p "What would you like to use as the daemon access password?: " daemonpass
 printf "\n\n"
 
-# Access usernames & passwords
-printf " Default Usernames & Passwords \n"
-printf "\n"
-printf "Deluge = The default password for the webui is - deluge\n"
-printf "Deluge = The username for the daemon (needed in Couchpotato) is: $daemonun\n"
-printf "Deluge = The password for the daemon (needed in Couchpotato) is: $daemonpass\n"
+# Finish up the config
+echo "Configuring Deluge daemon access - UHTTPD index file - Permissions"
 
-# Push the Deluge Deamon Access info the to Auth file
+# Push the Deluge Daemon Access info the to Auth file
 # printf "To complete the Deluge daemon access - copy and paste the line below to your terminal\n"
 # printf "$ echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth"
 `echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth`
@@ -135,17 +129,14 @@ printf "Deluge = The password for the daemon (needed in Couchpotato) is: $daemon
 `sed -i 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf`
 `docker start delugevpn > /dev/null 2>&1`
 
-# Configure MUXIMUX settings and Index file
-`docker stop muximux > /dev/null 2>&1`
-`mv -f settings.ini.php muximux/www/muximux/settings.ini.php`
-`sed -i "s/locip/$locip/g" muximux/www/muximux/settings.ini.php`
-`mkdir muximux/www/muximux/mediabox`
-`mv index.php muximux/www/muximux/mediabox/index.php` 
-`sed -i "s/locip/$locip/g" muximux/www/muximux/mediabox/index.php`
-`sed -i "s/daemonun/$daemonun/g" muximux/www/muximux/mediabox/index.php`
-`sed -i "s/daemonpass/$daemonpass/g" muximux/www/muximux/mediabox/index.php`
-`cp .env muximux/www/muximux/mediabox/.env`
-`docker start muximux > /dev/null 2>&1`
+# Configure UHTTPD settings and Index file
+`docker stop uhttpd > /dev/null 2>&1`
+`mv index.html www/index.html` 
+`sed -i "s/locip/$locip/g" www/index.html`
+`sed -i "s/daemonun/$daemonun/g" www/index.html`
+`sed -i "s/daemonpass/$daemonpass/g" www/index.html`
+`cp .env www/env.txt`
+`docker start uhttpd > /dev/null 2>&1`
 
 # Adjust the permissions on the content folder
 `chmod -R 0777 content/`

@@ -5,9 +5,11 @@ Components include:
   * Couchpotato
   * Deluge (using VPN)
   * PLEX
+  * PlexPy
+  * Ombi
   * Sickrage
   * Portainer
-  * Muximux
+  * Minio
   
 # Prerequisites
 **mediabox** has been tested to work on Ubuntu - Server and Desktop
@@ -24,8 +26,8 @@ Packages you will need installed and available are:
   
 **PLEASE NOTE**
 
-The options shown here to installs the above packages may not make everyone happy (Yes - there will be curl -> bash used)
-These are by far not the only methods to install these packages and if you are interested in finding other methods then feel free to do so, come on back here once the four packages mentioned are installed.
+The options shown here to install the above packages may not make everyone happy (Yes - there will be curl -> bash used)
+These are by far not the only methods to install these packages and if you are interested in finding other methods then feel free to do so, come on back here once the four packages above are installed.
 
 ### Installs:
 

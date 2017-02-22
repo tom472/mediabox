@@ -75,11 +75,11 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
  
     # ----------------------------------------
-    # MUXIMUX
+    # http
     # ----------------------------------------
-    muximux:
-        image: linuxserver/muximux
-        container_name: muximux
+    uhttpd:
+        image: fnichol/uhttpd
+        container_name: uhttpd
         restart: always
         network_mode: "bridge"
         ports:
@@ -88,8 +88,41 @@ services:
             - PUID=${PUID}
             - PGID=${PGID}
         volumes:
-            - './muximux:/config'
-                
+            - './www:/www'
+
+    # ----------------------------------------
+    # Minio
+    # ----------------------------------------
+    minio:
+        image: minio/minio
+        container_name: minio
+        restart: always
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:9009:9000'
+        environment:
+            - MINIO_ACCESS_KEY=minio
+            - MINIO_SECRET_KEY=minio123
+        volumes:
+            - '${PWD}:/export'
+        command: server /export
+
+    # ----------------------------------------
+    # Ombi
+    # ----------------------------------------
+    ombi:
+        image: rogueosb/ombi
+        container_name: ombi
+        restart: always
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:3579:3579'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './ombi:/config'
+
     # ----------------------------------------
     # PLEX
     # ----------------------------------------
@@ -121,7 +154,27 @@ services:
             - './content/tv:/data/tvshows'
             - './content/movies:/data/movies'
             - '/etc/localtime:/etc/localtime:ro'
-      
+
+    # ----------------------------------------
+    # plexpy
+    # ----------------------------------------
+    plexpy:
+        image: linuxserver/plexpy
+        container_name: plexpy
+        restart: always
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:8181:8181'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './plexpy:/config'
+            - './plex/Library/Application Support/Plex Media Server/Logs:/logs:ro'
+            - '/etc/localtime:/etc/localtime:ro'
+        depends_on:
+            - plex
+
     # ----------------------------------------
     # PORTAINER
     # ----------------------------------------
