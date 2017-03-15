@@ -33,11 +33,13 @@ if [ -z "$pmstag" ]; then
 fi
 
 # Get the info for the style of Portainer to use
-read -p "Which style of Portainer do you want to use? By default 'No Auth' will be used. (noauth, latest): " portainertag
-if [ -z "$portainertag" ]; then
-   portainertag=1.10.2
-elif [ $portainertag == "noauth" ]; then
-   portainertag=1.10.2
+read -p "Which style of Portainer do you want to use? By default 'No Auth' will be used. (noauth, auth): " portainerstyle
+if [ -z "$portainerstyle" ]; then
+   portainerstyle=--no-auth
+elif [ $portainerstyle == "noauth" ]; then
+   portainerstyle=--no-auth
+elif [ $portainerstyle == "auth" ]; then
+   portainerstyle= 
 fi   
 
 # Create the directory structure
@@ -75,8 +77,8 @@ fi
 # printf "The Timezone is: $tz\n"
 # printf "The Plex version is: $pmstag\n"
 # printf "The Plexpass Claim token is: $pmstoken\n"
-# printf "The Portainer style is: $portainertag\n"
-# printf "Note: A Portainer style of '1.10.2' = the 'No Auth' style\n"
+# printf "The Portainer style is: $portainerstyle\n"
+# printf "Note: A Portainer style of 'blank' = the 'Normal Auth' style\n"
 
 # Create the .env file
 echo "Creating the .env file with the values we have gathered"
@@ -93,7 +95,7 @@ echo "CIDR_ADDRESS=$lannet" >> .env
 echo "TZ=$tz" >> .env
 echo "PMSTAG=$pmstag" >> .env
 echo "PMSTOKEN=$pmstoken" >> .env
-echo "PORTAINERTAG=$portainertag" >> .env
+echo "PORTAINERSTYLE=$portainerstyle" >> .env
 echo ".env file creation complete"
 printf "\n\n"
 
