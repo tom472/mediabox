@@ -62,9 +62,9 @@ As the script runs you will be prompted for:
 2. The "Version" of Plex you want to run. (i.e. latest, public, plexpass)
 3. PLEX - CLIAM_TOKEN - if you choose plexpass as your version. 
   * (This is Optional - Claim Token available by logging in here: https://www.plex.tv/claim)
-4. The "style" of Portainer to use: (No Auth -OR- Latest)
+4. The "style" of Portainer to use: (No Auth -OR- Auth)
   * Portainer with No Auth will not require a password for access and will automaticvally connect to the local Docker sock endpoint.
-  * Portainer latest will; require a password, require a persistant volume map, and will need you to select the endpoint to manage.
+  * Portainer with Auth will; require a password, require a persistant volume map, and will need you to select the endpoint to manage.
 5. Credentials for the Deluge daemon - this is needed for the CouchPotato container.
 
 The script will complete and launch your mediabox containers.
