@@ -69,6 +69,7 @@ As the script runs you will be prompted for:
     * **plexpass**
 3. If you choose plexpass as your version you may optionally specify CLAIM_TOKEN - you can get your claim token by logging in at [plex.tv/claim](https://www.plex.tv/claim)
 4. The "style" of Portainer to use:
+
     * **auth** (will require a password, require a persistent volume map, and will need you to select the endpoint to manage), or
     * **noauth** (will not require a password for access and will automatically connect to the local Docker sock endpoint)
     
