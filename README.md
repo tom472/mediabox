@@ -37,6 +37,14 @@ Install all prerequisite packages and their dependencies:
 
 `$ sudo apt install git docker python python-pip docker-compose`
 
+Add the current user to the docker group:
+
+`$ sudo usermod -aG docker $USER`
+
+Reboot your machine manually, or using the command line:
+
+`$ sudo reboot`
+
 ---
 
 # Using mediabox
