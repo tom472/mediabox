@@ -48,7 +48,7 @@ fi
 `mkdir -p content/movies`
 `mkdir -p content/tv`
 `mkdir -p couchpotato`
-`mkdir -p delugnvpn`
+`mkdir -p delugevpn`
 `mkdir -p ombi`
 `mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"`
 `mkdir -p plexpy`
