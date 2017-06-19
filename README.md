@@ -2,19 +2,19 @@
 Mediabox is meant to be an all Docker Container based media aggregator stack.
 
 Components include:
-  * Couchpotato
-  * Deluge (using VPN)
-  * PLEX
-  * PlexPy
-  * Ombi
-  * Sickrage
-  * Portainer
-  * Minio
+  * [Couchpotato movie library manager](https://couchpota.to/)
+  * [Sickrage TV library manager](https://sickrage.github.io/)
+  * [Deluge torrent client (using VPN)](http://deluge-torrent.org/)
+  * [Plex media server](https://www.plex.tv/)
+  * [PlexPy media server monitor](https://jonnywong16.github.io/plexpy/)
+  * [Ombi media assistant](http://www.ombi.io/)
+  * [Portainer Docker Container manager](https://portainer.io/)
+  * [Minio cloud storage](https://www.minio.io/)
   
 # Prerequisites
 
-  * Ubuntu 16.04 LTS
-  * VPN account from [Private internet Access](https://www.privateinternetaccess.com/pages/buy-vpn/Stevie) (Please see [binhex's Github Repo](https://github.com/binhex/arch-delugevpn) if you want to use a different VPN)
+  * [Ubuntu 16.04 LTS](https://www.ubuntu.com/)
+  * [VPN account from Private internet Access](https://www.privateinternetaccess.com/pages/buy-vpn/Stevie) (Please see [binhex's Github Repo](https://github.com/binhex/arch-delugevpn) if you want to use a different VPN)
   * [Git](https://git-scm.com/)
   * [Docker](https://www.docker.com/)
   * [Python 2.7](https://www.python.org/)
