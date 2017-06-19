@@ -63,13 +63,14 @@ As the script runs you will be prompted for:
 4. The "style" of Portainer to use:
     * **auth** (will require a password, require a persistent volume map, and will need you to select the endpoint to manage), or
     * **noauth** (will not require a password for access and will automatically connect to the local Docker sock endpoint)
+    
 5. Credentials for the Deluge daemon - this is needed for the CouchPotato container.
 
 The script will complete and launch your mediabox containers.
 
----
-
 ##### **mediabox** has been tested to work on Ubuntu 16.04 LTS - Server and Desktop
+
+---
 
 
 # Normal Disclaimer
