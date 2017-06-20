@@ -56,25 +56,30 @@ Once the prerequisites are all taken care of you can move forward with using med
 3. Make the mediabox.sh script executable: `$ chmod +x mediabox.sh`
 4. Run the mediabox.sh script: `$ ./mediabox.sh`
 
-**Please be prepared to supply the following details after you run Step 4.**
+**Please be prepared to supply the following details after you run Step 4 above.**
 
 As the script runs you will be prompted for:
 
 1. Your Private Internet Access credentials
     * **username**
     * **password**
+
 2. The version of Plex you want to run
     * **latest**, or
     * **public**, or
     * **plexpass**
-3. If you choose plexpass as your version you may optionally specify CLAIM_TOKEN - you can get your claim token by logging in at [plex.tv/claim](https://www.plex.tv/claim)
-4. The "style" of Portainer to use
+    
+Note: If you choose plexpass as your version you may optionally specify CLAIM_TOKEN - you can get your claim token by logging in at [plex.tv/claim](https://www.plex.tv/claim)
+
+3. The "style" of Portainer to use
     *  **auth** (will require a password, require a persistent volume map, and will need you to select the endpoint to manage), or
     *  **noauth** (will not require a password for access and will automatically connect to the local Docker sock endpoint)
     
-5. Credentials for the Deluge daemon - this is needed for the CouchPotato container.
+4. Credentials for the Deluge daemon (this is needed for the CouchPotato container)
+    * **username**
+    * **password**
 
-The script will complete and launch your mediabox containers.
+Upon completion, the script will launch your mediabox containers.
 
 ##### **mediabox** has been tested to work on Ubuntu 16.04 LTS - Server and Desktop
 
