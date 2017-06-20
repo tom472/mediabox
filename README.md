@@ -31,7 +31,7 @@ For simplicity's sake (eg. automatic dependency management), the method used to 
 
 Start by updating and upgrading our current packages:
 
-`$ sudo apt-get update && sudo apt full-upgrade`
+`$ sudo apt update && sudo apt full-upgrade`
 
 Install all prerequisite packages and their dependencies:
 
