@@ -193,6 +193,25 @@ services:
         command: ${PORTAINERSTYLE}
     
     # ----------------------------------------
+    # Radarr
+    # ----------------------------------------
+    radarr:
+        image: linuxserver/radarr
+        container_name: radarr
+        restart: always
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:7878:7878'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './radarr:/config'
+            - './content/downloads:/downloads'
+            - './content/movies:/movies'
+            - '/etc/localtime:/etc/localtime:ro'
+    
+    # ----------------------------------------
     # SICKRAGE
     # ----------------------------------------
     sickrage:

@@ -53,6 +53,7 @@ fi
 `mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"`
 `mkdir -p plexpy`
 `mkdir -p portainer`
+`mkdir -p radarr`
 `mkdir -p sickrage`
 `mkdir -p www`
 
