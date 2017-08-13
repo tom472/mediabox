@@ -5,6 +5,7 @@ Components include:
   * [Couchpotato movie library manager](https://couchpota.to/)
   * [Sickrage TV library manager](https://sickrage.github.io/)
   * [Deluge torrent client (using VPN)](http://deluge-torrent.org/)
+  * [Radarr movie library manager](https://radarr.video/)
   * [Plex media server](https://www.plex.tv/)
   * [PlexPy media server monitor](https://jonnywong16.github.io/plexpy/)
   * [Ombi media assistant](http://www.ombi.io/)
@@ -85,7 +86,7 @@ Upon completion, the script will launch your mediabox containers.
 
 ---
 
-If you enjoy the project -- Fuel it with more caffeine :) 
+If you enjoy the project -- Fuel it with some caffeine :) 
 
 [![Donate](https://img.shields.io/badge/Donate-SquareCash-brightgreen.svg)](https://cash.me/$TomMorgan)
 

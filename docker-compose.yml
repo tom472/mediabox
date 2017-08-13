@@ -1,5 +1,4 @@
 ##
-##
 ## -------------------------
 ## |   M E D I A B O X     |
 ## -------------------------
@@ -21,7 +20,7 @@ version: '2'
 services:
 
     # ----------------------------------------
-    # Couchpotato
+    # COUCHPOTATO
     # ----------------------------------------
     couchpotato:
         image: linuxserver/couchpotato
@@ -76,7 +75,7 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
  
     # ----------------------------------------
-    # http
+    # HTTP
     # ----------------------------------------
     uhttpd:
         image: fnichol/uhttpd
@@ -92,7 +91,7 @@ services:
             - './www:/www'
 
     # ----------------------------------------
-    # Minio
+    # MINIO
     # ----------------------------------------
     minio:
         image: minio/minio
@@ -109,7 +108,7 @@ services:
         command: server /export
 
     # ----------------------------------------
-    # Ombi
+    # OMBI
     # ----------------------------------------
     ombi:
         image: rogueosb/ombi
@@ -157,7 +156,7 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
-    # plexpy
+    # PLEXPY
     # ----------------------------------------
     plexpy:
         image: linuxserver/plexpy
@@ -191,6 +190,25 @@ services:
             - '/var/run/docker.sock:/var/run/docker.sock'
             - '/etc/localtime:/etc/localtime:ro'
         command: ${PORTAINERSTYLE}
+    
+    # ----------------------------------------
+    # RADARR
+    # ----------------------------------------
+    radarr:
+        image: linuxserver/radarr
+        container_name: radarr
+        restart: always
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:7878:7878'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './radarr:/config'
+            - './content/complete:/downloads'
+            - './content/movies:/movies'
+            - '/etc/localtime:/etc/localtime:ro'
     
     # ----------------------------------------
     # SICKRAGE
