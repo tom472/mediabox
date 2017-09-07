@@ -1,5 +1,5 @@
 # mediabox
-Mediabox is meant to be an all-Docker-Container based media aggregator stack.
+Mediabox is meant to be an all Docker Container based media aggregator stack.
 
 Components include:
   * [Couchpotato movie library manager](https://couchpota.to/)
@@ -66,14 +66,14 @@ As the script runs you will be prompted for:
     * **password**
 
 2. The version of Plex you want to run
-    * **latest**, or
-    * **public**, or
+    * **latest**
+    * **public**
     * **plexpass**
     
 Note: If you choose plexpass as your version you may optionally specify CLAIM_TOKEN - you can get your claim token by logging in at [plex.tv/claim](https://www.plex.tv/claim)
 
 3. The "style" of Portainer to use
-    *  **auth** (will require a password, require a persistent volume map, and will need you to select the endpoint to manage), or
+    *  **auth** (will require a password, require a persistent volume map, and will need you to select the endpoint to manage)
     *  **noauth** (will not require a password for access and will automatically connect to the local Docker sock endpoint)
     
 4. Credentials for the Deluge daemon (this is needed for the CouchPotato container)
