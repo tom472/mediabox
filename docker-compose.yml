@@ -255,4 +255,4 @@ services:
         restart: always
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
-        command: portainer --schedule @hourly --cleanup
+        command: portainer --schedule @midnight --cleanup
