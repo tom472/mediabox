@@ -120,7 +120,7 @@ read -p "What would you like to use as the daemon access password?: " daemonpass
 printf "\n\n"
 
 # Finish up the config
-printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n"
+printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
 
 # Push the Deluge Daemon Access info the to Auth file
 `echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth`

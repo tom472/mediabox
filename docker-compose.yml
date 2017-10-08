@@ -122,7 +122,7 @@ services:
             - MINIO_SECRET_KEY=minio123
         volumes:
             - '${PWD}:/export'
-        command: server /export --no-healthcheck
+        command: server /export
 
     # ----------------------------------------
     # OMBI

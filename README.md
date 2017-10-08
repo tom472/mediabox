@@ -38,7 +38,7 @@ Start by updating and upgrading our current packages:
 
 Install all prerequisite packages and their dependencies:
 
-`$ sudo apt install git docker python python-pip docker-compose`
+`$ sudo apt install git docker docker.io python python-pip docker-compose`
 
 Add the current user to the docker group:
 
