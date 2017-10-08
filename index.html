@@ -7,9 +7,11 @@ body {
 }
 </style>
 </head>
+<a href="https://cash.me/$TomMorgan" target="_blank"><img src="https://img.shields.io/badge/Donate-SquareCash-brightgreen.svg"></a><br />
 <body>
 <h1>Welcome to Mediabox!</h1>
 <h3><u>Basic Information & Configuration</u></h3>
+The <b><u>cAdvisor</b></u> container is available at: <a href="http://locip:8080" target="_blank">locip:8080</a><br />
 The <b><u>Couchpotato</b></u> container is available at: <a href="http://locip:5050" target="_blank">locip:5050</a><br />
 The <b><u>DelugeVPN</b></u> container is available at: <a href="http://locip:8112" target="_blank">locip:8112</a> -- Default Password is: deluge<br />
 A <b><u>PRIVOXY proxy</b></u> service is available at: <a href="http://locip:8118" target="_blank">locip:8118</a><br />
@@ -19,7 +21,7 @@ The <b><u>PlexPy</b></u> container is available at: <a href="http://locip:8181" 
 The <b><u>Radarr</b></u> container is available at: <a href="http://locip:7878" target="_blank">locip:7878</a><br />
 The <b><u>Sickrage</b></u> container is available at: <a href="http://locip:8081" target="_blank">locip:8081</a><br />
 The <b><u>Ombi</b></u> container is available at: <a href="http://locip:3579" target="_blank">locip:3579</a><br />
-The <b><u>Portainer</b></u> container is available at: <a href="http://locip:9000" target="_blank">locip:9000</a><br />
+The <b><u>Portainer</b></u> container is available at: <a href="http://locip:9000" target="_blank">locip:9000</a> -- Select Local for the Endpoint to Manage<br />
 The <b><u>Minio</b></u> (file browser) container is available at: <a href="http://locip:9009" target="_blank">locip:9009</a> -- Initial Login: minio / minio123 <br />
 <br />
 <h3><u>Manual Configuration steps:</u></h3>  
@@ -50,6 +52,13 @@ After the Wizard is complete:<br />
 <li>At the top right - Select Post Processing<br />
 <li>On the Post Processing Tab - Go to Post Processing Dir<br />
 <li>Click Browse > Select "downloads"<br />
+<li>Click on the settings "gear" icon<br />
+<li>Go to > Search Settings > Torrent Search (Tab)<br />
+<li>Check the box for Enable Torrent Search Providers<br />
+<li>For the "Send .torrent files to" dropdown select: Deluge (via WebUI)<br />
+<li>For "Torrent host:port" use: http://locip:8112<br />
+<li>For client password use: deluge (unless you have changed it)<br />
+<li>After the settings are in Click the "Test Connection" button to see if it works<br />  
 </ul>
 <b><u>Radarr</u></b><br />
 <ul>
@@ -72,16 +81,24 @@ When adding libraries to PLEX use these settings:<br />
 <li>Movies = /data/movies<br />
 <li>TV = /data/tvshows<br />
 </ul>
-<h1>Mediabox Management Container</h1>
+<h3>Mediabox Management Containers</h3>
 <b><u>Portainer</u></b><br />
 To help you manage your Mediabox Docker containers Portainer is available.<br />
-Portainer is a Docker Management UI to help you work with the containers etc.
-<br />
+Portainer is a Docker Management UI to help you work with the containers etc.<br />
+When you first launch Portianer select "Local" as the Docker Endpoint to Manage.
+<br /><br />
+<b><u>Watchtower</u></b><br />
+The Watchtower container will monitor the Portainer container, if there is an update to the Portaner base image<br />
+Watchtower will download that image, gracefully stop Portainer, and re-launch it with the new image.<br />
+The other containers are generally built to install the latest version of the program they run whenever they are restarted.<br />
+So, for example, to update Deluge (which will let you know if you are behind) use Portainer to "Restart" the DelugeVPN container and it will update.<br />
 <h1>Troubleshooting</h1>
 If you are having issues with Mediabox or any of your continers please take look at the settings being used.<br />
 Below are the variables in your .env file:
 <div>
-<iframe src="env.txt" frameborder="0" height="500" width="75%"></iframe>
+<iframe src="env.txt" frameborder="0" height="450" width="50%"></iframe>
 </div>
+If you enjoy the project -- Fuel it with some caffeine :)<br />
+<a href="https://cash.me/$TomMorgan" target="_blank"><img src="https://img.shields.io/badge/Donate-SquareCash-brightgreen.svg"></a><br />
 </body>
 </html>

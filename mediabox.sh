@@ -10,6 +10,8 @@ PGID=`id -g $localuname`
 thishost=`hostname`
 # Get IP Address
 locip=`hostname -I | awk '{print $1}'`
+# Get Time Zone
+time_zone=`cat /etc/timezone`
 
 # CIDR - this assumes a 255.255.255.0 netmask - If your config is different use the custom CIDR line
 lannet=`hostname -I | awk '{print $1}' | sed 's/\.[0-9]*$/.0\/24/'`
@@ -23,8 +25,6 @@ read -s -p "What is your PIA Password? (Will not be echoed): " piapass
 printf "\n\n"
 
 # Get info needed for PLEX Official image
-# read -p "What is your Timezone?: " tz
-# Leaving Timezone out for now as we will be mountng /etc/localtime in the compose file
 read -p "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
 read -p "If you have PLEXPASS what is your Claim Token: (Optional) " pmstoken
 # If not set - set PMS Tag to Public:
@@ -49,6 +49,7 @@ fi
 `mkdir -p content/tv`
 `mkdir -p couchpotato`
 `mkdir -p delugevpn`
+`mkdir -p delugevpn/config/openvpn`
 `mkdir -p ombi`
 `mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"`
 `mkdir -p plexpy`
@@ -56,6 +57,10 @@ fi
 `mkdir -p radarr`
 `mkdir -p sickrage`
 `mkdir -p www`
+# Move the PIA VPN files
+`mv us-east.ovpn delugevpn/config/openvpn/us-east.ovpn`
+`mv ca.rsa.2048.crt delugevpn/config/openvpn/ca.rsa.2048.crt`
+`mv crl.rsa.2048.pem delugevpn/config/openvpn/crl.rsa.2048.pem`
 
 ###################
 # TROUBLESHOOTING #
@@ -75,7 +80,7 @@ fi
 # printf "The PIA Username is: $piauname\n"
 # printf "The PIA Password is: $piapass\n"
 # printf "The Hostname is: $thishost\n"
-# printf "The Timezone is: $tz\n"
+# printf "The Timezone is: $timezone\n"
 # printf "The Plex version is: $pmstag\n"
 # printf "The Plexpass Claim token is: $pmstoken\n"
 # printf "The Portainer style is: $portainerstyle\n"
@@ -93,7 +98,7 @@ echo "PWD=$PWD" >> .env
 echo "PIAUNAME=$piauname" >> .env
 echo "PIAPASS=$piapass" >> .env
 echo "CIDR_ADDRESS=$lannet" >> .env
-# echo "TZ=$tz" >> .env
+echo "TZ=$time_zone" >> .env
 echo "PMSTAG=$pmstag" >> .env
 echo "PMSTOKEN=$pmstoken" >> .env
 echo "PORTAINERSTYLE=$portainerstyle" >> .env
@@ -115,13 +120,10 @@ read -p "What would you like to use as the daemon access password?: " daemonpass
 printf "\n\n"
 
 # Finish up the config
-echo "Configuring Deluge daemon access - UHTTPD index file - Permissions"
+printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
 
 # Push the Deluge Daemon Access info the to Auth file
-# printf "To complete the Deluge daemon access - copy and paste the line below to your terminal\n"
-# printf "$ echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth"
 `echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth`
-# printf "\n"
 
 # Configure the DelugeVPN file paths, Set Daemon access on, delete the core.conf~ file
 `docker stop delugevpn > /dev/null 2>&1`

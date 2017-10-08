@@ -2,6 +2,7 @@
 Mediabox is meant to be an all Docker Container based media aggregator stack.
 
 Components include:
+  * [cAdvisor (Container Advisor) Resource Analyzer](https://github.com/google/cadvisor)  
   * [Couchpotato movie library manager](https://couchpota.to/)
   * [Sickrage TV library manager](https://sickrage.github.io/)
   * [Deluge torrent client (using VPN)](http://deluge-torrent.org/)
@@ -11,6 +12,7 @@ Components include:
   * [Ombi media assistant](http://www.ombi.io/)
   * [Portainer Docker Container manager](https://portainer.io/)
   * [Minio cloud storage](https://www.minio.io/)
+  * [Watchtower automatic container updater](https://github.com/v2tec/watchtower)
   
 # Prerequisites
 
@@ -36,7 +38,7 @@ Start by updating and upgrading our current packages:
 
 Install all prerequisite packages and their dependencies:
 
-`$ sudo apt install git docker python python-pip docker-compose`
+`$ sudo apt install git docker docker.io python python-pip docker-compose`
 
 Add the current user to the docker group:
 
@@ -55,7 +57,7 @@ Once the prerequisites are all taken care of you can move forward with using med
 1. Clone the mediabox repository: `$ git clone https://github.com/tom472/mediabox.git`
 2. Change directory into mediabox: `$ cd mediabox/`
 3. Make the mediabox.sh script executable: `$ chmod +x mediabox.sh`
-4. Run the mediabox.sh script: `$ ./mediabox.sh`
+4. Run the mediabox.sh script: `$ ./mediabox.sh`  **Read below for the script questions**
 
 **Please be prepared to supply the following details after you run Step 4 above.**
 
