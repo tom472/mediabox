@@ -242,7 +242,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './sickrage:/config'
-            - './content/downloads:/downloads'
+            - './content/complete:/downloads'
             - './content/tv:/tv'
             - '/etc/localtime:/etc/localtime:ro'
 
