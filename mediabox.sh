@@ -43,8 +43,8 @@ elif [ $portainerstyle == "auth" ]; then
 fi   
 
 # Create the directory structure
-`mkdir -p content/complete`
-`mkdir -p content/in_progress`
+`mkdir -p content/completed`
+`mkdir -p content/incomplete`
 `mkdir -p content/movies`
 `mkdir -p content/tv`
 `mkdir -p couchpotato`
@@ -139,8 +139,8 @@ printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
 `docker stop delugevpn > /dev/null 2>&1`
 `rm delugevpn/config/core.conf~ > /dev/null 2>&1`
 `sed -i 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config/core.conf`
-`sed -i 's/"\/home\/nobody\/Incompletes"/"\/data\/in_progress"/g' delugevpn/config/core.conf`
-`sed -i 's/"\/home\/nobody\/Completed"/"\/data\/complete"/g' delugevpn/config/core.conf`
+# `sed -i 's/"\/home\/nobody\/Incompletes"/"\/data\/in_progress"/g' delugevpn/config/core.conf`
+# `sed -i 's/"\/home\/nobody\/Completed"/"\/data\/complete"/g' delugevpn/config/core.conf`
 `sed -i 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf`
 `docker start delugevpn > /dev/null 2>&1`
 

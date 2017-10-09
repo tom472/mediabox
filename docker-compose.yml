@@ -30,11 +30,9 @@ services:
         ports:
             - '${IP_ADDRESS}:8080:8080'
         volumes:
-            - '/:/rootfs:ro'
             - '/var/run:/var/run:rw'
             - '/sys:/sys:ro'
             - '/var/lib/docker/:/var/lib/docker:ro'
-            - '/dev/disk/:/dev/disk:ro'
 
     # ----------------------------------------
     # COUCHPOTATO
@@ -51,7 +49,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './couchpotato:/config'
-            - './content/complete:/downloads'
+            - './content/completed:/downloads'
             - './content/movies:/movies'
             - '/etc/localtime:/etc/localtime:ro'
     
@@ -223,7 +221,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './radarr:/config'
-            - './content/complete:/downloads'
+            - './content/completed:/downloads'
             - './content/movies:/movies'
             - '/etc/localtime:/etc/localtime:ro'
     
@@ -242,7 +240,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './sickrage:/config'
-            - './content/complete:/downloads'
+            - './content/completed:/downloads'
             - './content/tv:/tv'
             - '/etc/localtime:/etc/localtime:ro'
 
