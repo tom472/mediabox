@@ -45,13 +45,13 @@ Install the prerequisite packages and their dependencies:
 It’s OK if apt-get reports that none of these packages are installed.
 2. Install Docker CE: `$ sudo curl -fsSL https://get.docker.com/ | sh`
 
-Add the current user to the docker group: (This step is shown at the end of the above script - if you did it then you do not have to do it again.)
+Add the current user to the docker group:
 
 `$ sudo usermod -aG docker $USER`
 
 Install Docker-Compose
 
-`$ sudo pip install docker-compose
+`$ sudo pip install docker-compose`
 
 Adjustment for the the DelugeVPN container
 
