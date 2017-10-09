@@ -124,6 +124,7 @@ printf "\n\n"
 printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
 
 # Configure DelugeVPN: Set Daemon access on, delete the core.conf~ file
+`while [ ! -f delugevpn/config/core.conf ]; do sleep 1; done`
 `docker stop delugevpn > /dev/null 2>&1`
 `rm delugevpn/config/core.conf~ > /dev/null 2>&1`
 `sed -i 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config/core.conf`
@@ -145,5 +146,5 @@ printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
 # Adjust the permissions on the content folder
 `chmod -R 0777 content/`
 
-printf "Setup Complete - Open a browser and go to: \n"
+printf "Setup Complete - Open a browser and go to: \n\n"
 printf "http://$locip OR http://$thishost \n"

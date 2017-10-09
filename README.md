@@ -35,17 +35,27 @@ Start by updating and upgrading our current packages:
 
 `$ sudo apt update && sudo apt full-upgrade`
 
-Install all prerequisite packages and their dependencies:
+Install the prerequisite packages and their dependencies:
 
-`$ sudo apt install git docker docker.io python python-pip docker-compose`
+`$ sudo apt install git python python-pip`
 
-Add the current user to the docker group:
+**Note** - Mediabox will install Docker CE as the default Docker version - if you skip this and run with older Docker versions you may have issues.
+
+1. Uninstall old versions: `$ sudo apt-get remove docker docker-engine docker.io`
+It’s OK if apt-get reports that none of these packages are installed.
+2. Install Docker CE: `$ sudo curl -fsSL https://get.docker.com/ | sh`
+
+Add the current user to the docker group: (This step is shown at the end of the above script - if you did it then you do not have to do it again.)
 
 `$ sudo usermod -aG docker $USER`
 
+Install Docker-Compose
+
+`$ sudo pip install docker-compose
+
 Adjustment for the the DelugeVPN container
 
-`sudo /sbin/modprobe iptable_mangle`
+`$ sudo /sbin/modprobe iptable_mangle`
 
 Reboot your machine manually, or using the command line:
 
