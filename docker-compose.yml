@@ -24,7 +24,7 @@ services:
     # ----------------------------------------
     cAdvisor:
         container_name: cadvisor
-        image: google/cadvisor:latest
+        image: google/cadvisor
         restart: always
         network_mode: "bridge"
         ports:
@@ -51,7 +51,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './couchpotato:/config'
-            - './content/downloads:/downloads'
+            - './content/complete:/downloads'
             - './content/movies:/movies'
             - '/etc/localtime:/etc/localtime:ro'
     
@@ -74,7 +74,7 @@ services:
             - VPN_ENABLED=yes
             - VPN_USER=${PIAUNAME}
             - VPN_PASS=${PIAPASS}
-            - VPN_REMOTE=us-east.privateinternetaccess.com
+            - VPN_REMOTE=ca.privateinternetaccess.com
             - VPN_PORT=1198
             - VPN_PROTOCOL=udp
             - VPN_DEVICE_TYPE=tun
