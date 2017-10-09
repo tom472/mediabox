@@ -123,6 +123,13 @@ printf "\n\n"
 # Finish up the config
 printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
 
+# Configure DelugeVPN: Set Daemon access on, delete the core.conf~ file
+`docker stop delugevpn > /dev/null 2>&1`
+`rm delugevpn/config/core.conf~ > /dev/null 2>&1`
+`sed -i 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config/core.conf`
+`sed -i 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf`
+`docker start delugevpn > /dev/null 2>&1`
+
 # Push the Deluge Daemon Access info the to Auth file
 `echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth`
 
@@ -134,15 +141,6 @@ printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
 `sed -i "s/daemonpass/$daemonpass/g" www/index.html`
 `cp .env www/env.txt`
 `docker start uhttpd > /dev/null 2>&1`
-
-# Configure the DelugeVPN file paths, Set Daemon access on, delete the core.conf~ file
-`docker stop delugevpn > /dev/null 2>&1`
-`rm delugevpn/config/core.conf~ > /dev/null 2>&1`
-`sed -i 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config/core.conf`
-# `sed -i 's/"\/home\/nobody\/Incompletes"/"\/data\/in_progress"/g' delugevpn/config/core.conf`
-# `sed -i 's/"\/home\/nobody\/Completed"/"\/data\/complete"/g' delugevpn/config/core.conf`
-`sed -i 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf`
-`docker start delugevpn > /dev/null 2>&1`
 
 # Adjust the permissions on the content folder
 `chmod -R 0777 content/`

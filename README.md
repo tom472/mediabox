@@ -2,7 +2,6 @@
 Mediabox is meant to be an all Docker Container based media aggregator stack.
 
 Components include:
-  * [cAdvisor (Container Advisor) Resource Analyzer](https://github.com/google/cadvisor)  
   * [Couchpotato movie library manager](https://couchpota.to/)
   * [Sickrage TV library manager](https://sickrage.github.io/)
   * [Deluge torrent client (using VPN)](http://deluge-torrent.org/)

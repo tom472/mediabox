@@ -20,21 +20,6 @@ version: '2'
 services:
 
     # ----------------------------------------
-    # cAdvisor
-    # ----------------------------------------
-    cAdvisor:
-        container_name: cadvisor
-        image: google/cadvisor
-        restart: always
-        network_mode: "bridge"
-        ports:
-            - '${IP_ADDRESS}:8080:8080'
-        volumes:
-            - '/var/run:/var/run:rw'
-            - '/sys:/sys:ro'
-            - '/var/lib/docker/:/var/lib/docker:ro'
-
-    # ----------------------------------------
     # COUCHPOTATO
     # ----------------------------------------
     couchpotato:
