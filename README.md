@@ -44,7 +44,7 @@ Install the prerequisite packages:
 1. Uninstall old versions: `$ sudo apt-get remove docker docker-engine docker.io`
 It’s OK if apt-get reports that none of these packages are installed.
 2. Install Docker CE: `$ sudo curl -fsSL https://get.docker.com/ | sh`
-3. Install Docker-Compose: `$ sudo curl -o /usr/local/bin/docker-compose -L "https://github.com/docker/compose/releases/download/1.16.1/docker-compose-$(uname -s)-$(uname -m)"`
+3. Install Docker-Compose: `$ sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose`
 4. Set the permissions: `$ sudo chmod +x /usr/local/bin/docker-compose`
 5. Verify the installation: `$ docker-compose -v`
 
