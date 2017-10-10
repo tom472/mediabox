@@ -35,15 +35,18 @@ Start by updating and upgrading our current packages:
 
 `$ sudo apt update && sudo apt full-upgrade`
 
-Install the prerequisite packages and their dependencies:
+Install the prerequisite packages:
 
-`$ sudo apt install git python docker-compose`
+`$ sudo apt install git python`
 
 **Note** - Mediabox will install Docker CE as the default Docker version - if you skip this and run with older Docker versions you may have issues.
 
 1. Uninstall old versions: `$ sudo apt-get remove docker docker-engine docker.io`
 It’s OK if apt-get reports that none of these packages are installed.
 2. Install Docker CE: `$ sudo curl -fsSL https://get.docker.com/ | sh`
+3. Install Docker-Compose: `$ sudo curl -o /usr/local/bin/docker-compose -L "https://github.com/docker/compose/releases/download/1.16.1/docker-compose-$(uname -s)-$(uname -m)"`
+4. Set the permissions: `$ sudo chmod +x /usr/local/bin/docker-compose`
+5. Verify the installation: `$ docker-compose -v`
 
 Add the current user to the docker group:
 
