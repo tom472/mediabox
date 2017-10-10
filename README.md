@@ -37,7 +37,7 @@ Start by updating and upgrading our current packages:
 
 Install the prerequisite packages and their dependencies:
 
-`$ sudo apt install git python python-pip`
+`$ sudo apt install git python docker-compose`
 
 **Note** - Mediabox will install Docker CE as the default Docker version - if you skip this and run with older Docker versions you may have issues.
 
@@ -48,10 +48,6 @@ It’s OK if apt-get reports that none of these packages are installed.
 Add the current user to the docker group:
 
 `$ sudo usermod -aG docker $USER`
-
-Install Docker-Compose
-
-`$ pip install docker-compose`
 
 Adjustment for the the DelugeVPN container
 
