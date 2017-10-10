@@ -51,7 +51,7 @@ Add the current user to the docker group:
 
 Install Docker-Compose
 
-`$ sudo pip install docker-compose`
+`$ pip install docker-compose`
 
 Adjustment for the the DelugeVPN container
 
