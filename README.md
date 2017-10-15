@@ -21,7 +21,6 @@ Components include:
   * [Git](https://git-scm.com/)
   * [Docker](https://www.docker.com/)
   * [Python 2.7](https://www.python.org/)
-  * [Python-Pip](https://pypi.python.org/pypi/pip)
   * [Docker-Compose](https://docs.docker.com/compose/)
   
 **PLEASE NOTE**
