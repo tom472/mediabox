@@ -117,7 +117,7 @@ services:
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:19999:19999'
-         cap_add:
+        cap_add:
             - SYS_PTRACE    
         volumes:
             - '/proc:/host/proc:ro'
