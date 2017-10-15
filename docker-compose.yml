@@ -108,6 +108,23 @@ services:
         command: server /export
 
     # ----------------------------------------
+    # NETDATA
+    # ----------------------------------------
+    netdata:
+        image: titpetric/netdata
+        container_name: netdata
+        restart: always
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:19999:19999'
+         cap_add:
+            - SYS_PTRACE    
+        volumes:
+            - '/proc:/host/proc:ro'
+            - '/sys:/host/sys:ro'
+            - '/var/run/docker.sock:/var/run/docker.sock'
+
+    # ----------------------------------------
     # OMBI
     # ----------------------------------------
     ombi:
@@ -189,7 +206,7 @@ services:
             - './portainer:/data'
             - '/var/run/docker.sock:/var/run/docker.sock'
             - '/etc/localtime:/etc/localtime:ro'
-        command: ${PORTAINERSTYLE}
+        command: ${PORTAINERSTYLE} -H unix:///var/run/docker.sock
     
     # ----------------------------------------
     # RADARR

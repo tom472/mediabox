@@ -143,6 +143,9 @@ printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
 `cp .env www/env.txt`
 `docker start uhttpd > /dev/null 2>&1`
 
+# Fix the Healthcheck in Minio
+docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh
+
 # Adjust the permissions on the content folder
 `chmod -R 0777 content/`
 
