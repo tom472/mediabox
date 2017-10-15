@@ -196,7 +196,7 @@ services:
     # PORTAINER
     # ----------------------------------------
     portainer:
-        image: portainer/portainer
+        image: portainer/portainer:latest
         container_name: portainer
         restart: always
         network_mode: "bridge"

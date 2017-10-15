@@ -12,6 +12,7 @@ Components include:
   * [Portainer Docker Container manager](https://portainer.io/)
   * [Minio cloud storage](https://www.minio.io/)
   * [Watchtower automatic container updater](https://github.com/v2tec/watchtower)
+  * [NetData System Monitoring](https://github.com/firehol/netdata)
   
 # Prerequisites
 
