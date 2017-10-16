@@ -27,6 +27,25 @@ Components include:
 
 For simplicity's sake (eg. automatic dependency management), the method used to install these packages is Ubuntu 16.04's default package manager, [APT](https://wiki.debian.org/Apt).  There are several other methods that work just as well, if not better (especially if you don't have superuser access on your system), so use whichever method you prefer.  Continue when you've successfully installed all packages listed.
 
+### Preinstall:
+
+(You'll need superuser access to run these commands successfully)
+
+Login with too and create a user to run docker
+
+`# adduser plex`
+
+Set a password to the user. Then give the new user sudo privileges
+
+`# usermod -aG sudo plex`
+
+Now logout from root account and login as plex user
+
+`# exit`
+
+
+
+
 ### Installation:
 
 (You'll need superuser access to run these commands successfully)
@@ -37,7 +56,7 @@ Start by updating and upgrading our current packages:
 
 Install the prerequisite packages:
 
-`$ sudo apt install git python`
+`$ sudo apt install git python bridge-utils`
 
 **Note** - Mediabox will install Docker CE as the default Docker version - if you skip this and run with older Docker versions you may have issues.
 
