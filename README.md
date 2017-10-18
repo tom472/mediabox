@@ -37,7 +37,7 @@ Start by updating and upgrading our current packages:
 
 Install the prerequisite packages:
 
-`$ sudo apt install git python`
+`$ sudo apt install git python bridge-utils` (Thanks @danipolo for the bridge-utils tip)
 
 **Note** - Mediabox will install Docker CE as the default Docker version - if you skip this and run with older Docker versions you may have issues.
 
