@@ -94,6 +94,7 @@ then
 mv .env "$(date +"%Y-%m-%d_%H_%M").env.bk"
 echo "Existing .env file was backed-up"
 fi
+mv mediabox.env .env
 echo "Creating the .env file with the values we have gathered"
 printf "\n"
 echo "LOCALUSER=$localuname" >> .env
