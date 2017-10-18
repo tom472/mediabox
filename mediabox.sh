@@ -88,13 +88,6 @@ fi
 # printf "Note: A Portainer style of 'blank' = the 'Normal Auth' style\n"
 
 # Create the .env file
-# If there is an existing .env file - make a back-up with date/timestamp
-if [ -e .env ]
-then
-mv .env "$(date +"%Y-%m-%d_%H_%M").env.bk"
-echo "Existing .env file was backed-up"
-fi
-mv mediabox.env .env
 echo "Creating the .env file with the values we have gathered"
 printf "\n"
 echo "LOCALUSER=$localuname" >> .env
@@ -143,7 +136,7 @@ printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
 
 # Configure UHTTPD settings and Index file
 `docker stop uhttpd > /dev/null 2>&1`
-`mv -f index.html www/index.html` 
+`mv index.html www/index.html` 
 `sed -i "s/locip/$locip/g" www/index.html`
 `sed -i "s/daemonun/$daemonun/g" www/index.html`
 `sed -i "s/daemonpass/$daemonpass/g" www/index.html`
