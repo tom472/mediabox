@@ -60,7 +60,6 @@ fi
 `mkdir -p sickrage`
 `mkdir -p www`
 # Move the PIA VPN files
-`mv us-east.ovpn delugevpn/config/openvpn/us-east.ovpn`
 `mv ca.ovpn delugevpn/config/openvpn/ca.ovpn`
 `mv ca.rsa.2048.crt delugevpn/config/openvpn/ca.rsa.2048.crt`
 `mv crl.rsa.2048.pem delugevpn/config/openvpn/crl.rsa.2048.pem`
