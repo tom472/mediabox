@@ -77,7 +77,7 @@ services:
     # ----------------------------------------
     # DUPLICATI
     # ----------------------------------------
-    couchpotato:
+    duplicati:
         image: linuxserver/duplicati
         container_name: duplicati
         restart: unless-stopped
