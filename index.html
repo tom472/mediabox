@@ -23,6 +23,8 @@ The <b><u>Ombi</b></u> container is available at: <a href="http://locip:3579" ta
 The <b><u>Portainer</b></u> container is available at: <a href="http://locip:9000" target="_blank">locip:9000</a> -- Select Local for the Endpoint to Manage<br />
 The <b><u>Minio</b></u> (file browser) container is available at: <a href="http://locip:9009" target="_blank">locip:9009</a> -- Initial Login: minio / minio123 <br />
 The <b><u>NetData</b></u> system monitoring container is available at: <a href="http://locip:19999" target="_blank">locip:19999</a><br />
+The <b><u>Duplicati</b></u> backup software container is available at: <a href="http://locip:8200" target="_blank">locip:8200</a><br />
+<li>This sotware is useful for making backups of your config files etc. so that if you need to redeploy Mediabox - you can bring back in files that already have all your personal tweaks.</li>
 <br />
 <h3><u>Manual Configuration steps:</u></h3>  
 <b><u>Couchpotato:</u></b><br />
@@ -48,17 +50,17 @@ After the Wizard is complete:<br />
 <ul>
 <li>Click on the settings "gear" icon<br />
 <li>Go to > General > Misc > Show root directories<br />
-<li>Click "New" - Select "tv"<br />
+<li>Click "New" - Select "tv" -- Click "Save Changes"<br />
 <li>At the top right - Select Post Processing<br />
 <li>On the Post Processing Tab - Go to Post Processing Dir<br />
-<li>Click Browse > Select "downloads"<br />
+<li>Click Browse > Select "downloads"-- Click "Save Changes"<br />
 <li>Click on the settings "gear" icon<br />
 <li>Go to > Search Settings > Torrent Search (Tab)<br />
 <li>Check the box for Enable Torrent Search Providers<br />
 <li>For the "Send .torrent files to" dropdown select: Deluge (via WebUI)<br />
 <li>For "Torrent host:port" use: http://locip:8112<br />
 <li>For client password use: deluge (unless you have changed it)<br />
-<li>After the settings are in Click the "Test Connection" button to see if it works<br />  
+<li>After the settings are in Click the "Test Connection" button to see if it works -- Click "Save Changes"<br />  
 </ul>
 <b><u>Radarr</u></b><br />
 <ul>
