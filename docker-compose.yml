@@ -25,7 +25,7 @@ services:
     couchpotato:
         image: linuxserver/couchpotato
         container_name: couchpotato
-        restart: always
+        restart: unless-stopped
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:5050:5050'
@@ -44,7 +44,7 @@ services:
     arch-delugevpn:
         image: binhex/arch-delugevpn
         container_name: delugevpn
-        restart: always
+        restart: unless-stopped
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:8112:8112'
@@ -73,14 +73,33 @@ services:
             - './content:/data'
             - './delugevpn/config:/config'
             - '/etc/localtime:/etc/localtime:ro'
- 
+
+    # ----------------------------------------
+    # DUPLICATI
+    # ----------------------------------------
+    couchpotato:
+        image: linuxserver/duplicati
+        container_name: duplicati
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:8200:8200'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './duplicati:/config'
+            - './duplicati/backups:/backups'
+            - '${PWD}:/source'
+            - '/etc/localtime:/etc/localtime:ro'
+
     # ----------------------------------------
     # HTTP
     # ----------------------------------------
     uhttpd:
         image: fnichol/uhttpd
         container_name: uhttpd
-        restart: always
+        restart: unless-stopped
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:80:80'
@@ -96,7 +115,7 @@ services:
     minio:
         image: minio/minio
         container_name: minio
-        restart: always
+        restart: unless-stopped
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:9009:9000'
@@ -113,7 +132,7 @@ services:
     netdata:
         image: titpetric/netdata
         container_name: netdata
-        restart: always
+        restart: unless-stopped
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:19999:19999'
@@ -130,7 +149,7 @@ services:
     ombi:
         image: rogueosb/ombi
         container_name: ombi
-        restart: always
+        restart: unless-stopped
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:3579:3579'
@@ -146,7 +165,7 @@ services:
     plex:
         container_name: plex
         image: plexinc/pms-docker:${PMSTAG}
-        restart: always
+        restart: unless-stopped
         network_mode: "host"
         ports:
             - '${IP_ADDRESS}:32400:32400/tcp'
@@ -178,7 +197,7 @@ services:
     plexpy:
         image: linuxserver/plexpy
         container_name: plexpy
-        restart: always
+        restart: unless-stopped
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:8181:8181'
@@ -198,7 +217,7 @@ services:
     portainer:
         image: portainer/portainer:latest
         container_name: portainer
-        restart: always
+        restart: unless-stopped
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:9000:9000'
@@ -214,7 +233,7 @@ services:
     radarr:
         image: linuxserver/radarr
         container_name: radarr
-        restart: always
+        restart: unless-stopped
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:7878:7878'
@@ -233,7 +252,7 @@ services:
     sickrage:
         image: linuxserver/sickrage
         container_name: sickrage
-        restart: always
+        restart: unless-stopped
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:8081:8081'
@@ -252,7 +271,9 @@ services:
     watchtower:
         image: v2tec/watchtower
         container_name: watchtower
-        restart: always
+        restart: unless-stopped
+        environment:
+            - TZ=${TZ}
         network_mode: "bridge"
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
