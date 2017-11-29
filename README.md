@@ -14,8 +14,15 @@ Components include:
   * [Watchtower automatic container updater](https://github.com/v2tec/watchtower)
   * [NetData System Monitoring](https://github.com/firehol/netdata)
   * [Duplicati Backup Software](https://www.duplicati.com/)
-  
+
 # Prerequisites
+
+## MacOS
+
+  * MacOS High Sierra
+  * [Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
+
+## Linux
 
   * [Ubuntu 16.04 LTS](https://www.ubuntu.com/)
   * [VPN account from Private internet Access](https://www.privateinternetaccess.com/pages/buy-vpn/Stevie) (Please see [binhex's Github Repo](https://github.com/binhex/arch-delugevpn) if you want to use a different VPN)
@@ -23,12 +30,12 @@ Components include:
   * [Docker](https://www.docker.com/)
   * [Python 2.7](https://www.python.org/)
   * [Docker-Compose](https://docs.docker.com/compose/)
-  
+
 **PLEASE NOTE**
 
 For simplicity's sake (eg. automatic dependency management), the method used to install these packages is Ubuntu 16.04's default package manager, [APT](https://wiki.debian.org/Apt).  There are several other methods that work just as well, if not better (especially if you don't have superuser access on your system), so use whichever method you prefer.  Continue when you've successfully installed all packages listed.
 
-### Installation:
+#### Installation:
 
 (You'll need superuser access to run these commands successfully)
 
@@ -85,20 +92,20 @@ As the script runs you will be prompted for:
     * **latest**
     * **public**
     * **plexpass**
-    
+
 Note: If you choose plexpass as your version you may optionally specify CLAIM_TOKEN - you can get your claim token by logging in at [plex.tv/claim](https://www.plex.tv/claim)
 
 3. The "style" of Portainer to use
     *  **auth** (will require a password, require a persistent volume map, and will need you to select the endpoint to manage)
     *  **noauth** (will not require a password for access and will automatically connect to the local Docker sock endpoint)
-    
+
 4. Credentials for the Deluge daemon (this is needed for the CouchPotato container)
     * **username**
     * **password**
 
 Upon completion, the script will launch your mediabox containers.
 
-##### **mediabox** has been tested to work on Ubuntu 16.04 LTS - Server and Desktop
+##### **mediabox** has been tested to work on Ubuntu 16.04 LTS - Server and Desktop and MacOS High Sierra
 
 ---
 
