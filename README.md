@@ -100,6 +100,8 @@ Upon completion, the script will launch your mediabox containers.
 
 ##### **mediabox** has been tested to work on Ubuntu 16.04 LTS - Server and Desktop
 
+Adding a Thank You here for [@mnkhouri](https://github.com/mnkhouri) - He provided a large amount of code clean-up as well as a PR for Mac Support - Not adding the Mac support (yet) but a lot of the code clean-up has been merged in.
+
 ---
 
 If you enjoy the project -- Fuel it with some caffeine :) 

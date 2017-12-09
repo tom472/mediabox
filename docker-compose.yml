@@ -221,6 +221,9 @@ services:
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:9000:9000'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
         volumes:
             - './portainer:/data'
             - '/var/run/docker.sock:/var/run/docker.sock'
