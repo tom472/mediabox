@@ -14,7 +14,7 @@ locip=`hostname -I | awk '{print $1}'`
 time_zone=`cat /etc/timezone`
 
 # CIDR - this assumes a 255.255.255.0 netmask - If your config is different use the custom CIDR line
-lannet=`hostname -I | awk '{print $1}' | sed 's/\.[0-9]*$/.0\/24/'`
+lannet=`echo $locip | sed 's/\.[0-9]*$/.0\/24/'`
 # Custom CIDR (comment out the line above if using this)
 # Uncomment the line below and enter your CIDR info so the line looks like: lannet=xxx.xxx.xxx.0/24
 #lannet=
@@ -26,7 +26,7 @@ printf "\n\n"
 
 # Get info needed for PLEX Official image
 read -p "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
-read -p "If you have PLEXPASS what is your Claim Token: (Optional) " pmstoken
+read -p "If you have PLEXPASS what is your Claim Token from https://www.plex.tv/claim/ (Optional): " pmstoken
 # If not set - set PMS Tag to Public:
 if [ -z "$pmstag" ]; then 
    pmstag=public 
@@ -39,30 +39,30 @@ if [ -z "$portainerstyle" ]; then
 elif [ $portainerstyle == "noauth" ]; then
    portainerstyle=--no-auth
 elif [ $portainerstyle == "auth" ]; then
-   portainerstyle= 
-fi   
+   portainerstyle=
+fi
 
 # Create the directory structure
-`mkdir -p content/completed`
-`mkdir -p content/incomplete`
-`mkdir -p content/movies`
-`mkdir -p content/tv`
-`mkdir -p couchpotato`
-`mkdir -p delugevpn`
-`mkdir -p delugevpn/config/openvpn`
-`mkdir -p duplicati`
-`mkdir -p duplicati/backups`
-`mkdir -p ombi`
-`mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"`
-`mkdir -p plexpy`
-`mkdir -p portainer`
-`mkdir -p radarr`
-`mkdir -p sickrage`
-`mkdir -p www`
+mkdir -p content/completed
+mkdir -p content/incomplete
+mkdir -p content/movies
+mkdir -p content/tv
+mkdir -p couchpotato
+mkdir -p delugevpn
+mkdir -p delugevpn/config/openvpn
+mkdir -p duplicati
+mkdir -p duplicati/backups
+mkdir -p ombi
+mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"
+mkdir -p plexpy
+mkdir -p portainer
+mkdir -p radarr
+mkdir -p sickrage
+mkdir -p www
 # Move the PIA VPN files
-`mv ca.ovpn delugevpn/config/openvpn/ca.ovpn`
-`mv ca.rsa.2048.crt delugevpn/config/openvpn/ca.rsa.2048.crt`
-`mv crl.rsa.2048.pem delugevpn/config/openvpn/crl.rsa.2048.pem`
+mv ca.ovpn delugevpn/config/openvpn/ca.ovpn
+mv ca.rsa.2048.crt delugevpn/config/openvpn/ca.rsa.2048.crt
+mv crl.rsa.2048.pem delugevpn/config/openvpn/crl.rsa.2048.pem
 
 ###################
 # TROUBLESHOOTING #
@@ -74,15 +74,15 @@ fi
 # printf "### Collected Variables are echoed below. ###\n"
 # printf "\n"
 # printf "The username is: $localuname\n"
+# printf "The IP address is: $locip\n"
 # printf "The PUID is: $PUID\n"
 # printf "The PGID is: $PGID\n"
 # printf "The current directory is: $PWD\n"
-# printf "The IP address is: $locip\n"
 # printf "The CIDR address is: $lannet\n"
 # printf "The PIA Username is: $piauname\n"
 # printf "The PIA Password is: $piapass\n"
 # printf "The Hostname is: $thishost\n"
-# printf "The Timezone is: $timezone\n"
+# printf "The Timezone is: $time_zone\n"
 # printf "The Plex version is: $pmstag\n"
 # printf "The Plexpass Claim token is: $pmstoken\n"
 # printf "The Portainer style is: $portainerstyle\n"
@@ -97,9 +97,9 @@ echo "IP_ADDRESS=$locip" >> .env
 echo "PUID=$PUID" >> .env
 echo "PGID=$PGID" >> .env
 echo "PWD=$PWD" >> .env
+echo "CIDR_ADDRESS=$lannet" >> .env
 echo "PIAUNAME=$piauname" >> .env
 echo "PIAPASS=$piapass" >> .env
-echo "CIDR_ADDRESS=$lannet" >> .env
 echo "TZ=$time_zone" >> .env
 echo "PMSTAG=$pmstag" >> .env
 echo "PMSTOKEN=$pmstoken" >> .env
@@ -112,7 +112,7 @@ echo "The containers will now be pulled and launched"
 echo "This may take a while depending on your download speed"
 read -p "Press any key to continue... " -n1 -s
 printf "\n\n"
-`docker-compose up -d`
+docker-compose up -d
 printf "\n\n"
 
 # Let's configure the access to the Deluge Daemon for CouchPotato
@@ -125,30 +125,30 @@ printf "\n\n"
 printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
 
 # Configure DelugeVPN: Set Daemon access on, delete the core.conf~ file
-`while [ ! -f delugevpn/config/core.conf ]; do sleep 1; done`
-`docker stop delugevpn > /dev/null 2>&1`
-`rm delugevpn/config/core.conf~ > /dev/null 2>&1`
-`sed -i 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config/core.conf`
-`sed -i 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf`
-`docker start delugevpn > /dev/null 2>&1`
+while [ ! -f delugevpn/config/core.conf ]; do sleep 1; done
+docker stop delugevpn > /dev/null 2>&1
+rm delugevpn/config/core.conf~ > /dev/null 2>&1
+sed -i 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config/core.conf
+sed -i 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf
+docker start delugevpn > /dev/null 2>&1
 
 # Push the Deluge Daemon Access info the to Auth file
-`echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth`
+echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth
 
 # Configure UHTTPD settings and Index file
-`docker stop uhttpd > /dev/null 2>&1`
-`mv index.html www/index.html` 
-`sed -i "s/locip/$locip/g" www/index.html`
-`sed -i "s/daemonun/$daemonun/g" www/index.html`
-`sed -i "s/daemonpass/$daemonpass/g" www/index.html`
-`cp .env www/env.txt`
-`docker start uhttpd > /dev/null 2>&1`
+docker stop uhttpd > /dev/null 2>&1
+mv index.html www/index.html 
+sed -i "s/locip/$locip/g" www/index.html
+sed -i "s/daemonun/$daemonun/g" www/index.html
+sed -i "s/daemonpass/$daemonpass/g" www/index.html
+cp .env www/env.txt
+docker start uhttpd > /dev/null 2>&1
 
 # Fix the Healthcheck in Minio
 docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh
 
 # Adjust the permissions on the content folder
-`chmod -R 0777 content/`
+chmod -R 0777 content/
 
 printf "Setup Complete - Open a browser and go to: \n\n"
 printf "http://$locip OR http://$thishost \n"
