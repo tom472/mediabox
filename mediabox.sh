@@ -39,8 +39,8 @@ if [ -z "$portainerstyle" ]; then
 elif [ $portainerstyle == "noauth" ]; then
    portainerstyle=--no-auth
 elif [ $portainerstyle == "auth" ]; then
-   portainerstyle=
-fi
+   portainerstyle= 
+fi   
 
 # Create the directory structure
 mkdir -p content/completed
@@ -60,9 +60,9 @@ mkdir -p radarr
 mkdir -p sickrage
 mkdir -p www
 # Move the PIA VPN files
-mv ca.ovpn delugevpn/config/openvpn/ca.ovpn
-mv ca.rsa.2048.crt delugevpn/config/openvpn/ca.rsa.2048.crt
-mv crl.rsa.2048.pem delugevpn/config/openvpn/crl.rsa.2048.pem
+mv ca.ovpn delugevpn/config/openvpn/ca.ovpn > /dev/null 2>&1
+mv ca.rsa.2048.crt delugevpn/config/openvpn/ca.rsa.2048.crt > /dev/null 2>&1
+mv crl.rsa.2048.pem delugevpn/config/openvpn/crl.rsa.2048.pem > /dev/null 2>&1
 
 ###################
 # TROUBLESHOOTING #
@@ -74,10 +74,10 @@ mv crl.rsa.2048.pem delugevpn/config/openvpn/crl.rsa.2048.pem
 # printf "### Collected Variables are echoed below. ###\n"
 # printf "\n"
 # printf "The username is: $localuname\n"
-# printf "The IP address is: $locip\n"
 # printf "The PUID is: $PUID\n"
 # printf "The PGID is: $PGID\n"
 # printf "The current directory is: $PWD\n"
+# printf "The IP address is: $locip\n"
 # printf "The CIDR address is: $lannet\n"
 # printf "The PIA Username is: $piauname\n"
 # printf "The PIA Password is: $piapass\n"
@@ -97,9 +97,9 @@ echo "IP_ADDRESS=$locip" >> .env
 echo "PUID=$PUID" >> .env
 echo "PGID=$PGID" >> .env
 echo "PWD=$PWD" >> .env
-echo "CIDR_ADDRESS=$lannet" >> .env
 echo "PIAUNAME=$piauname" >> .env
 echo "PIAPASS=$piapass" >> .env
+echo "CIDR_ADDRESS=$lannet" >> .env
 echo "TZ=$time_zone" >> .env
 echo "PMSTAG=$pmstag" >> .env
 echo "PMSTOKEN=$pmstoken" >> .env
@@ -128,8 +128,8 @@ printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
 while [ ! -f delugevpn/config/core.conf ]; do sleep 1; done
 docker stop delugevpn > /dev/null 2>&1
 rm delugevpn/config/core.conf~ > /dev/null 2>&1
-sed -i 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config/core.conf
-sed -i 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf
+perl -i -pe 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config/core.conf
+perl -i -pe 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf
 docker start delugevpn > /dev/null 2>&1
 
 # Push the Deluge Daemon Access info the to Auth file
@@ -137,15 +137,15 @@ echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth
 
 # Configure UHTTPD settings and Index file
 docker stop uhttpd > /dev/null 2>&1
-mv index.html www/index.html 
-sed -i "s/locip/$locip/g" www/index.html
-sed -i "s/daemonun/$daemonun/g" www/index.html
-sed -i "s/daemonpass/$daemonpass/g" www/index.html
+mv index.html www/index.html
+perl -i -pe "s/locip/$locip/g" www/index.html
+perl -i -pe "s/daemonun/$daemonun/g" www/index.html
+perl -i -pe "s/daemonpass/$daemonpass/g" www/index.html
 cp .env www/env.txt
 docker start uhttpd > /dev/null 2>&1
 
 # Fix the Healthcheck in Minio
-docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh
+docker exec minio perl -i -pe "s/404/403/g" /usr/bin/healthcheck.sh
 
 # Adjust the permissions on the content folder
 chmod -R 0777 content/
