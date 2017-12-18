@@ -53,6 +53,7 @@ mkdir -p delugevpn/config/openvpn
 mkdir -p duplicati
 mkdir -p duplicati/backups
 mkdir -p jackett
+mkdir -p minio
 mkdir -p ombi
 mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"
 mkdir -p plexpy

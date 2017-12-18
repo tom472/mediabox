@@ -141,6 +141,7 @@ services:
             - MINIO_ACCESS_KEY=minio
             - MINIO_SECRET_KEY=minio123
         volumes:
+            - './minio:/root/.minio'
             - '${PWD}:/export'
         command: server /export
 
