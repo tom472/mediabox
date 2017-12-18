@@ -247,7 +247,7 @@ services:
             - '/var/run/docker.sock:/var/run/docker.sock'
             - '/etc/localtime:/etc/localtime:ro'
         command: ${PORTAINERSTYLE} -H unix:///var/run/docker.sock
-    
+
     # ----------------------------------------
     # RADARR
     # ----------------------------------------
@@ -266,7 +266,7 @@ services:
             - './content/completed:/downloads'
             - './content/movies:/movies'
             - '/etc/localtime:/etc/localtime:ro'
-    
+
     # ----------------------------------------
     # SICKRAGE
     # ----------------------------------------
