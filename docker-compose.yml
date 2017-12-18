@@ -110,6 +110,24 @@ services:
             - './www:/www'
 
     # ----------------------------------------
+    # JACKETT
+    # ----------------------------------------
+    jackett:
+        image: linuxserver/jackett
+        container_name: jackett
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:9117:9117'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './jackett:/config'
+            - './content/completed:/downloads'
+            - '/etc/localtime:/etc/localtime:ro'
+
+    # ----------------------------------------
     # MINIO
     # ----------------------------------------
     minio:
@@ -264,6 +282,25 @@ services:
             - PGID=${PGID}
         volumes:
             - './sickrage:/config'
+            - './content/completed:/downloads'
+            - './content/tv:/tv'
+            - '/etc/localtime:/etc/localtime:ro'
+
+    # ----------------------------------------
+    # SONARR
+    # ----------------------------------------
+    sonarr:
+        image: linuxserver/sonarr
+        container_name: sonarr
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:8989:8989'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './sonarr:/config'
             - './content/completed:/downloads'
             - './content/tv:/tv'
             - '/etc/localtime:/etc/localtime:ro'

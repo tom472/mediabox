@@ -52,12 +52,14 @@ mkdir -p delugevpn
 mkdir -p delugevpn/config/openvpn
 mkdir -p duplicati
 mkdir -p duplicati/backups
+mkdir -p jackett
 mkdir -p ombi
 mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"
 mkdir -p plexpy
 mkdir -p portainer
 mkdir -p radarr
 mkdir -p sickrage
+mkdir -p sonarr
 mkdir -p www
 # Move the PIA VPN files
 mv ca.ovpn delugevpn/config/openvpn/ca.ovpn > /dev/null 2>&1
