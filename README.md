@@ -3,17 +3,19 @@ Mediabox is meant to be an all Docker Container based media aggregator stack.
 
 Components include:
   * [Couchpotato movie library manager](https://couchpota.to/)
-  * [Sickrage TV library manager](https://sickrage.github.io/)
   * [Deluge torrent client (using VPN)](http://deluge-torrent.org/)
-  * [Radarr movie library manager](https://radarr.video/)
+  * [Duplicati Backup Software](https://www.duplicati.com/)
+  * [Jackett Tracker API and Proxy](https://github.com/Jackett/Jackett)
+  * [Minio cloud storage](https://www.minio.io/)
+  * [NetData System Monitoring](https://github.com/firehol/netdata)
+  * [Ombi media assistant](http://www.ombi.io/)
   * [Plex media server](https://www.plex.tv/)
   * [PlexPy media server monitor](https://jonnywong16.github.io/plexpy/)
-  * [Ombi media assistant](http://www.ombi.io/)
   * [Portainer Docker Container manager](https://portainer.io/)
-  * [Minio cloud storage](https://www.minio.io/)
+  * [Radarr movie library manager](https://radarr.video/)
+  * [Sickrage TV library manager](https://sickrage.github.io/)
+  * [Sonarr TV library manager](https://sonarr.tv/)
   * [Watchtower automatic container updater](https://github.com/v2tec/watchtower)
-  * [NetData System Monitoring](https://github.com/firehol/netdata)
-  * [Duplicati Backup Software](https://www.duplicati.com/)
 
 # Prerequisites
 
