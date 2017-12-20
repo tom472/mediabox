@@ -137,7 +137,7 @@ services:
         ports:
             - '${IP_ADDRESS}:19999:19999'
         cap_add:
-            - SYS_PTRACE    
+            - SYS_PTRACE
         volumes:
             - '/proc:/host/proc:ro'
             - '/sys:/host/sys:ro'
@@ -147,7 +147,7 @@ services:
     # OMBI
     # ----------------------------------------
     ombi:
-        image: rogueosb/ombi
+        image: linuxserver/ombi
         container_name: ombi
         restart: unless-stopped
         network_mode: "bridge"
@@ -158,6 +158,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './ombi:/config'
+            - /etc/localtime:/etc/localtime:ro
 
     # ----------------------------------------
     # PLEX
@@ -181,7 +182,7 @@ services:
             - PLEX_CLAIM=${PMSTOKEN}
             - ADVERTISE_IP=http://${IP_ADDRESS}:32400/
             - ALLOWED_NETWORKS=${CIDR_ADDRESS}
-            - PLEX_UID=${PUID} 
+            - PLEX_UID=${PUID}
             - PLEX_GID=${PGID}
         hostname: ${HOSTNAME}
         volumes:
@@ -229,7 +230,7 @@ services:
             - '/var/run/docker.sock:/var/run/docker.sock'
             - '/etc/localtime:/etc/localtime:ro'
         command: ${PORTAINERSTYLE} -H unix:///var/run/docker.sock
-    
+
     # ----------------------------------------
     # RADARR
     # ----------------------------------------
@@ -248,7 +249,7 @@ services:
             - './content/completed:/downloads'
             - './content/movies:/movies'
             - '/etc/localtime:/etc/localtime:ro'
-    
+
     # ----------------------------------------
     # SICKRAGE
     # ----------------------------------------
