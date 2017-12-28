@@ -20,7 +20,7 @@ Components include:
 # Prerequisites
 
   * [Ubuntu 16.04 LTS](https://www.ubuntu.com/)
-  * [VPN account from Private internet Access](https://www.privateinternetaccess.com/pages/buy-vpn/Stevie) (Please see [binhex's Github Repo](https://github.com/binhex/arch-delugevpn) if you want to use a different VPN)
+  * [VPN account from Private internet Access](https://www.privateinternetaccess.com/) (Please see [binhex's Github Repo](https://github.com/binhex/arch-delugevpn) if you want to use a different VPN)
   * [Git](https://git-scm.com/)
   * [Docker](https://www.docker.com/)
   * [Python 2.7](https://www.python.org/)
@@ -40,9 +40,9 @@ Start by updating and upgrading our current packages:
 
 Install the prerequisite packages:
 
-`$ sudo apt install git python bridge-utils` (Thanks [@danipolo](https://github.com/danipolo) for the bridge-utils tip)
+`$ sudo apt install git python bridge-utils`
 
-**Note** - Mediabox will install Docker CE as the default Docker version - if you skip this and run with older Docker versions you may have issues.
+**Note** - Mediabox uses Docker CE as the default Docker version now - if you skip this and run with older Docker versions you may have issues.
 
 1. Uninstall old versions: `$ sudo apt remove docker docker-engine docker.io`
 It’s OK if apt reports that none of these packages are installed.
@@ -100,9 +100,23 @@ Note: If you choose plexpass as your version you may optionally specify CLAIM_TO
 
 Upon completion, the script will launch your mediabox containers.
 
-##### **mediabox** has been tested to work on Ubuntu 16.04 LTS - Server and Desktop
+**Mediabox has been tested to work on Ubuntu 16.04 LTS - Server and Desktop**
 
-Adding a Thank You here for [@mnkhouri](https://github.com/mnkhouri) - He provided a large amount of code clean-up as well as a PR for Mac Support - Not adding the Mac support (yet) but a lot of the code clean-up has been merged in.
+---
+
+**Thanks go out to:**
+
+[@mnkhouri](https://github.com/mnkhouri) - provided a large amount of code clean-up as well as a PR for Mac Support - Not adding the Mac support (yet) but a lot of the code clean-up has been merged in.
+
+[@danipolo](https://github.com/danipolo) for the bridge-utils tip
+
+[binhex](https://github.com/binhex)
+
+[LinuxServer.io](https://github.com/linuxserver)
+
+[Docker](https://github.com/docker)
+
+[Portainer.io](https://github.com/portainer)
 
 ---
 
@@ -112,7 +126,7 @@ If you enjoy the project -- Fuel it with some caffeine :)
 
 ---
 
-# Normal Disclaimer
+# Disclaimer
 
 THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
 HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
