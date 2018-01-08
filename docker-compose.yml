@@ -34,7 +34,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './couchpotato:/config'
-            - './content/completed:/downloads'
+            - './content/completed:/downloads:shared'
             - './content/movies:/movies'
             - '/etc/localtime:/etc/localtime:ro'
 
