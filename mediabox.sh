@@ -13,20 +13,12 @@ locip=`hostname -I | awk '{print $1}'`
 # Get Time Zone
 time_zone=`cat /etc/timezone`
 
-# an accurate way to calculate the local network
-# Use ifconfig to grab the subnet mask of locip
-# Then AND it with locip to get the correct network
-# Should work regardless of IP or subnet mask
-# Should work with VLSM and CIDR
-# Grab the subnet mask from ifconfig
-subnet_mask=$(ifconfig | grep $locip | awk -F ':' {'print $4'})
-# Use bitwise & with ip and mask to calculate network address
-IFSold=$IFS
-IFS=. read -r i1 i2 i3 i4 <<< $locip
-IFS=. read -r m1 m2 m3 m4 <<< $subnet_mask
-IFS=$IFSold
-lannet=$(printf "%d.%d.%d.%d\n" "$((i1 & m1))" "$((i2 & m2))" "$((i3 & m3))" "$((i4 & m4))")
 
+# CIDR - this assumes a 255.255.255.0 netmask - If your config is different use the custom CIDR line
+lannet=`echo $locip | sed 's/\.[0-9]*$/.0\/24/'`
+# Custom CIDR (comment out the line above if using this)
+# Uncomment the line below and enter your CIDR info so the line looks like: lannet=xxx.xxx.xxx.0/24
+#lannet=annet=$(printf "%d.%d.%d.%d\n" "$((i1 & m1))" "$((i2 & m2))" "$((i3 & m3))" "$((i4 & m4))")
 
 # Get Private Internet Access Info
 read -p "What is your PIA Username?: " piauname
@@ -63,6 +55,7 @@ mkdir -p duplicati
 mkdir -p duplicati/backups
 mkdir -p jackett
 mkdir -p minio
+mkdir -p nzbget #Added support for nzbget
 mkdir -p ombi
 mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"
 mkdir -p plexpy
@@ -127,14 +120,15 @@ printf "\n\n"
 docker-compose up -d
 printf "\n\n"
 
-# Let's configure the access to the Deluge Daemon for CouchPotato
-echo "CouchPotato requires access to the Deluge daemon port and needs credentials set."
-read -p "What would you like to use as the daemon access username?: " daemonun
-read -p "What would you like to use as the daemon access password?: " daemonpass
+# Let's configure the access to the Deluge Daemon
+echo "You need to set a username and password for programs to access"
+echo "Deluge daemon and NZBGet's API and web interface."
+read -p "What would you like to use as the access username?: " daemonun
+read -p "What would you like to use as the access password?: " daemonpass
 printf "\n\n"
 
 # Finish up the config
-printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
+printf "Configuring DelugeVPN and NZBGet - UHTTPD index file - Permissions \n\n"
 
 # Configure DelugeVPN: Set Daemon access on, delete the core.conf~ file
 while [ ! -f delugevpn/config/core.conf ]; do sleep 1; done
@@ -144,12 +138,19 @@ perl -i -pe 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config
 perl -i -pe 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf
 docker start delugevpn > /dev/null 2>&1
 
+# Reusing this code for NZBGet
+while [ ! -f nzbget/nzbget.conf ]; do sleep 1; done
+docker stop nzbget > /dev/null 2>&1
+perl -i -pe "s/ControlUsername=nzbget/ControlUsername=$daemonun/g"  nzbget/nzbget.conf
+perl -i -pe "s/ControlPassword=tegbzn6789/ControlPassword=$daemonpass/g"  nzbget/nzbget.conf
+docker start nzbget > /dev/null 2>&1
+
 # Push the Deluge Daemon Access info the to Auth file
 echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth
 
 # Configure UHTTPD settings and Index file
 docker stop uhttpd > /dev/null 2>&1
-mv index.html www/index.html
+cp index.html www/index.html #Changed this line to a copy, if you rerun the script it will not update the page
 perl -i -pe "s/locip/$locip/g" www/index.html
 perl -i -pe "s/daemonun/$daemonun/g" www/index.html
 perl -i -pe "s/daemonpass/$daemonpass/g" www/index.html
@@ -163,12 +164,4 @@ docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh
 chmod -R 0777 content/
 
 printf "Setup Complete - Open a browser and go to: \n\n"
-
-# Worth pointing out that using thishost for the domain name
-# from another computer will only work if thishost is a FQDN
-# as seen using hostname -f Or if the client computer has it
-# its hostfile.
-# TL:DR it will only work if the client's DNS method has
-# thishost mapped to the same IP address as locip. Which 
-# there is a good chance it doesn't.
-printf "http://$locip OR http://$thishost \n"
+printf "http://$locip\n" # Removed use of hostname var because of DNs reasons
