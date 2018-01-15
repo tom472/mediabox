@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#set -x
+
 # Get local Username
 localuname=`id -u -n`
 # Get PUID
@@ -13,11 +15,35 @@ locip=`hostname -I | awk '{print $1}'`
 # Get Time Zone
 time_zone=`cat /etc/timezone`
 
-# CIDR - this assumes a 255.255.255.0 netmask - If your config is different use the custom CIDR line
-lannet=`echo $locip | sed 's/\.[0-9]*$/.0\/24/'`
-# Custom CIDR (comment out the line above if using this)
-# Uncomment the line below and enter your CIDR info so the line looks like: lannet=xxx.xxx.xxx.0/24
-#lannet=
+# an accurate way to calculate the local network
+# Use ifconfig to grab the subnet mask of locip
+# Then AND it with locip to get the correct network
+# Should work regardless of IP or subnet mask
+# Should work with VLSM and CIDR
+# Grab the subnet mask from ifconfig
+subnet_mask=$(ifconfig | grep $locip | awk -F ':' {'print $4'})
+# Use bitwise & with ip and mask to calculate network address
+IFSold=$IFS
+IFS=. read -r i1 i2 i3 i4 <<< $locip
+IFS=. read -r m1 m2 m3 m4 <<< $subnet_mask
+IFS=$IFSold
+lannet=$(printf "%d.%d.%d.%d\n" "$((i1 & m1))" "$((i2 & m2))" "$((i3 & m3))" "$((i4 & m4))")
+
+# Converts subnet mask into CIDR notation
+# thanks to https://stackoverflow.com/questions/20762575/explanation-of-convertor-of-cidr-to-netmask-in-linux-shell-netmask2cdir-and-cdir
+# because I kept messing it up.
+#
+# Define the function first, takes subnet as positional parameters
+function mask2cdr()
+{
+   # Assumes there's no "255." after a non-255 byte in the mask
+   local x=${1##*255.}
+   set -- 0^^^128^192^224^240^248^252^254^ $(( (${#1} - ${#x})*2 )) ${x%%.*}
+   x=${1%%$3*}
+   cidr_bits=$(( $2 + (${#x}/4) ))
+}
+mask2cdr $subnet_mask # Call the function to convert to CIDR
+lannet=$(echo "$lannet/$cidr_bits") # Combine lannet and cidr
 
 # Get Private Internet Access Info
 read -p "What is your PIA Username?: " piauname
@@ -154,4 +180,12 @@ docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh
 chmod -R 0777 content/
 
 printf "Setup Complete - Open a browser and go to: \n\n"
+
+# Worth pointing out that using thishost for the domain name
+# from another computer will only work if thishost is a FQDN
+# as seen using hostname -f Or if the client computer has it
+# its hostfile.
+# TL:DR it will only work if the client's DNS method has
+# thishost mapped to the same IP address as locip. Which 
+# there is a good chance it doesn't.
 printf "http://$locip OR http://$thishost \n"
