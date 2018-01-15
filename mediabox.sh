@@ -15,11 +15,8 @@ locip=`hostname -I | awk '{print $1}'`
 # Get Time Zone
 time_zone=`cat /etc/timezone`
 
-# an accurate way to calculate the local network
-# Use ifconfig to grab the subnet mask of locip
-# Then AND it with locip to get the correct network
-# Should work regardless of IP or subnet mask
-# Should work with VLSM and CIDR
+# An accurate way to calculate the local network
+# via @kspillane
 # Grab the subnet mask from ifconfig
 subnet_mask=$(ifconfig | grep $locip | awk -F ':' {'print $4'})
 # Use bitwise & with ip and mask to calculate network address
@@ -30,9 +27,7 @@ IFS=$IFSold
 lannet=$(printf "%d.%d.%d.%d\n" "$((i1 & m1))" "$((i2 & m2))" "$((i3 & m3))" "$((i4 & m4))")
 
 # Converts subnet mask into CIDR notation
-# thanks to https://stackoverflow.com/questions/20762575/explanation-of-convertor-of-cidr-to-netmask-in-linux-shell-netmask2cdir-and-cdir
-# because I kept messing it up.
-#
+# Thanks to https://stackoverflow.com/questions/20762575/explanation-of-convertor-of-cidr-to-netmask-in-linux-shell-netmask2cdir-and-cdir
 # Define the function first, takes subnet as positional parameters
 function mask2cdr()
 {
@@ -161,8 +156,10 @@ perl -i -pe 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config
 perl -i -pe 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf
 docker start delugevpn > /dev/null 2>&1
 
-# Push the Deluge Daemon Access info the to Auth file
+# Push the Deluge Daemon Access info the to Auth file - and to the .env file
 echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth
+echo "CPDAEMONUN=$daemonun" >> .env
+echo "CPDAEMONPASS=$daemonpass" >> .env
 
 # Configure UHTTPD settings and Index file
 docker stop uhttpd > /dev/null 2>&1
@@ -180,12 +177,4 @@ docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh
 chmod -R 0777 content/
 
 printf "Setup Complete - Open a browser and go to: \n\n"
-
-# Worth pointing out that using thishost for the domain name
-# from another computer will only work if thishost is a FQDN
-# as seen using hostname -f Or if the client computer has it
-# its hostfile.
-# TL:DR it will only work if the client's DNS method has
-# thishost mapped to the same IP address as locip. Which 
-# there is a good chance it doesn't.
-printf "http://$locip OR http://$thishost \n"
+printf "http://$locip \n OR http://$thishost If you have internal DNS configured.\n"
