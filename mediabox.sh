@@ -102,10 +102,11 @@ do
     # now we can use the selected file
     echo "$filename selected"
     cp $filename delugevpn/config/openvpn/ > /dev/null 2>&1
-    vpnremote=`cat ovpn/$filename | grep "remote" | cut -d ' ' -f2  | head -1`
+    vpnremote=`cat $filename | grep "remote" | cut -d ' ' -f2  | head -1`
     # it'll ask for another unless we leave the loop
     break
 done
+# TODO - Add a default server selection if none selected .. 
 cp ovpn/*.crt delugevpn/config/openvpn/ > /dev/null 2>&1
 cp ovpn/*.pem delugevpn/config/openvpn/ > /dev/null 2>&1
 
