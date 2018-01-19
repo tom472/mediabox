@@ -57,13 +57,14 @@ services:
             - VPN_ENABLED=yes
             - VPN_USER=${PIAUNAME}
             - VPN_PASS=${PIAPASS}
-            - VPN_REMOTE=ca.privateinternetaccess.com
+            - VPN_REMOTE=${VPN_REMOTE}
             - VPN_PORT=1198
             - VPN_PROTOCOL=udp
             - VPN_DEVICE_TYPE=tun
             - VPN_PROV=pia
             - STRONG_CERTS=no
             - ENABLE_PRIVOXY=yes
+            - STRICT_PORT_FORWARD=yes
             - LAN_NETWORK=${CIDR_ADDRESS}
             - NAME_SERVERS=209.222.18.222,37.235.1.174,8.8.8.8,209.222.18.218,37.235.1.177,8.8.4.4
             - DEBUG=false

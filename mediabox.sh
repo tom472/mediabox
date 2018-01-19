@@ -83,38 +83,47 @@ mkdir -p radarr
 mkdir -p sickrage
 mkdir -p sonarr
 mkdir -p www
-# Move the PIA VPN files
-mv ca.ovpn delugevpn/config/openvpn/ca.ovpn > /dev/null 2>&1
-mv ca.rsa.2048.crt delugevpn/config/openvpn/ca.rsa.2048.crt > /dev/null 2>&1
-mv crl.rsa.2048.pem delugevpn/config/openvpn/crl.rsa.2048.pem > /dev/null 2>&1
 
-###################
-# TROUBLESHOOTING #
-###################
-# If you are having issues with any containers starting
-# Or the .env file is not being populated with the correct values
-# Uncomment the necessary line(s) below to see what values are being generated
-
-# printf "### Collected Variables are echoed below. ###\n"
-# printf "\n"
-# printf "The username is: $localuname\n"
-# printf "The PUID is: $PUID\n"
-# printf "The PGID is: $PGID\n"
-# printf "The current directory is: $PWD\n"
-# printf "The IP address is: $locip\n"
-# printf "The CIDR address is: $lannet\n"
-# printf "The PIA Username is: $piauname\n"
-# printf "The PIA Password is: $piapass\n"
-# printf "The Hostname is: $thishost\n"
-# printf "The Timezone is: $time_zone\n"
-# printf "The Plex version is: $pmstag\n"
-# printf "The Plexpass Claim token is: $pmstoken\n"
-# printf "The Portainer style is: $portainerstyle\n"
-# printf "Note: A Portainer style of 'blank' = the 'Normal Auth' style\n"
+# Select and Move the PIA VPN files
+# Create a menu selection
+echo "The following PIA Servers are avialable that support port-forwarding (for DelugeVPN); Please select one:"
+PS3="Use a number to select a Server File or 'c' to cancel: "
+# List the ovpn files
+select filename in ovpn/*.ovpn
+do
+    # leave the loop if the user says 'c'
+    if [[ "$REPLY" == c ]]; then break; fi
+    # complain if no file was selected, and loop to ask again
+    if [[ "$filename" == "" ]]
+    then
+        echo "'$REPLY' is not a valid number"
+        continue
+    fi
+    # now we can use the selected file
+    echo "$filename selected"
+    cp $filename delugevpn/config/openvpn/ > /dev/null 2>&1
+    vpnremote=`cat $filename | grep "remote" | cut -d ' ' -f2  | head -1`
+    # it'll ask for another unless we leave the loop
+    break
+done
+# TODO - Add a default server selection if none selected .. 
+cp ovpn/*.crt delugevpn/config/openvpn/ > /dev/null 2>&1
+cp ovpn/*.pem delugevpn/config/openvpn/ > /dev/null 2>&1
 
 # Create the .env file
 echo "Creating the .env file with the values we have gathered"
 printf "\n"
+cat > .env <<DELIM
+###  ------------------------------------------------
+###  M E D I A B O X   C O N F I G   S E T T I N G S
+###  ------------------------------------------------
+###  The values configured here are applied during
+###  $ docker-compose up
+###  -----------------------------------------------
+###  DOCKER-COMPOSE ENVIRONMENT VARIABLES BEGIN HERE
+###  -----------------------------------------------
+###
+DELIM
 echo "LOCALUSER=$localuname" >> .env
 echo "HOSTNAME=$thishost" >> .env
 echo "IP_ADDRESS=$locip" >> .env
@@ -128,6 +137,7 @@ echo "TZ=$time_zone" >> .env
 echo "PMSTAG=$pmstag" >> .env
 echo "PMSTOKEN=$pmstoken" >> .env
 echo "PORTAINERSTYLE=$portainerstyle" >> .env
+echo "VPN_REMOTE=$vpnremote" >> .env
 echo ".env file creation complete"
 printf "\n\n"
 
