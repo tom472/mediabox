@@ -75,7 +75,7 @@ mkdir -p duplicati
 mkdir -p duplicati/backups
 mkdir -p jackett
 mkdir -p minio
-mkdir -p nzbget #Added support for nzbget
+mkdir -p nzbget
 mkdir -p ombi
 mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"
 mkdir -p plexpy
@@ -114,7 +114,7 @@ cp ovpn/*.pem delugevpn/config/openvpn/ > /dev/null 2>&1
 # Create the .env file
 echo "Creating the .env file with the values we have gathered"
 printf "\n"
-cat > .env <<DELIM
+cat << EOF > .env
 ###  ------------------------------------------------
 ###  M E D I A B O X   C O N F I G   S E T T I N G S
 ###  ------------------------------------------------
@@ -124,7 +124,7 @@ cat > .env <<DELIM
 ###  DOCKER-COMPOSE ENVIRONMENT VARIABLES BEGIN HERE
 ###  -----------------------------------------------
 ###
-DELIM
+EOF
 echo "LOCALUSER=$localuname" >> .env
 echo "HOSTNAME=$thishost" >> .env
 echo "IP_ADDRESS=$locip" >> .env
@@ -150,8 +150,8 @@ printf "\n\n"
 docker-compose up -d
 printf "\n\n"
 
-# Let's configure the access to the Deluge Daemon
-# Same credentials can be used for NZBGet's webui
+# Let's configure the access to the Deluge Daemon and
+# The same credentials can be used for NZBGet's webui
 #
 # NZBGet can be configured to not use a user/pass to access the webui
 # but in case this isnt being ran on a home network, it's best to put it in
@@ -162,9 +162,8 @@ read -p "What would you like to use as the access password?: " daemonpass
 printf "\n\n"
 
 # Finish up the config
-
 printf "Configuring DelugeVPN and NZBGet - UHTTPD index file - Permissions \n"
-printf "This may take a few minutes...\n\n" #Added this, as the code will take twice as long to run
+printf "This may take a few minutes...\n\n"
 
 # Configure DelugeVPN: Set Daemon access on, delete the core.conf~ file
 while [ ! -f delugevpn/config/core.conf ]; do sleep 1; done
@@ -181,10 +180,12 @@ perl -i -pe "s/ControlUsername=nzbget/ControlUsername=$daemonun/g"  nzbget/nzbge
 perl -i -pe "s/ControlPassword=tegbzn6789/ControlPassword=$daemonpass/g"  nzbget/nzbget.conf
 docker start nzbget > /dev/null 2>&1
 
-# Push the Deluge Daemon Access info the to Auth file - and to the .env file
+# Push the Deluge Daemon and NZBGet Access info the to Auth file - and to the .env file
 echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth
 echo "CPDAEMONUN=$daemonun" >> .env
 echo "CPDAEMONPASS=$daemonpass" >> .env
+echo "NZBGETUN=$daemonun" >> .env
+echo "NZBGETPASS=$daemonpass" >> .env
 
 # Configure UHTTPD settings and Index file
 docker stop uhttpd > /dev/null 2>&1

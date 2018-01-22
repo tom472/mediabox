@@ -8,6 +8,7 @@ Components include:
   * [Jackett Tracker API and Proxy](https://github.com/Jackett/Jackett)
   * [Minio cloud storage](https://www.minio.io/)
   * [NetData System Monitoring](https://github.com/firehol/netdata)
+  * [NZBGet Usenet Downloader](https://nzbget.net/)  
   * [Ombi media assistant](http://www.ombi.io/)
   * [Plex media server](https://www.plex.tv/)
   * [PlexPy media server monitor](https://jonnywong16.github.io/plexpy/)
@@ -72,8 +73,7 @@ Once the prerequisites are all taken care of you can move forward with using med
 
 1. Clone the mediabox repository: `$ git clone https://github.com/tom472/mediabox.git`
 2. Change directory into mediabox: `$ cd mediabox/`
-3. Make the mediabox.sh script executable: `$ chmod +x mediabox.sh`
-4. Run the mediabox.sh script: `$ ./mediabox.sh`  **Read below for the script questions**
+3. Run the mediabox.sh script: `$ ./mediabox.sh`  **Read below for the script questions**
 
 **Please be prepared to supply the following details after you run Step 4 above.**
 
@@ -105,6 +105,8 @@ Upon completion, the script will launch your mediabox containers.
 ---
 
 **Thanks go out to:**
+
+[@kspillane](https://github.com/kspillane) - Jumped right in and is providing helpful commits / PRs 
 
 [@mnkhouri](https://github.com/mnkhouri) - provided a large amount of code clean-up as well as a PR for Mac Support - Not adding the Mac support (yet) but a lot of the code clean-up has been merged in.
 
