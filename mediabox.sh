@@ -75,6 +75,7 @@ mkdir -p duplicati
 mkdir -p duplicati/backups
 mkdir -p jackett
 mkdir -p minio
+mkdir -p nzbget #Added support for nzbget
 mkdir -p ombi
 mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"
 mkdir -p plexpy
@@ -149,14 +150,21 @@ printf "\n\n"
 docker-compose up -d
 printf "\n\n"
 
-# Let's configure the access to the Deluge Daemon for CouchPotato
-echo "CouchPotato requires access to the Deluge daemon port and needs credentials set."
-read -p "What would you like to use as the daemon access username?: " daemonun
-read -p "What would you like to use as the daemon access password?: " daemonpass
+# Let's configure the access to the Deluge Daemon
+# Same credentials can be used for NZBGet's webui
+#
+# NZBGet can be configured to not use a user/pass to access the webui
+# but in case this isnt being ran on a home network, it's best to put it in
+echo "You need to set a username and password for programs to access"
+echo "Deluge daemon and NZBGet's API and web interface."
+read -p "What would you like to use as the access username?: " daemonun
+read -p "What would you like to use as the access password?: " daemonpass
 printf "\n\n"
 
 # Finish up the config
-printf "Configuring Deluge daemon access - UHTTPD index file - Permissions \n\n"
+
+printf "Configuring DelugeVPN and NZBGet - UHTTPD index file - Permissions \n"
+printf "This may take a few minutes...\n\n" #Added this, as the code will take twice as long to run
 
 # Configure DelugeVPN: Set Daemon access on, delete the core.conf~ file
 while [ ! -f delugevpn/config/core.conf ]; do sleep 1; done
@@ -166,6 +174,13 @@ perl -i -pe 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config
 perl -i -pe 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf
 docker start delugevpn > /dev/null 2>&1
 
+# Reusing this code for NZBGet
+while [ ! -f nzbget/nzbget.conf ]; do sleep 1; done
+docker stop nzbget > /dev/null 2>&1
+perl -i -pe "s/ControlUsername=nzbget/ControlUsername=$daemonun/g"  nzbget/nzbget.conf
+perl -i -pe "s/ControlPassword=tegbzn6789/ControlPassword=$daemonpass/g"  nzbget/nzbget.conf
+docker start nzbget > /dev/null 2>&1
+
 # Push the Deluge Daemon Access info the to Auth file - and to the .env file
 echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth
 echo "CPDAEMONUN=$daemonun" >> .env
@@ -173,7 +188,7 @@ echo "CPDAEMONPASS=$daemonpass" >> .env
 
 # Configure UHTTPD settings and Index file
 docker stop uhttpd > /dev/null 2>&1
-mv index.html www/index.html
+cp index.html www/index.html #Changed this line to a copy, if you rerun the script it will not update the page 
 perl -i -pe "s/locip/$locip/g" www/index.html
 perl -i -pe "s/daemonun/$daemonun/g" www/index.html
 perl -i -pe "s/daemonpass/$daemonpass/g" www/index.html

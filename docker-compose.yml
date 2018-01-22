@@ -164,6 +164,24 @@ services:
             - '/var/run/docker.sock:/var/run/docker.sock'
 
     # ----------------------------------------
+    # NZBGet
+    # ----------------------------------------
+    nzbget:
+        image: linuxserver/nzbget
+        container_name: nzbget
+        restart: unless-stopped
+        environment:
+          - PUID=${PUID}
+          - PGID=${PGID}
+          - TZ=${TZ}
+        network_mode: 'bridge'
+        ports:
+          - '${IP_ADDRESS}:6789:6789'
+        volumes:
+          - './nzbget:/config'
+          - './content/completed:/downloads'
+
+    # ----------------------------------------
     # OMBI
     # ----------------------------------------
     ombi:
