@@ -95,22 +95,6 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
-    # HTTP
-    # ----------------------------------------
-    uhttpd:
-        image: fnichol/uhttpd
-        container_name: uhttpd
-        restart: unless-stopped
-        network_mode: "bridge"
-        ports:
-            - '${IP_ADDRESS}:8008:80'
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-        volumes:
-            - './www:/www'
-
-    # ----------------------------------------
     # JACKETT
     # ----------------------------------------
     jackett:
