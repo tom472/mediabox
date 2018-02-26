@@ -22,7 +22,7 @@ Generally you will only want to choose/use one of each.<br />
 As you go through the Couchpotato Setup Wizard use these settings:<br />
 <ul>
 <li> Turn on Deluge -- Click the "slider" to the right of the Deluge option<br />
-<li> Host: 104.225.223.42:58846<br />
+<li> Host: locip:58846<br />
 <li> Username: asdf<br />
 <li> Password: 123123<br />
 <li> Directory: [Leave Blank]<br />
@@ -46,7 +46,7 @@ After the Wizard is complete:<br />
 <li>Enter these settings:<br />
     * Name: Deluge<br />
     * Enable: Yes<br />
-    * Host: 104.225.223.42<br />
+    * Host: locip<br />
     * Port: 8112<br />
     * Password: deluge (unless you have changed it)<br />
     * Category: blank<br />
@@ -66,7 +66,7 @@ After the Wizard is complete:<br />
 <li>Go to > Search Settings > Torrent Search (Tab)<br />
 <li>Check the box for Enable Torrent Search Providers<br />
 <li>For the "Send .torrent files to" dropdown select: Deluge (via WebUI)<br />
-<li>For "Torrent host:port" use: http://104.225.223.42:8112<br />
+<li>For "Torrent host:port" use: http://locip:8112<br />
 <li>For client password use: deluge (unless you have changed it)<br />
 <li>After the settings are in Click the "Test Connection" button to see if it works -- Click "Save Changes"<br />  
 </ul>

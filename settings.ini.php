@@ -27,7 +27,7 @@ branches[parseError] = "14ea3581389e329e27c496367b2b85b15fc106f9"
 branches[saveProblem] = "4d16f3f4b1d7fb18bac5d8ed09b9a45dbe6711ff"
 last_check = 1519604635
 
-[2767newApplication]
+[Mediabox]
 name = "Mediabox"
 url = "http://locip/mediaboxconfig.php"
 scale = 1
@@ -51,7 +51,7 @@ icon = "muximux-deluge"
 color = "#385171"
 enabled = "true"
 
-[788453newApplication]
+[Duplicati]
 name = "Duplicati"
 url = "http://locip:8200"
 scale = 1
@@ -59,7 +59,7 @@ icon = "muximux-copy2"
 color = "#6fa8dc"
 enabled = "true"
 
-[807082newApplication]
+[Jackett]
 name = "Jackett"
 url = "http://locip:9117"
 scale = 1
@@ -67,7 +67,7 @@ icon = "muximux-jackett"
 color = ""
 enabled = "true"
 
-[141381newApplication]
+[Minio]
 name = "Minio"
 url = "http://locip:9009"
 scale = 1
@@ -75,7 +75,7 @@ icon = "muximux-stack"
 color = "#999999"
 enabled = "true"
 
-[585531newApplication]
+[NetData]
 name = "NetData"
 url = "http://locip:19999"
 scale = 1
@@ -115,7 +115,7 @@ icon = "muximux-plexivity"
 color = "#cc7b19"
 enabled = "true"
 
-[86949newApplication]
+[Portainer]
 name = "Portainer"
 url = "http://locip:9000"
 scale = 1
@@ -123,7 +123,7 @@ icon = "muximux-tree"
 color = "#00ffff"
 enabled = "true"
 
-[507248newApplication]
+[Radarr]
 name = "Radarr"
 url = "http://locip:7878"
 scale = 1
@@ -131,7 +131,7 @@ icon = "muximux-sonarr"
 color = "#ffe599"
 enabled = "true"
 
-[743175newApplication]
+[SickRage]
 name = "SickRage"
 url = "http://locip:8081"
 scale = 1

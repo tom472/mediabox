@@ -75,6 +75,7 @@ mkdir -p duplicati
 mkdir -p duplicati/backups
 mkdir -p jackett
 mkdir -p minio
+mkdir -p muximux
 mkdir -p nzbget
 mkdir -p ombi
 mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"
@@ -189,12 +190,23 @@ echo "NZBGETPASS=$daemonpass" >> .env
 
 # Configure UHTTPD settings and Index file
 docker stop uhttpd > /dev/null 2>&1
-cp index.html www/index.html #Changed this line to a copy, if you rerun the script it will not update the page 
+cp index.html www/index.html
 perl -i -pe "s/locip/$locip/g" www/index.html
 perl -i -pe "s/daemonun/$daemonun/g" www/index.html
 perl -i -pe "s/daemonpass/$daemonpass/g" www/index.html
 cp .env www/env.txt
 docker start uhttpd > /dev/null 2>&1
+
+# Configure Muximux settings and Index file
+docker stop muximux > /dev/null 2>&1
+cp settings.ini.php muximux/www/muximux/settings.ini.php
+cp mediaboxconfig.php muximux/www/muximux/mediaboxconfig.php
+cp .env muximux/www/muximux/env.txt
+perl -i -pe "s/locip/$locip/g" muximux/www/muximux/settings.ini.php
+perl -i -pe "s/locip/$locip/g" muximux/www/muximux/mediaboxconfig.php
+perl -i -pe "s/daemonun/$daemonun/g" muximux/www/muximux/mediaboxconfig.php
+perl -i -pe "s/daemonpass/$daemonpass/g" muximux/www/muximux/mediaboxconfig.php
+docker start muximux > /dev/null 2>&1
 
 # Fix the Healthcheck in Minio
 docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh
@@ -203,4 +215,4 @@ docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh
 chmod -R 0777 content/
 
 printf "Setup Complete - Open a browser and go to: \n\n"
-printf "http://$locip \n OR http://$thishost If you have internal DNS configured.\n"
+printf "http://$locip \nOR http://$thishost If you have appropriate DNS configured.\n"
