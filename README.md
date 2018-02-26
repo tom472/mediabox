@@ -7,6 +7,7 @@ Components include:
   * [Duplicati Backup Software](https://www.duplicati.com/)
   * [Jackett Tracker API and Proxy](https://github.com/Jackett/Jackett)
   * [Minio cloud storage](https://www.minio.io/)
+  * [Muximux Web based HTPC manager](https://github.com/mescon/Muximux)
   * [NetData System Monitoring](https://github.com/firehol/netdata)
   * [NZBGet Usenet Downloader](https://nzbget.net/)  
   * [Ombi media assistant](http://www.ombi.io/)
