@@ -95,22 +95,6 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
-    # HTTP
-    # ----------------------------------------
-    uhttpd:
-        image: fnichol/uhttpd
-        container_name: uhttpd
-        restart: unless-stopped
-        network_mode: "bridge"
-        ports:
-            - '${IP_ADDRESS}:80:80'
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-        volumes:
-            - './www:/www'
-
-    # ----------------------------------------
     # JACKETT
     # ----------------------------------------
     jackett:
@@ -145,6 +129,23 @@ services:
             - './minio:/root/.minio'
             - '${PWD}:/export'
         command: server /export
+
+    # ----------------------------------------
+    # MUXIMUX
+    # ----------------------------------------
+    muximux:
+        image: linuxserver/muximux
+        container_name: muximux
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:80:80'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './muximux:/config'
+            - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
     # NETDATA
