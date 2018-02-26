@@ -23,8 +23,8 @@ As you go through the Couchpotato Setup Wizard use these settings:<br />
 <ul>
 <li> Turn on Deluge -- Click the "slider" to the right of the Deluge option<br />
 <li> Host: locip:58846<br />
-<li> Username: asdf<br />
-<li> Password: 123123<br />
+<li> Username: daemonun<br />
+<li> Password: daemonpass<br />
 <li> Directory: [Leave Blank]<br />
 <li> Label: [Leave Blank]<br />
 </ul>

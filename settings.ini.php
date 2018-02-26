@@ -37,7 +37,7 @@ enabled = "true"
 
 [Couchpotato]
 name = "CouchPotato"
-url = "https://locip:5050"
+url = "http://locip:5050"
 scale = 1
 icon = "muximux-couchpotato"
 color = "#f85c22"
