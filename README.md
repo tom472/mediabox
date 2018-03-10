@@ -12,11 +12,11 @@ Components include:
   * [NZBGet Usenet Downloader](https://nzbget.net/)  
   * [Ombi media assistant](http://www.ombi.io/)
   * [Plex media server](https://www.plex.tv/)
-  * [PlexPy media server monitor](https://jonnywong16.github.io/plexpy/)
   * [Portainer Docker Container manager](https://portainer.io/)
   * [Radarr movie library manager](https://radarr.video/)
   * [Sickrage TV library manager](https://sickrage.github.io/)
   * [Sonarr TV library manager](https://sonarr.tv/)
+  * [Tautulli Plex Media Server monitor](https://github.com/tautulli/tautulli)
   * [Watchtower automatic container updater](https://github.com/v2tec/watchtower)
 
 # Prerequisites
