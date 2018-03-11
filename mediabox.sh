@@ -79,11 +79,11 @@ mkdir -p muximux
 mkdir -p nzbget
 mkdir -p ombi
 mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"
-mkdir -p plexpy
 mkdir -p portainer
 mkdir -p radarr
 mkdir -p sickrage
 mkdir -p sonarr
+mkdir -p tautulli
 
 # Select and Move the PIA VPN files
 # Create a menu selection
@@ -205,4 +205,5 @@ docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh
 chmod -R 0777 content/
 
 printf "Setup Complete - Open a browser and go to: \n\n"
-printf "http://$locip \nOR http://$thishost If you have appropriate DNS configured.\n"
+printf "http://$locip \nOR http://$thishost If you have appropriate DNS configured.\n\n"
+printf "Start with the MEDIABOX Icon for settings and configuration info.\n"

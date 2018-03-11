@@ -87,17 +87,14 @@ When adding libraries to PLEX use these settings:<br />
 <b><u>Portainer:</u></b><br />
 To help you manage your Mediabox Docker containers Portainer is available.<br />
 Portainer is a Docker Management UI to help you work with the containers etc.<br />
-When you first launch Portianer select "Local" as the Docker Endpoint to Manage.<br />
 If you notice the <b><u>Minio</u></b> container reporting as "Unhealthy" in Portainer from the commandline on your Mediabox server run this:<br />
 <code>$ docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh</code><br />
 OR <br>
 From the Minio console in Portainer (Select /bin/sh) run just this: <code>sed -i "s/404/403/g" /usr/bin/healthcheck.sh</code>
 <br /><br />
 <b><u>Watchtower:</u></b><br />
-The Watchtower container will monitor the Portainer container, if there is an update to the Portaner base image<br />
-Watchtower will download that image, gracefully stop Portainer, and re-launch it with the new image.<br />
-The other containers are generally built to install the latest version of the program they run whenever they are restarted.<br />
-So, for example, to update SickRage (which will let you know if you are behind) use Portainer to "Restart" the SickRage container and it will update.<br />
+The Watchtower container monitors the all of the Mediabox containers and if there is an update to any container's base image it updates the container.<br />
+Watchtower will detect the change, download the new image, gracefully stop the container(s), and re-launch them with the new image.<br />
 <h1>Troubleshooting</h1>
 If you are having issues with Mediabox or any of your continers please take look at the settings being used.<br />
 Below are the variables in your .env file:
@@ -106,7 +103,8 @@ Below are the variables in your .env file:
 echo file_get_contents("./env.txt");
 ?>
 </pre>
-If you enjoy the project -- Fuel it with some caffeine :)<br />
+If you enjoy the project -- Fuel it with some caffeine :)<br /><br />
 <a href="https://cash.me/$TomMorgan" target="_blank"><img src="https://img.shields.io/badge/Donate-SquareCash-brightgreen.svg"></a><br />
+<br />
 </body>
 </html>

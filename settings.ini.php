@@ -43,7 +43,7 @@ icon = "muximux-couchpotato"
 color = "#f85c22"
 enabled = "true"
 
-[deluge]
+[Deluge]
 name = "Deluge"
 url = "http://locip:8112"
 scale = 1
@@ -107,14 +107,6 @@ icon = "muximux-plex"
 color = "#f9be03"
 enabled = "true"
 
-[PlexPy]
-name = "PlexPy"
-url = "http://locip:8181"
-scale = 1
-icon = "muximux-plexivity"
-color = "#cc7b19"
-enabled = "true"
-
 [Portainer]
 name = "Portainer"
 url = "http://locip:9000"
@@ -145,4 +137,12 @@ url = "http://locip:8989"
 scale = 1
 icon = "muximux-sonarr"
 color = "#674ea7"
+enabled = "true"
+
+[Tautulli]
+name = "Tautulli"
+url = "http://locip:8181"
+scale = 1
+icon = "muximux-plexivity"
+color = "#cc7b19"
 enabled = "true"
