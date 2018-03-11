@@ -208,7 +208,6 @@ if [ -e plexpy/plexpy.db ]; then
     cp plexpy/plexpy.db tautulli/tautulli.db
     mv plexpy/plexpy.db plexpy/plexpy.db.moved
     docker start tautulli > /dev/null 2>&1
-    exit 0
 fi
 
 # Fix the Healthcheck in Minio
