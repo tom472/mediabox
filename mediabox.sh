@@ -142,6 +142,9 @@ echo "VPN_REMOTE=$vpnremote" >> .env
 echo ".env file creation complete"
 printf "\n\n"
 
+# Adjust for the Tautulli replacement of PlexPy
+docker rm -f plexpy > /dev/null 2>&1
+
 # Download & Launch the containers
 echo "The containers will now be pulled and launched"
 echo "This may take a while depending on your download speed"
@@ -197,6 +200,16 @@ perl -i -pe "s/locip/$locip/g" muximux/www/muximux/mediaboxconfig.php
 perl -i -pe "s/daemonun/$daemonun/g" muximux/www/muximux/mediaboxconfig.php
 perl -i -pe "s/daemonpass/$daemonpass/g" muximux/www/muximux/mediaboxconfig.php
 docker start muximux > /dev/null 2>&1
+
+# If PlexPy existed - copy plexpy.db to Tautulli 
+if [ -e plexpy/plexpy.db ]; then
+    docker stop tautulli > /dev/null 2>&1
+    mv tautulli/tautulli.db tautulli/tautulli.db.orig
+    cp plexpy/plexpy.db tautulli/tautulli.db
+    mv plexpy/plexpy.db plexpy/plexpy.db.moved
+    docker start tautulli > /dev/null 2>&1
+    exit 0
+fi
 
 # Fix the Healthcheck in Minio
 docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh
