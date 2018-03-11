@@ -87,15 +87,14 @@ When adding libraries to PLEX use these settings:<br />
 <b><u>Portainer:</u></b><br />
 To help you manage your Mediabox Docker containers Portainer is available.<br />
 Portainer is a Docker Management UI to help you work with the containers etc.<br />
-When you first launch Portianer select "Local" as the Docker Endpoint to Manage.<br />
 If you notice the <b><u>Minio</u></b> container reporting as "Unhealthy" in Portainer from the commandline on your Mediabox server run this:<br />
 <code>$ docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh</code><br />
 OR <br>
 From the Minio console in Portainer (Select /bin/sh) run just this: <code>sed -i "s/404/403/g" /usr/bin/healthcheck.sh</code>
 <br /><br />
 <b><u>Watchtower:</u></b><br />
-The Watchtower container monitors the all of the Mediabox containers, if there is an update to any container base image<br />
-Watchtower will download the new image, gracefully stop the container(s), and re-launch them with the new image.<br />
+The Watchtower container monitors the all of the Mediabox containers and if there is an update to any container's base image it updates the container.<br />
+Watchtower will detect the change, download the new image, gracefully stop the container(s), and re-launch them with the new image.<br />
 <h1>Troubleshooting</h1>
 If you are having issues with Mediabox or any of your continers please take look at the settings being used.<br />
 Below are the variables in your .env file:
