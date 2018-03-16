@@ -301,6 +301,7 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
+            - TZ=${TZ}
         volumes:
             - './sonarr:/config'
             - './content/completed:/downloads'
