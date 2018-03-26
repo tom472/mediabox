@@ -1,6 +1,13 @@
 #!/bin/bash
 
-#set -x
+# set -x
+
+# Begin section for first run vs update 
+if [ -f .env ]; then 
+git stash > /dev/null 2>&1
+git pull
+fi
+if [ -f delugevpn/config/openvpn/credentials.conf ]; then creds=yes
 
 # Get local Username
 localuname=`id -u -n`
