@@ -4,13 +4,13 @@
 
 # Begin section for first run vs update 
 if [ -e .env ]; then 
+# Make a datestampted copy of the existing .env file
+mv .env "$(date +"%Y-%m-%d").env"
 echo "Updating your local copy of Mediabox."
 # Stash and local changes to the base files
 git stash > /dev/null 2>&1
 # Pull the latest files from Git
 git pull
-# Make a datestampted copy of the existing .env file
-mv .env "$(date +"%Y-%m-%d").env"
 echo "Update complete."
 fi
 
