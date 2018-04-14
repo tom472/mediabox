@@ -109,7 +109,7 @@ This is only necessary once - and only if you dowloaded Mediabox before it was a
 1. Change directory into mediabox: `$ cd your/path/to/mediabox/`
 2. Git Stash any alterations to local files: `$ git stash`
 3. Git pull the changes to the Mediabox Project: `$ git pull`
-4. Then run the mediabox.sh script: `$ ./mediabox.sh`
+4. Run the mediabox.sh script: `$ ./mediabox.sh` << Redo just this step anytime you want/need to upgrade Mediabox
 
 
 **Mediabox has been tested to work on Ubuntu 16.04 LTS - Server and Desktop**
