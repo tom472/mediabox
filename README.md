@@ -101,6 +101,15 @@ Note: If you choose plexpass as your version you may optionally specify CLAIM_TO
 
 Upon completion, the script will launch your mediabox containers.
 
+# Upgrading mediabox
+
+This is only necessary once - and only if you dowloaded Mediabox before it was added into the project.
+
+1. Change directory into mediabox: `$ cd your/path/to/mediabox/`
+2. Git Stash any alterations to local files: `$ git stash`
+3. Git pull the changes to the Mediabox Project: `$ git pull`
+4. Then run the mediabox.sh script: `$ ./mediabox.sh`
+
 **Mediabox has been tested to work on Ubuntu 16.04 LTS - Server and Desktop**
 
 ---

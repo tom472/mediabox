@@ -3,15 +3,20 @@
 # set -x
 
 # Begin section for first run vs update 
-if [ -e .env ]; then 
+if [ -e .env ]; then
+# Grab the CouchPotato and NBZ username & password to reuse
+daemonun = `cat .env | grep CPDAEMONUN | cut -d = -f2`
+daemonpass = `cat .env | grep CPDAEMONPASS | cut -d = -f2` 
 # Make a datestampted copy of the existing .env file
 mv .env "$(date +"%Y-%m-%d").env"
 echo "Updating your local copy of Mediabox."
-# Stash and local changes to the base files
+# Stash any local changes to the base files
 git stash > /dev/null 2>&1
 # Pull the latest files from Git
 git pull
-echo "Update complete."
+echo "Mediabox Files Update complete."
+echo "Stopping Current Mediabox containers."
+docker-compose stop > /dev/null 2>&1
 fi
 
 # Get local Username
@@ -170,11 +175,13 @@ printf "\n\n"
 #
 # NZBGet can be configured to not use a user/pass to access the webui
 # but in case this isnt being ran on a home network, it's best to put it in
+if [ -z "$daemonun" ]; then 
 echo "You need to set a username and password for programs to access"
 echo "The Deluge daemon and NZBGet's API and web interface."
 read -p "What would you like to use as the access username?: " daemonun
 read -p "What would you like to use as the access password?: " daemonpass
 printf "\n\n"
+fi
 
 # Finish up the config
 printf "Configuring DelugeVPN and NZBGet - Muximux files - Permissions \n"
