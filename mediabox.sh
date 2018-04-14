@@ -5,8 +5,8 @@
 # Begin section for first run vs update 
 if [ -e .env ]; then
 # Grab the CouchPotato and NBZ username & password to reuse
-daemonun = `cat .env | grep CPDAEMONUN | cut -d = -f2`
-daemonpass = `cat .env | grep CPDAEMONPASS | cut -d = -f2` 
+daemonun=`cat .env | grep CPDAEMONUN | cut -d = -f2`
+daemonpass=`cat .env | grep CPDAEMONPASS | cut -d = -f2` 
 # Make a datestampted copy of the existing .env file
 mv .env "$(date +"%Y-%m-%d").env"
 echo "Updating your local copy of Mediabox."
