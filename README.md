@@ -50,7 +50,7 @@ Install the prerequisite packages:
 It’s OK if apt reports that none of these packages are installed.
 2. Install Docker CE: `$ sudo curl -fsSL https://get.docker.com/ | sh`
 3. Install Docker-Compose: 
-<pre><code>$ sudo curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose</code></pre>
+<pre><code>$ sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose</code></pre>
 4. Set the permissions: `$ sudo chmod +x /usr/local/bin/docker-compose`
 5. Verify the installation: `$ docker-compose -v`
 
@@ -100,6 +100,17 @@ Note: If you choose plexpass as your version you may optionally specify CLAIM_TO
     * **password**
 
 Upon completion, the script will launch your mediabox containers.
+
+
+**Upgrading mediabox:**
+
+This is only necessary once - and only if you dowloaded Mediabox before it was added into the project.
+
+1. Change directory into mediabox: `$ cd your/path/to/mediabox/`
+2. Git Stash any alterations to local files: `$ git stash`
+3. Git pull the changes to the Mediabox Project: `$ git pull`
+4. Then run the mediabox.sh script: `$ ./mediabox.sh`
+
 
 **Mediabox has been tested to work on Ubuntu 16.04 LTS - Server and Desktop**
 
