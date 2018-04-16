@@ -75,6 +75,8 @@ Once the prerequisites are all taken care of you can move forward with using med
 1. Clone the mediabox repository: `$ git clone https://github.com/tom472/mediabox.git`
 2. Change directory into mediabox: `$ cd mediabox/`
 3. Run the mediabox.sh script: `$ ./mediabox.sh`  **Read below for the script questions**
+4. To upgrade Mediabox at anytime, re-run the mediabox script: `$ ./mediabox.sh`
+    * See Upgrading Mediabox below if you need to do a one-time upgrade to get to the self-updating version.
 
 **Please be prepared to supply the following details after you run Step 4 above.**
 
