@@ -1,4 +1,4 @@
-# mediabox
+# Mediabox
 Mediabox is meant to be an all Docker Container based media aggregator stack.
 
 Components include:
