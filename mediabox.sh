@@ -4,9 +4,11 @@
 
 # Begin section for first run vs update 
 if [ -e .env ]; then
-# Grab the CouchPotato and NBZ username & password to reuse
+# Grab the CouchPotato, NBZGet, & PIA usernames & passwords to reuse
 daemonun=$(grep CPDAEMONUN .env | cut -d = -f2)
-daemonpass=`cat .env | grep CPDAEMONPASS | cut -d = -f2`
+daemonpass=$(grep CPDAEMONPASS .env | cut -d = -f2)
+piauname=$(grep PIAUNAME .env | cut -d = -f2)
+piapass=$(grep PIAPASS .env | cut -d = -f2)
 # Make a datestampted copy of the existing .env file
 mv .env "$(date +"%Y-%m-%d_%H:%M").env"
 echo "Updating your local copy of Mediabox."
@@ -14,34 +16,42 @@ echo "Updating your local copy of Mediabox."
 git stash > /dev/null 2>&1
 # Pull the latest files from Git
 git pull
+# Check to see if this script "mediabox.sh" was updated and restart it necessary
+changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+check_run() {
+	echo "$changed_files" | grep --quiet "$1" && eval "$2"
+}
+# Run exec mediabox.sh if mediabox.sh changed
+check_run mediabox.sh "exec ./mediabox.sh"
+# Provide message once update is complete
 echo "Mediabox Files Update complete."
 echo "Stopping Current Mediabox containers."
 docker-compose stop > /dev/null 2>&1
 fi
 
 # Get local Username
-localuname=`id -u -n`
+localuname=$(id -u -n)
 # Get PUID
-PUID=`id -u $localuname`
+PUID=$(id -u "$localuname")
 # Get GUID
-PGID=`id -g $localuname`
+PGID=$(id -g "$localuname")
 # Get Hostname
-thishost=`hostname`
+thishost=$(hostname)
 # Get IP Address
-locip=`hostname -I | awk '{print $1}'`
+locip=$(hostname -I | awk '{print $1}')
 # Get Time Zone
-time_zone=`cat /etc/timezone`
+time_zone=$(cat /etc/timezone)
 
 # An accurate way to calculate the local network
 # via @kspillane
 # Grab the subnet mask from ifconfig
-subnet_mask=$(ifconfig | grep $locip | awk -F ':' {'print $4'})
+subnet_mask=$(ifconfig | grep "$locip" | awk -F ':' "{'print $4'}")
 # Use bitwise & with ip and mask to calculate network address
 IFSold=$IFS
-IFS=. read -r i1 i2 i3 i4 <<< $locip
-IFS=. read -r m1 m2 m3 m4 <<< $subnet_mask
+IFS=. read -r i1 i2 i3 i4 <<< "$locip"
+IFS=. read -r m1 m2 m3 m4 <<< "$subnet_mask"
 IFS=$IFSold
-lannet=$(printf "%d.%d.%d.%d\n" "$((i1 & m1))" "$((i2 & m2))" "$((i3 & m3))" "$((i4 & m4))")
+lannet=$(printf "%d.%d.%d.%d\\n" "$((i1 & m1))" "$((i2 & m2))" "$((i3 & m3))" "$((i4 & m4))")
 
 # Converts subnet mask into CIDR notation
 # Thanks to https://stackoverflow.com/questions/20762575/explanation-of-convertor-of-cidr-to-netmask-in-linux-shell-netmask2cdir-and-cdir
@@ -50,28 +60,28 @@ function mask2cdr()
 {
    # Assumes there's no "255." after a non-255 byte in the mask
    local x=${1##*255.}
-   set -- 0^^^128^192^224^240^248^252^254^ $(( (${#1} - ${#x})*2 )) ${x%%.*}
+   set -- 0^^^128^192^224^240^248^252^254^ $(( (${#1} - ${#x})*2 )) "${x%%.*}"
    x=${1%%$3*}
    cidr_bits=$(( $2 + (${#x}/4) ))
 }
-mask2cdr $subnet_mask # Call the function to convert to CIDR
-lannet=$(echo "$lannet/$cidr_bits") # Combine lannet and cidr
+mask2cdr "$subnet_mask" # Call the function to convert to CIDR
+lannet=$("$lannet"/"$cidr_bits") # Combine lannet and cidr
 
 # Get Private Internet Access Info
-read -p "What is your PIA Username?: " piauname
-read -s -p "What is your PIA Password? (Will not be echoed): " piapass
-printf "\n\n"
+read -r "What is your PIA Username?: " piauname
+read -s -r "What is your PIA Password? (Will not be echoed): " piapass
+printf "\\n\\n"
 
 # Get info needed for PLEX Official image
-read -p "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
-read -p "If you have PLEXPASS what is your Claim Token from https://www.plex.tv/claim/ (Optional): " pmstoken
+read -r "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
+read -r "If you have PLEXPASS what is your Claim Token from https://www.plex.tv/claim/ (Optional): " pmstoken
 # If not set - set PMS Tag to Public:
 if [ -z "$pmstag" ]; then 
    pmstag=public 
 fi
 
 # Get the info for the style of Portainer to use
-read -p "Which style of Portainer do you want to use? By default 'No Auth' will be used. (noauth, auth): " portainerstyle
+read -r "Which style of Portainer do you want to use? By default 'No Auth' will be used. (noauth, auth): " portainerstyle
 if [ -z "$portainerstyle" ]; then
    portainerstyle=--no-auth
 elif [ $portainerstyle == "noauth" ]; then
@@ -119,8 +129,8 @@ do
     fi
     # now we can use the selected file
     echo "$filename selected"
-    cp $filename delugevpn/config/openvpn/ > /dev/null 2>&1
-    vpnremote=`cat $filename | grep "remote" | cut -d ' ' -f2  | head -1`
+    cp "$filename" delugevpn/config/openvpn/ > /dev/null 2>&1
+    vpnremote=$(grep "remote" "$filename" | cut -d ' ' -f2  | head -1)
     # it'll ask for another unless we leave the loop
     break
 done
@@ -130,7 +140,7 @@ cp ovpn/*.pem delugevpn/config/openvpn/ > /dev/null 2>&1
 
 # Create the .env file
 echo "Creating the .env file with the values we have gathered"
-printf "\n"
+printf "\\n"
 cat << EOF > .env
 ###  ------------------------------------------------
 ###  M E D I A B O X   C O N F I G   S E T T I N G S
@@ -157,7 +167,7 @@ echo "PMSTOKEN=$pmstoken" >> .env
 echo "PORTAINERSTYLE=$portainerstyle" >> .env
 echo "VPN_REMOTE=$vpnremote" >> .env
 echo ".env file creation complete"
-printf "\n\n"
+printf "\\n\\n"
 
 # Adjust for the Tautulli replacement of PlexPy
 docker rm -f plexpy > /dev/null 2>&1
@@ -165,10 +175,10 @@ docker rm -f plexpy > /dev/null 2>&1
 # Download & Launch the containers
 echo "The containers will now be pulled and launched"
 echo "This may take a while depending on your download speed"
-read -p "Press any key to continue... " -n1 -s
-printf "\n\n"
+read -r "Press any key to continue... " -n1 -s
+printf "\\n\\n"
 docker-compose up -d
-printf "\n\n"
+printf "\\n\\n"
 
 # Let's configure the access to the Deluge Daemon and
 # The same credentials can be used for NZBGet's webui
@@ -178,14 +188,14 @@ printf "\n\n"
 if [ -z "$daemonun" ]; then 
 echo "You need to set a username and password for programs to access"
 echo "The Deluge daemon and NZBGet's API and web interface."
-read -p "What would you like to use as the access username?: " daemonun
-read -p "What would you like to use as the access password?: " daemonpass
-printf "\n\n"
+read -r "What would you like to use as the access username?: " daemonun
+read -r "What would you like to use as the access password?: " daemonpass
+printf "\\n\\n"
 fi
 
 # Finish up the config
-printf "Configuring DelugeVPN and NZBGet - Muximux files - Permissions \n"
-printf "This may take a few minutes...\n\n"
+printf "Configuring DelugeVPN and NZBGet - Muximux files - Permissions \\n"
+printf "This may take a few minutes...\\n\\n"
 
 # Configure DelugeVPN: Set Daemon access on, delete the core.conf~ file
 while [ ! -f delugevpn/config/core.conf ]; do sleep 1; done
@@ -203,7 +213,7 @@ perl -i -pe "s/ControlPassword=tegbzn6789/ControlPassword=$daemonpass/g"  nzbget
 docker start nzbget > /dev/null 2>&1
 
 # Push the Deluge Daemon and NZBGet Access info the to Auth file - and to the .env file
-echo $daemonun:$daemonpass:10 >> ./delugevpn/config/auth
+echo "$daemonun":"$daemonpass":10 >> ./delugevpn/config/auth
 echo "CPDAEMONUN=$daemonun" >> .env
 echo "CPDAEMONPASS=$daemonpass" >> .env
 echo "NZBGETUN=$daemonun" >> .env
@@ -235,6 +245,6 @@ docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh
 # Adjust the permissions on the content folder
 chmod -R 0777 content/
 
-printf "Setup Complete - Open a browser and go to: \n\n"
-printf "http://$locip \nOR http://$thishost If you have appropriate DNS configured.\n\n"
-printf "Start with the MEDIABOX Icon for settings and configuration info.\n"
+printf "Setup Complete - Open a browser and go to: \\n\\n"
+printf "http://$locip \\nOR http://$thishost If you have appropriate DNS configured.\\n\\n"
+printf "Start with the MEDIABOX Icon for settings and configuration info.\\n"
