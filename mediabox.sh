@@ -18,7 +18,7 @@ check_run() {
 echo "Mediabox Files Update complete. This script will restart if necessary"
 # Rename the .env file so this check fails if mediabox.sh needs to re-launch
 mv .env 1.env
-read -r "Press any key to continue... " -n1 -s
+read -p "Press any key to continue... " -n1 -s
 # Run exec mediabox.sh if mediabox.sh changed
 check_run mediabox.sh "exec ./mediabox.sh"
 fi
@@ -76,20 +76,20 @@ mask2cdr "$subnet_mask" # Call the function to convert to CIDR
 lannet=$("$lannet"/"$cidr_bits") # Combine lannet and cidr
 
 # Get Private Internet Access Info
-read -r "What is your PIA Username?: " piauname
-read -s -r "What is your PIA Password? (Will not be echoed): " piapass
+read -p "What is your PIA Username?: " piauname
+read -s -p "What is your PIA Password? (Will not be echoed): " piapass
 printf "\\n\\n"
 
 # Get info needed for PLEX Official image
-read -r "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
-read -r "If you have PLEXPASS what is your Claim Token from https://www.plex.tv/claim/ (Optional): " pmstoken
+read -p "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
+read -p "If you have PLEXPASS what is your Claim Token from https://www.plex.tv/claim/ (Optional): " pmstoken
 # If not set - set PMS Tag to Public:
 if [ -z "$pmstag" ]; then 
    pmstag=public 
 fi
 
 # Get the info for the style of Portainer to use
-read -r "Which style of Portainer do you want to use? By default 'No Auth' will be used. (noauth, auth): " portainerstyle
+read -p "Which style of Portainer do you want to use? By default 'No Auth' will be used. (noauth, auth): " portainerstyle
 if [ -z "$portainerstyle" ]; then
    portainerstyle=--no-auth
 elif [ $portainerstyle == "noauth" ]; then
@@ -183,7 +183,7 @@ docker rm -f plexpy > /dev/null 2>&1
 # Download & Launch the containers
 echo "The containers will now be pulled and launched"
 echo "This may take a while depending on your download speed"
-read -r "Press any key to continue... " -n1 -s
+read -p "Press any key to continue... " -n1 -s
 printf "\\n\\n"
 docker-compose up -d
 printf "\\n\\n"
@@ -196,8 +196,8 @@ printf "\\n\\n"
 if [ -z "$daemonun" ]; then 
 echo "You need to set a username and password for programs to access"
 echo "The Deluge daemon and NZBGet's API and web interface."
-read -r "What would you like to use as the access username?: " daemonun
-read -r "What would you like to use as the access password?: " daemonpass
+read -p "What would you like to use as the access username?: " daemonun
+read -p "What would you like to use as the access password?: " daemonpass
 printf "\\n\\n"
 fi
 
