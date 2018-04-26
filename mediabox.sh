@@ -2,29 +2,37 @@
 
 # set -x
 
-# Begin section for first run vs update 
+# See if we need to check GIT for updates
 if [ -e .env ]; then
-# Grab the CouchPotato, NBZGet, & PIA usernames & passwords to reuse
-daemonun=$(grep CPDAEMONUN .env | cut -d = -f2)
-daemonpass=$(grep CPDAEMONPASS .env | cut -d = -f2)
-piauname=$(grep PIAUNAME .env | cut -d = -f2)
-piapass=$(grep PIAPASS .env | cut -d = -f2)
-# Make a datestampted copy of the existing .env file
-mv .env "$(date +"%Y-%m-%d_%H:%M").env"
-echo "Updating your local copy of Mediabox."
 # Stash any local changes to the base files
 git stash > /dev/null 2>&1
+echo "Updating your local copy of Mediabox."
 # Pull the latest files from Git
 git pull
-# Check to see if this script "mediabox.sh" was updated and restart it necessary
+# Check to see if this script "mediabox.sh" was updated and restart it if necessary
 changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
 check_run() {
 	echo "$changed_files" | grep --quiet "$1" && eval "$2"
 }
+# Provide message once update is complete
+echo "Mediabox Files Update complete. This script will restart if necessary"
+# Rename the .env file so this check fails if mediabox.sh needs to re-launch
+mv .env 1.env
+read -r "Press any key to continue... " -n1 -s
 # Run exec mediabox.sh if mediabox.sh changed
 check_run mediabox.sh "exec ./mediabox.sh"
-# Provide message once update is complete
-echo "Mediabox Files Update complete."
+fi
+
+# After update collect some current known variables
+if [ -e 1.env ]; then
+# Grab the CouchPotato, NBZGet, & PIA usernames & passwords to reuse
+daemonun=$(grep CPDAEMONUN 1.env | cut -d = -f2)
+daemonpass=$(grep CPDAEMONPASS 1.env | cut -d = -f2)
+piauname=$(grep PIAUNAME 1.env | cut -d = -f2)
+piapass=$(grep PIAPASS 1.env | cut -d = -f2)
+# Make a datestampted copy of the existing .env file
+mv 1.env "$(date +"%Y-%m-%d_%H:%M").env"
+# Stop the current Mediabox stack
 echo "Stopping Current Mediabox containers."
 docker-compose stop > /dev/null 2>&1
 fi
