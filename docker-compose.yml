@@ -165,22 +165,39 @@ services:
             - '/var/run/docker.sock:/var/run/docker.sock'
 
     # ----------------------------------------
-    # NZBGet
+    # NZBGetVPN
     # ----------------------------------------
     nzbget:
-        image: linuxserver/nzbget
+        image: jshridha/docker-nzbgetvpn:latest
         container_name: nzbget
         restart: unless-stopped
+        cap_add:
+            - NET_ADMIN
         environment:
           - PUID=${PUID}
           - PGID=${PGID}
-          - TZ=${TZ}
-        network_mode: 'bridge'
+          - VPN_ENABLED=yes
+          - VPN_USER=${PIAUNAME}
+          - VPN_PASS=${PIAPASS}
+          - VPN_REMOTE=${VPN_REMOTE}
+          - VPN_PORT=1198
+          - VPN_PROTOCOL=udp
+          - VPN_DEVICE_TYPE=tun
+          - VPN_PROV=pia
+          - STRONG_CERTS=no 
+          - ENABLE_PRIVOXY=yes
+          - STRICT_PORT_FORWARD=yes
+          - LAN_NETWORK=${CIDR_ADDRESS}
+          - NAME_SERVERS=1.1.1.1,1.0.0.1 
+          - DEBUG=false
+        network_mode: 'bridge'  
         ports:
           - '${IP_ADDRESS}:6789:6789'
         volumes:
+          - './content:/data'
           - './nzbget:/config'
           - './content/completed:/downloads'
+          - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
     # OMBI
