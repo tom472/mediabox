@@ -15,10 +15,10 @@ check_run() {
 	echo "$changed_files" | grep --quiet "$1" && eval "$2"
 }
 # Provide message once update is complete
-echo "Mediabox Files Update complete. This script will restart if necessary"
+echo "Mediabox Files Update complete. This script will restart if necessary\\n\\n"
 # Rename the .env file so this check fails if mediabox.sh needs to re-launch
 mv .env 1.env
-read -p "Press any key to continue... " -n1 -s
+read -r -p "Press any key to continue... \\n\\n" -n1 -s
 # Run exec mediabox.sh if mediabox.sh changed
 check_run mediabox.sh "exec ./mediabox.sh"
 fi
@@ -33,7 +33,7 @@ piapass=$(grep PIAPASS 1.env | cut -d = -f2)
 # Make a datestampted copy of the existing .env file
 mv 1.env "$(date +"%Y-%m-%d_%H:%M").env"
 # Stop the current Mediabox stack
-echo "Stopping Current Mediabox containers."
+echo "Stopping Current Mediabox containers.\\n\\n"
 docker-compose stop > /dev/null 2>&1
 fi
 
@@ -77,20 +77,20 @@ lannet=$(echo "$lannet/$cidr_bits") # Combine lannet and cidr
 
 if [ -z "$piauname" ]; then
 # Get Private Internet Access Info
-read -p "What is your PIA Username?: " piauname
-read -s -p "What is your PIA Password? (Will not be echoed): " piapass
+read -r -p "What is your PIA Username?: " piauname
+read -r -s -p "What is your PIA Password? (Will not be echoed): " piapass
 printf "\\n\\n"
 fi
 # Get info needed for PLEX Official image
-read -p "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
-read -p "If you have PLEXPASS what is your Claim Token from https://www.plex.tv/claim/ (Optional): " pmstoken
+read -r -p "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
+read -r -p "If you have PLEXPASS what is your Claim Token from https://www.plex.tv/claim/ (Optional): " pmstoken
 # If not set - set PMS Tag to Public:
 if [ -z "$pmstag" ]; then 
    pmstag=public 
 fi
 
 # Get the info for the style of Portainer to use
-read -p "Which style of Portainer do you want to use? By default 'No Auth' will be used. (noauth, auth): " portainerstyle
+read -r -p "Which style of Portainer do you want to use? By default 'No Auth' will be used. (noauth, auth): " portainerstyle
 if [ -z "$portainerstyle" ]; then
    portainerstyle=--no-auth
 elif [ $portainerstyle == "noauth" ]; then
@@ -184,7 +184,7 @@ docker rm -f plexpy > /dev/null 2>&1
 # Download & Launch the containers
 echo "The containers will now be pulled and launched"
 echo "This may take a while depending on your download speed"
-read -p "Press any key to continue... " -n1 -s
+read -r -p "Press any key to continue... " -n1 -s
 printf "\\n\\n"
 docker-compose up -d
 printf "\\n\\n"
@@ -197,8 +197,8 @@ printf "\\n\\n"
 if [ -z "$daemonun" ]; then 
 echo "You need to set a username and password for programs to access"
 echo "The Deluge daemon and NZBGet's API and web interface."
-read -p "What would you like to use as the access username?: " daemonun
-read -p "What would you like to use as the access password?: " daemonpass
+read -r -p "What would you like to use as the access username?: " daemonun
+read -r -p "What would you like to use as the access password?: " daemonpass
 printf "\\n\\n"
 fi
 
