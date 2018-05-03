@@ -31,11 +31,13 @@ daemonun=$(grep CPDAEMONUN 1.env | cut -d = -f2)
 daemonpass=$(grep CPDAEMONPASS 1.env | cut -d = -f2)
 piauname=$(grep PIAUNAME 1.env | cut -d = -f2)
 piapass=$(grep PIAPASS 1.env | cut -d = -f2)
-# Make a datestampted copy of the existing .env file
-mv 1.env "$(date +"%Y-%m-%d_%H:%M").env"
+# Now we need ".env" to exist again so we can stop just the Medaibox containers
+mv 1.env .env
 # Stop the current Mediabox stack
 printf "Stopping Current Mediabox containers.\\n\\n"
 docker-compose stop
+# Make a datestampted copy of the existing .env file
+mv .env "$(date +"%Y-%m-%d_%H:%M").env"
 fi
 
 # Get local Username
