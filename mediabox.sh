@@ -35,7 +35,7 @@ piapass=$(grep PIAPASS 1.env | cut -d = -f2)
 mv 1.env "$(date +"%Y-%m-%d_%H:%M").env"
 # Stop the current Mediabox stack
 printf "Stopping Current Mediabox containers.\\n\\n"
-docker-compose stop > /dev/null 2>&1
+docker-compose stop
 fi
 
 # Get local Username
