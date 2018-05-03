@@ -38,17 +38,17 @@ docker-compose stop > /dev/null 2>&1
 fi
 
 # Get local Username
-localuname=`id -u -n`
+localuname=$(id -u -n)
 # Get PUID
-PUID=`id -u $localuname`
+PUID=$(id -u "$localuname")
 # Get GUID
-PGID=`id -g $localuname`
+PGID=$(id -g "$localuname")
 # Get Hostname
-thishost=`hostname`
+thishost=$(hostname)
 # Get IP Address
-locip=`hostname -I | awk '{print $1}'`
+locip=$(hostname -I | awk '{print $1}')
 # Get Time Zone
-time_zone=`cat /etc/timezone`
+time_zone=$(cat /etc/timezone)
 
 # An accurate way to calculate the local network
 # via @kspillane
