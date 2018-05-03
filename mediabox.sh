@@ -15,10 +15,10 @@ check_run() {
 	echo "$changed_files" | grep --quiet "$1" && eval "$2"
 }
 # Provide message once update is complete
-echo "Mediabox Files Update complete. This script will restart if necessary\\n\\n"
+echo "Mediabox Files Update complete.\\n\\nThis script will restart if necessary\\n\\n"
 # Rename the .env file so this check fails if mediabox.sh needs to re-launch
 mv .env 1.env
-read -r -p "Press any key to continue... \\n\\n" -n1 -s
+read -r -p "Press any key to continue... " -n1 -s
 # Run exec mediabox.sh if mediabox.sh changed
 check_run mediabox.sh "exec ./mediabox.sh"
 fi
@@ -33,7 +33,7 @@ piapass=$(grep PIAPASS 1.env | cut -d = -f2)
 # Make a datestampted copy of the existing .env file
 mv 1.env "$(date +"%Y-%m-%d_%H:%M").env"
 # Stop the current Mediabox stack
-echo "Stopping Current Mediabox containers.\\n\\n"
+echo "Stopping Current Mediabox containers. \\n\\n"
 docker-compose stop > /dev/null 2>&1
 fi
 
