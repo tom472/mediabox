@@ -106,7 +106,7 @@ Upon completion, the script will launch your mediabox containers.
 
 **Upgrading mediabox:**
 
-This is only necessary once - and only if you dowloaded Mediabox before it was added into the project.
+This is only necessary once - and only if you dowloaded Mediabox before auto-update was added into the project.
 
 1. Change directory into mediabox: `$ cd your/path/to/mediabox/`
 2. Git Stash any alterations to local files: `$ git stash`
