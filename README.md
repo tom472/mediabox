@@ -97,7 +97,7 @@ Note: If you choose plexpass as your version you may optionally specify CLAIM_TO
     *  **auth** (will require a password, require a persistent volume map, and will need you to select the endpoint to manage)
     *  **noauth** (will not require a password for access and will automatically connect to the local Docker sock endpoint)
 
-4. Credentials for the Deluge daemon (this is needed for the CouchPotato container)
+4. Credentials for the NBZGet interface and the Deluge daemon which needed for the CouchPotato container.
     * **username**
     * **password**
 
