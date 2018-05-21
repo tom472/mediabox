@@ -115,9 +115,10 @@ printf "\\n\\n"
 printf "If you already have TV - Movie - Music directories you want to use you can enter them next.\\n"
 printf "If you want Mediabox to generate it's own directories just press enter to these questions."
 printf "\\n\\n"
-read -p "Where do store your TV media? (Please use full path - /path/to/tv ): " tvdirectory
-read -p "Where do store your MOVIE media? (Please use full path - /path/to/movies ): " moviedirectory
-read -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): " musicdirectory
+read -r -p "Where do store your TV media? (Please use full path - /path/to/tv ): " tvdirectory
+read -r -p "Where do store your MOVIE media? (Please use full path - /path/to/movies ): " moviedirectory
+# Commenting out the MUSIC question - Not using it yet - getting it ready for future use
+# read -r -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): " musicdirectory
 fi
 
 # Create the directory structure
