@@ -110,11 +110,11 @@ elif [ $portainerstyle == "auth" ]; then
 fi   
 
 # Ask user if they already have TV, Movie, and Music directories
-printf "If you already have TV - Movie - Music directories you want to use you can enter them next.\\n"
+printf "\\n\\nIf you already have TV - Movie - Music directories you want to use you can enter them next.\\n"
 printf "If you want Mediabox to generate it's own directories just press enter to these questions.\\n"
-read -p "Where do store your TV media? (Please use full path - /path/to/tv ): " tvdirectory
+read -p "\\n\\nWhere do store your TV media? (Please use full path - /path/to/tv ): " tvdirectory
 read -p "Where do store your MOVIE media? (Please use full path - /path/to/movies ): " moviedirectory
-read -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): " musicdirectory
+read -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): \\n\\n" musicdirectory
 
 # Create the directory structure
 if [ -z "$tvdirectory" ]; then
