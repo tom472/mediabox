@@ -110,11 +110,13 @@ elif [ $portainerstyle == "auth" ]; then
 fi   
 
 # Ask user if they already have TV, Movie, and Music directories
-printf "\\n\\nIf you already have TV - Movie - Music directories you want to use you can enter them next.\\n"
-printf "If you want Mediabox to generate it's own directories just press enter to these questions.\\n"
-read -p "\\n\\nWhere do store your TV media? (Please use full path - /path/to/tv ): " tvdirectory
+printf "\\n\\n"
+printf "If you already have TV - Movie - Music directories you want to use you can enter them next."
+printf "If you want Mediabox to generate it's own directories just press enter to these questions."
+printf "\\n\\n"
+read -p "Where do store your TV media? (Please use full path - /path/to/tv ): " tvdirectory
 read -p "Where do store your MOVIE media? (Please use full path - /path/to/movies ): " moviedirectory
-read -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): \\n\\n" musicdirectory
+read -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): " musicdirectory
 
 # Create the directory structure
 if [ -z "$tvdirectory" ]; then
@@ -259,6 +261,7 @@ echo "NZBGETUN=$daemonun" >> .env
 echo "NZBGETPASS=$daemonpass" >> .env
 
 # Configure Muximux settings and files
+while [ ! -f muximux/www/muximux/settings.ini.php-example ]; do sleep 1; done
 docker stop muximux > /dev/null 2>&1
 cp settings.ini.php muximux/www/muximux/settings.ini.php
 cp mediaboxconfig.php muximux/www/muximux/mediaboxconfig.php
