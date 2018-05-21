@@ -14,6 +14,10 @@ changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
 check_run() {
 	echo "$changed_files" | grep --quiet "$1" && eval "$2"
 }
+    if [ -z "$changed_files" ]; then
+    printf "Your Mediabox is current - No Update needed."
+    exit 
+    fi
 # Provide message once update is complete
 printf "Mediabox Files Update complete.\\n\\nThis script will restart if necessary\\n\\n"
 # Rename the .env file so this check fails if mediabox.sh needs to re-launch
