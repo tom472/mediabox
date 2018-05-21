@@ -111,7 +111,7 @@ fi
 
 # Ask user if they already have TV, Movie, and Music directories
 printf "\\n\\n"
-printf "If you already have TV - Movie - Music directories you want to use you can enter them next."
+printf "If you already have TV - Movie - Music directories you want to use you can enter them next.\\n"
 printf "If you want Mediabox to generate it's own directories just press enter to these questions."
 printf "\\n\\n"
 read -p "Where do store your TV media? (Please use full path - /path/to/tv ): " tvdirectory
