@@ -15,7 +15,7 @@ check_run() {
 	echo "$changed_files" | grep --quiet "$1" && eval "$2"
 }
     if [ -z "$changed_files" ]; then
-    printf "Your Mediabox is current - No Update needed."
+    printf "Your Mediabox is current - No Update needed.\\n\\n"
     exit 
     fi
 # Provide message once update is complete
@@ -35,6 +35,9 @@ daemonun=$(grep CPDAEMONUN 1.env | cut -d = -f2)
 daemonpass=$(grep CPDAEMONPASS 1.env | cut -d = -f2)
 piauname=$(grep PIAUNAME 1.env | cut -d = -f2)
 piapass=$(grep PIAPASS 1.env | cut -d = -f2)
+tvdirectory=$(grep TVDIR 1.env | cut -d = -f2)
+moviedirectory=$(grep MOVIEDIR 1.env | cut -d = -f2)
+musicdirectory=$(grep MUSICDIR 1.env | cut -d = -f2)
 # Now we need ".env" to exist again so we can stop just the Medaibox containers
 mv 1.env .env
 # Stop the current Mediabox stack
@@ -106,11 +109,28 @@ elif [ $portainerstyle == "auth" ]; then
    portainerstyle= 
 fi   
 
+# Ask user if they already have TV, Movie, and Music directories
+printf "If you already have TV - Movie - Music directories you want to use you can enter them next.\\n"
+printf "If you want Mediabox to generate it's own directories just press enter to these questions.\\n"
+read -p "Where do store your TV media? (Please use full path - /path/to/tv ): " tvdirectory
+read -p "Where do store your MOVIE media? (Please use full path - /path/to/movies ): " moviedirectory
+read -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): " musicdirectory
+
 # Create the directory structure
+if [ -z "$tvdirectory" ]; then
+    mkdir -p content/tv
+    tvdirectory="$PWD/content/tv"
+fi
+if [ -z "$moviedirectory" ]; then
+    mkdir -p content/movies
+    moviedirectory="$PWD/content/movies"
+fi
+if [ -z "$musicdirectory" ]; then
+    mkdir -p content/music
+    musicdirectory="$PWD/content/music"
+fi
 mkdir -p content/completed
 mkdir -p content/incomplete
-mkdir -p content/movies
-mkdir -p content/tv
 mkdir -p couchpotato
 mkdir -p delugevpn
 mkdir -p delugevpn/config/openvpn
@@ -174,6 +194,9 @@ echo "IP_ADDRESS=$locip" >> .env
 echo "PUID=$PUID" >> .env
 echo "PGID=$PGID" >> .env
 echo "PWD=$PWD" >> .env
+echo "TVDIR=$tvdirectory" >> .env
+echo "MOVIEDIR=$moviedirectory" >> .env
+echo "MUSICDIR=$musicdirectory" >> .env
 echo "PIAUNAME=$piauname" >> .env
 echo "PIAPASS=$piapass" >> .env
 echo "CIDR_ADDRESS=$lannet" >> .env

@@ -35,7 +35,7 @@ services:
         volumes:
             - './couchpotato:/config'
             - './content/completed:/downloads'
-            - './content/movies:/movies'
+            - '${MOVIEDIR}:/movies'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
@@ -227,8 +227,8 @@ services:
         volumes:
             - './plex:/config'
             - './plex/transcode:/transcode'
-            - './content/tv:/data/tvshows'
-            - './content/movies:/data/movies'
+            - '${TVDIR}:/data/tvshows'
+            - '${MOVIEDIR}:/data/movies'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
@@ -266,7 +266,7 @@ services:
         volumes:
             - './radarr:/config'
             - './content/completed:/downloads'
-            - './content/movies:/movies'
+            - '${MOVIEDIR}:/movies'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
@@ -285,7 +285,7 @@ services:
         volumes:
             - './sickrage:/config'
             - './content/completed:/downloads'
-            - './content/tv:/tv'
+            - '${TVDIR}:/tv'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
@@ -305,7 +305,7 @@ services:
         volumes:
             - './sonarr:/config'
             - './content/completed:/downloads'
-            - './content/tv:/tv'
+            - '${TVDIR}:/tv'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
