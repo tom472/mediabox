@@ -14,14 +14,12 @@ changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
 check_run() {
 	echo "$changed_files" | grep --quiet "$1" && eval "$2"
 }
+# Provide a message once the Git check/update  is complete
     if [ -z "$changed_files" ]; then
     printf "Your Mediabox is current - No Update needed.\\n\\n"
-    printf "Restarting your Mediabox stack.\\n\\n"
-    docker-compose restart
-    exit 
+    else
+    printf "Mediabox Files Update complete.\\n\\nThis script will restart if necessary\\n\\n"
     fi
-# Provide message once update is complete
-printf "Mediabox Files Update complete.\\n\\nThis script will restart if necessary\\n\\n"
 # Rename the .env file so this check fails if mediabox.sh needs to re-launch
 mv .env 1.env
 read -r -p "Press any key to continue... " -n1 -s
