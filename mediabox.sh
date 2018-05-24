@@ -63,7 +63,13 @@ time_zone=$(cat /etc/timezone)
 # An accurate way to calculate the local network
 # via @kspillane
 # Grab the subnet mask from ifconfig
+# Check Ubuntu version for output type
+ubunver=$(lsb_release -c | grep Codename | awk -F ' ' {'print $2'})
+if [ $ubunver == bionic ]; then
+subnet_mask=$(ifconfig | grep $locip | awk -F ' ' {'print $4'})
+else
 subnet_mask=$(ifconfig | grep $locip | awk -F ':' {'print $4'})
+fi
 # Use bitwise & with ip and mask to calculate network address
 IFSold=$IFS
 IFS=. read -r i1 i2 i3 i4 <<< $locip
