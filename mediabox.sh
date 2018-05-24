@@ -16,6 +16,8 @@ check_run() {
 }
     if [ -z "$changed_files" ]; then
     printf "Your Mediabox is current - No Update needed.\\n\\n"
+    printf "Restarting your Mediabox stack.\\n\\n"
+    docker-compose restart
     exit 
     fi
 # Provide message once update is complete
