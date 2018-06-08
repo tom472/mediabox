@@ -30,9 +30,9 @@ Components include:
 * [Python 2.7](https://www.python.org/)
 * [Docker-Compose](https://docs.docker.com/compose/)
 
-## **PLEASE NOTE**
+### **PLEASE NOTE**
 
-For simplicity's sake (eg. automatic dependency management), the method used to install these packages is Ubuntu 16.04's default package manager, [APT](https://wiki.debian.org/Apt).  There are several other methods that work just as well, if not better (especially if you don't have superuser access on your system), so use whichever method you prefer.  Continue when you've successfully installed all packages listed.
+For simplicity's sake (eg. automatic dependency management), the method used to install these packages is Ubuntu's default package manager, [APT](https://wiki.debian.org/Apt).  There are several other methods that work just as well, if not better (especially if you don't have superuser access on your system), so use whichever method you prefer.  Continue when you've successfully installed all packages listed.
 
 ### Installation
 
@@ -69,8 +69,6 @@ Adjustment for the the DelugeVPN container
 Reboot your machine manually, or using the command line:
 
 `$ sudo reboot`
-
----
 
 ## Using mediabox
 
@@ -116,15 +114,13 @@ This is only necessary once - and only if you dowloaded Mediabox before auto-upd
 3. Git pull the changes to the Mediabox Project: `$ git pull`
 4. Run the mediabox.sh script: `$ ./mediabox.sh` << Redo just this step anytime you want/need to upgrade Mediabox
 
-## **Mediabox has been tested to work on Ubuntu 16.04 LTS / 18.04 LTS - Server and Desktop**
-
----
+### **Mediabox has been tested to work on Ubuntu 16.04 LTS / 18.04 LTS - Server and Desktop**
 
 **Thanks go out to:**
 
 [@kspillane](https://github.com/kspillane) - Jumped right in and is providing helpful commits / PRs
 
-[@mnkhouri](https://github.com/mnkhouri) - provided a large amount of code clean-up as well as a PR for Mac Support - Not adding the Mac support (yet) but a lot of the code clean-up has been merged in.
+[@mnkhouri](https://github.com/mnkhouri) - provided a large amount of code clean-up.
 
 [@danipolo](https://github.com/danipolo) for the bridge-utils tip
 
