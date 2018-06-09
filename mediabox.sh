@@ -65,7 +65,7 @@ time_zone=$(cat /etc/timezone)
 # Grab the subnet mask from ifconfig
 # Check Ubuntu version for output type
 ubunver=$(lsb_release -c | grep Codename | awk -F ' ' {'print $2'})
-if [ $ubunver == bionic ]; then
+if [ "$ubunver" == bionic ]; then
 subnet_mask=$(ifconfig | grep $locip | awk -F ' ' {'print $4'})
 else
 subnet_mask=$(ifconfig | grep $locip | awk -F ':' {'print $4'})
