@@ -11,7 +11,7 @@
 ##
 ## Have docker-compose.yml and .env in the same directory to launch the stack
 
-version: '2'
+version: '3.5'
 
 ######################
 # SERVICES TO LAUNCH #
