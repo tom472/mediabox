@@ -221,6 +221,8 @@ printf "\\n\\n"
 
 # Adjust for the Tautulli replacement of PlexPy
 docker rm -f plexpy > /dev/null 2>&1
+# Adjust for old uhttpd web container - Noted in issue #47
+docker rm -f uhttpd > /dev/null 2>&1
 
 # Download & Launch the containers
 echo "The containers will now be pulled and launched"
