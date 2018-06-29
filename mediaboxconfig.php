@@ -81,6 +81,7 @@ After the Wizard is complete:<br />
 When adding libraries to PLEX use these settings:<br />
 <ul>
 <li>Movies = /data/movies<br />
+<li>Music = /data/music<br />
 <li>TV = /data/tvshows<br />
 </ul>
 <h3>Mediabox Management Containers</h3>

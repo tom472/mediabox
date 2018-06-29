@@ -248,6 +248,7 @@ services:
             - './plex/transcode:/transcode'
             - '${TVDIR}:/data/tvshows'
             - '${MOVIEDIR}:/data/movies'
+            - '${MUSICDIR}:/data/music'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
