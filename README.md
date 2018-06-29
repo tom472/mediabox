@@ -7,6 +7,7 @@ Components include:
 * [Couchpotato movie library manager](https://couchpota.to/)
 * [Deluge torrent client (using VPN)](http://deluge-torrent.org/)
 * [Duplicati Backup Software](https://www.duplicati.com/)
+* [Headphones](https://github.com/linuxserver/docker-headphones)
 * [Jackett Tracker API and Proxy](https://github.com/Jackett/Jackett)
 * [Minio cloud storage](https://www.minio.io/)
 * [Muximux Web based HTPC manager](https://github.com/mescon/Muximux)
