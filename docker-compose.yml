@@ -95,6 +95,25 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
+    # HEADPHONES
+    # ----------------------------------------
+    headphones:
+        image: linuxserver/headphones
+        container_name: headphones
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:8282:8181'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+        volumes:
+            - './headphones:/config'
+            - './content/completed:/downloads'
+            - '${MUSICDIR}:/music'
+
+    # ----------------------------------------
     # JACKETT
     # ----------------------------------------
     jackett:

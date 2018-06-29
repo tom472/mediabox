@@ -123,8 +123,7 @@ printf "If you want Mediabox to generate it's own directories just press enter t
 printf "\\n\\n"
 read -r -p "Where do store your TV media? (Please use full path - /path/to/tv ): " tvdirectory
 read -r -p "Where do store your MOVIE media? (Please use full path - /path/to/movies ): " moviedirectory
-# Commenting out the MUSIC question - Not using it yet - getting it ready for future use
-# read -r -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): " musicdirectory
+read -r -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): " musicdirectory
 fi
 
 # Create the directory structure
@@ -147,6 +146,7 @@ mkdir -p delugevpn
 mkdir -p delugevpn/config/openvpn
 mkdir -p duplicati
 mkdir -p duplicati/backups
+mkdir -p headphones
 mkdir -p jackett
 mkdir -p minio
 mkdir -p muximux

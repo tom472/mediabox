@@ -59,6 +59,14 @@ icon = "muximux-copy2"
 color = "#6fa8dc"
 enabled = "true"
 
+[Headphones]
+name = "Headphones"
+url = "http://locip:8282"
+scale = 1
+icon = "muximux-headphones3"
+color = "#20124d"
+enabled = "true"
+
 [Jackett]
 name = "Jackett"
 url = "http://locip:9117"
