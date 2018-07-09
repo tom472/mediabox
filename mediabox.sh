@@ -43,11 +43,11 @@ printf "These are the Media Directory paths currently configured.\\n"
 printf "TV Directory is: $tvdirectory \\n"
 printf "MOVIE Directory is: $moviedirectory \\n"
 printf "MUSIC Directory is: $musicdirectory \\n"
-read -n 1 -p "Are these directiores still correct? (y/n) \\n\\n" diranswer
+read -n 1 -p "Are these directiores still correct? (y/n) " diranswer
 # Now we need ".env" to exist again so we can stop just the Medaibox containers
 mv 1.env .env
 # Stop the current Mediabox stack
-printf "Stopping Current Mediabox containers.\\n\\n"
+printf "\\n\\nStopping Current Mediabox containers.\\n\\n"
 docker-compose stop
 # Make a datestampted copy of the existing .env file
 mv .env "$(date +"%Y-%m-%d_%H:%M").env"
@@ -242,11 +242,8 @@ printf "\\n\\n"
 docker-compose up -d
 printf "\\n\\n"
 
-# Let's configure the access to the Deluge Daemon and
+# Configure the access to the Deluge Daemon
 # The same credentials can be used for NZBGet's webui
-#
-# NZBGet can be configured to not use a user/pass to access the webui
-# but in case this isnt being ran on a home network, it's best to put it in
 if [ -z "$daemonun" ]; then 
 echo "You need to set a username and password for programs to access"
 echo "The Deluge daemon and NZBGet's API and web interface."
