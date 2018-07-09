@@ -115,9 +115,9 @@ fi
 read -r -p "Which style of Portainer do you want to use? By default 'No Auth' will be used. (noauth, auth): " portainerstyle
 if [ -z "$portainerstyle" ]; then
    portainerstyle=--no-auth
-elif [ $portainerstyle == "noauth" ]; then
+elif [ "$portainerstyle" == "noauth" ]; then
    portainerstyle=--no-auth
-elif [ $portainerstyle == "auth" ]; then
+elif [ "$portainerstyle" == "auth" ]; then
    portainerstyle= 
 fi   
 
@@ -131,7 +131,7 @@ read -r -p "Where do store your TV media? (Please use full path - /path/to/tv ):
 read -r -p "Where do store your MOVIE media? (Please use full path - /path/to/movies ): " moviedirectory
 read -r -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): " musicdirectory
 fi
-if [$diranswer == "n"]; then
+if [ "$diranswer" == "n" ]; then
 read -r -p "Where do store your TV media? (Please use full path - /path/to/tv ): " tvdirectory
 read -r -p "Where do store your MOVIE media? (Please use full path - /path/to/movies ): " moviedirectory
 read -r -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): " musicdirectory
