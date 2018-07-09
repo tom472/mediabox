@@ -38,6 +38,12 @@ piapass=$(grep PIAPASS 1.env | cut -d = -f2)
 tvdirectory=$(grep TVDIR 1.env | cut -d = -f2)
 moviedirectory=$(grep MOVIEDIR 1.env | cut -d = -f2)
 musicdirectory=$(grep MUSICDIR 1.env | cut -d = -f2)
+# Echo back the media directioies to see if changes are needed
+printf "These are the Media Directory paths currently configured.\\n"
+printf "TV Directory is: $tvdirectory \\n"
+printf "MOVIE Directory is: $moviedirectory \\n"
+printf "MUSIC Directory is: $musicdirectory \\n"
+read -n 1 -p "Are these directiores still correct? (y/n) " diranswer
 # Now we need ".env" to exist again so we can stop just the Medaibox containers
 mv 1.env .env
 # Stop the current Mediabox stack
@@ -116,7 +122,7 @@ elif [ $portainerstyle == "auth" ]; then
 fi   
 
 # Ask user if they already have TV, Movie, and Music directories
-if [ -z "$musicdirectory" ]; then
+if [ -z "$diranswer" ]; then
 printf "\\n\\n"
 printf "If you already have TV - Movie - Music directories you want to use you can enter them next.\\n"
 printf "If you want Mediabox to generate it's own directories just press enter to these questions."
@@ -125,7 +131,11 @@ read -r -p "Where do store your TV media? (Please use full path - /path/to/tv ):
 read -r -p "Where do store your MOVIE media? (Please use full path - /path/to/movies ): " moviedirectory
 read -r -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): " musicdirectory
 fi
-
+if [$diranswer == "n"]; then
+read -r -p "Where do store your TV media? (Please use full path - /path/to/tv ): " tvdirectory
+read -r -p "Where do store your MOVIE media? (Please use full path - /path/to/movies ): " moviedirectory
+read -r -p "Where do store your MUSIC media? (Please use full path - /path/to/music ): " musicdirectory
+fi
 # Create the directory structure
 if [ -z "$tvdirectory" ]; then
     mkdir -p content/tv
