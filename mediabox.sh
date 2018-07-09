@@ -43,7 +43,7 @@ printf "These are the Media Directory paths currently configured.\\n"
 printf "TV Directory is: $tvdirectory \\n"
 printf "MOVIE Directory is: $moviedirectory \\n"
 printf "MUSIC Directory is: $musicdirectory \\n"
-read -n 1 -p "Are these directiores still correct? (y/n) " diranswer
+read -n 1 -p "Are these directiores still correct? (y/n) \\n\\n" diranswer
 # Now we need ".env" to exist again so we can stop just the Medaibox containers
 mv 1.env .env
 # Stop the current Mediabox stack
