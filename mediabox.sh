@@ -146,6 +146,7 @@ mkdir -p delugevpn
 mkdir -p delugevpn/config/openvpn
 mkdir -p duplicati
 mkdir -p duplicati/backups
+mkdir -p headphones
 mkdir -p jackett
 mkdir -p minio
 mkdir -p muximux
