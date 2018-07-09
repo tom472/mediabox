@@ -55,6 +55,11 @@ After the Wizard is complete:<br />
 <li>Optional: Click on the media management tab and configure the renamer<br />
 </ul>
 <br />
+<b><u>Sonarr:</u></b><br />
+<ul>
+<li>Same instructions as Radarr<br />
+</ul>
+<br />
 <b><u>Sickrage:</u></b><br />
 <ul>
 <li>Click on the settings "gear" icon<br />
@@ -72,16 +77,40 @@ After the Wizard is complete:<br />
 <li>After the settings are in Click the "Test Connection" button to see if it works -- Click "Save Changes"<br />  
 </ul>
 <br />
-<b><u>Sonarr:</u></b><br />
+<b><u>Headphones:</u></b><br />
+<ol>
+<li>Click on the "Cog" to get to the Settings<br />
+<li>Go to the Download Settings Tab<br />
+</ol>
+<u>For Usenet</u>:<br />
 <ul>
-<li>Same instructions as Radarr<br />
+<li>Select NZBGet<br/>
+<li>NZBget Host:  http://locip:6789<br />
+<li>NZBGet Username: daemonun<br />
+<li>NXBGet Password: daemonpass<br />
+<li>Music Download Directory: /downloads<br />
+</ul>
+<u>For Torrents</u>:<br />
+<ul>
+<li>Select Deluge<br />
+<li>Deluge WebUI Host and Port: http://locip:8112<br />
+<li>Deluge Password: deluge (unless you have changed it)<br />
+<li>Move When Completed: /music<br />
+<li>Music Download Directory: /downloads<br />
 </ul>
 <br />
 <b><u>PLEX:</u></b><br />
 When adding libraries to PLEX use these settings:<br />
 <ul>
 <li>Movies = /data/movies<br />
+<li>Music = /data/music<br />
 <li>TV = /data/tvshows<br />
+</ul>
+<br />
+<b><u>NBZGet:</u></b><br />
+<ul>
+<li>Username: daemonun<br />
+<li>Password: daemonpass<br />
 </ul>
 <h3>Mediabox Management Containers</h3>
 <b><u>Portainer:</u></b><br />
