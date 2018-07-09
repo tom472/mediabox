@@ -78,16 +78,20 @@ After the Wizard is complete:<br />
 </ul>
 <br />
 <b><u>Headphones:</u></b><br />
-<ul>
+<ol>
 <li>Click on the "Cog" to get to the Settings<br />
 <li>Go to the Download Settings Tab<br />
-For Usenet:<br />
+</ol>
+<u>For Usenet</u>:<br />
+<ul>
 <li>Select NZBGet<br/>
 <li>NZBget Host:  http://locip:6789<br />
 <li>NZBGet Username: daemonun<br />
 <li>NXBGet Password: daemonpass<br />
 <li>Music Download Directory: /downloads<br />
-For Torrents:<br />
+</ul>
+<u>For Torrents</u>:<br />
+<ul>
 <li>Select Deluge<br />
 <li>Deluge WebUI Host and Port: http://locip:8112<br />
 <li>Deluge Password: deluge (unless you have changed it)<br />
