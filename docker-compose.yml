@@ -279,7 +279,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './radarr:/config'
-            - './content/completed:/downloads'
+            - './content/completed:/data/completed'
             - '${MOVIEDIR}:/movies'
             - '/etc/localtime:/etc/localtime:ro'
 
@@ -318,7 +318,7 @@ services:
             - TZ=${TZ}
         volumes:
             - './sonarr:/config'
-            - './content/completed:/downloads'
+            - './content/completed:/data/completed'
             - '${TVDIR}:/tv'
             - '/etc/localtime:/etc/localtime:ro'
 
