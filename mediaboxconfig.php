@@ -78,10 +78,8 @@ After the Wizard is complete:<br />
 </ul>
 <br />
 <b><u>Headphones:</u></b><br />
-<ol>
-<li>Click on the "Cog" to get to the Settings<br />
-<li>Go to the Download Settings Tab<br />
-</ol>
+Click on the "Cog" to get to the Settings<br />
+Go to the Download Settings Tab<br />
 <u>For Usenet</u>:<br />
 <ul>
 <li>Select NZBGet<br/>
@@ -95,9 +93,12 @@ After the Wizard is complete:<br />
 <li>Select Deluge<br />
 <li>Deluge WebUI Host and Port: http://locip:8112<br />
 <li>Deluge Password: deluge (unless you have changed it)<br />
-<li>Move When Completed: /music<br />
 <li>Music Download Directory: /downloads<br />
 </ul>
+Go to the Quality & Post Processing Tab<br />
+<ul>
+<li>Check the box for: Move downloads to Destination Folder<br />
+<li>Destination Directory: /music 
 <br />
 <b><u>PLEX:</u></b><br />
 When adding libraries to PLEX use these settings:<br />
