@@ -98,7 +98,8 @@ Go to the Download Settings Tab<br />
 Go to the Quality & Post Processing Tab<br />
 <ul>
 <li>Check the box for: Move downloads to Destination Folder<br />
-<li>Destination Directory: /music 
+<li>Destination Directory: /music
+</ul>
 <br />
 <b><u>PLEX:</u></b><br />
 When adding libraries to PLEX use these settings:<br />
