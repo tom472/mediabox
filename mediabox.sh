@@ -301,8 +301,7 @@ while [ ! -f muximux/www/muximux/settings.ini.php-example ]; do sleep 1; done
 docker stop muximux > /dev/null 2>&1
 cp settings.ini.php muximux/www/muximux/settings.ini.php
 cp mediaboxconfig.php muximux/www/muximux/mediaboxconfig.php
-cp .env muximux/www/muximux/env.txt
-sed '/^PIA/d' muximux/www/muximux/env.txt > /dev/null 2>&1 # Pull PIA creds from the displayed .env file
+sed '/^PIA/d' < .env > muximux/www/muximux/env.txt # Pull PIA creds from the displayed .env file
 perl -i -pe "s/locip/$locip/g" muximux/www/muximux/settings.ini.php
 perl -i -pe "s/locip/$locip/g" muximux/www/muximux/mediaboxconfig.php
 perl -i -pe "s/daemonun/$daemonun/g" muximux/www/muximux/mediaboxconfig.php
