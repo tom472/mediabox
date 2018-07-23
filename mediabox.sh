@@ -74,9 +74,9 @@ time_zone=$(cat /etc/timezone)
 # Check Ubuntu version for output type
 ubunver=$(lsb_release -c | grep Codename | awk -F ' ' '{print $2}')
 if [ "$ubunver" == bionic ]; then
-subnet_mask=$(ifconfig | grep $locip | awk -F ' ' '{print $4}')
+subnet_mask=$(ifconfig | grep "$locip" | awk -F ' ' '{print $4}')
 else
-subnet_mask=$(ifconfig | grep $locip | awk -F ':' '{print $4}')
+subnet_mask=$(ifconfig | grep "$locip" | awk -F ':' '{print $4}')
 fi
 # Use bitwise & with ip and mask to calculate network address
 IFSold=$IFS
@@ -97,7 +97,7 @@ function mask2cdr()
    cidr_bits=$(( $2 + (${#x}/4) ))
 }
 mask2cdr "$subnet_mask" # Call the function to convert to CIDR
-lannet=$(echo "$lannet/$cidr_bits") # Combine lannet and cidr
+lannet="$lannet/$cidr_bits" # Combine lannet and cidr
 
 if [ -z "$piauname" ]; then
 # Get Private Internet Access Info
@@ -167,6 +167,7 @@ mkdir -p delugevpn/config/openvpn
 mkdir -p duplicati
 mkdir -p duplicati/backups
 mkdir -p headphones
+mkdir -p historical
 mkdir -p jackett
 mkdir -p minio
 mkdir -p muximux
@@ -219,24 +220,26 @@ cat << EOF > .env
 ###  -----------------------------------------------
 ###
 EOF
-echo "LOCALUSER=$localuname" >> .env
-echo "HOSTNAME=$thishost" >> .env
-echo "IP_ADDRESS=$locip" >> .env
-echo "PUID=$PUID" >> .env
-echo "PGID=$PGID" >> .env
-echo "PWD=$PWD" >> .env
-echo "DLDIR=$dldirectory" >> .env
-echo "TVDIR=$tvdirectory" >> .env
-echo "MOVIEDIR=$moviedirectory" >> .env
-echo "MUSICDIR=$musicdirectory" >> .env
-echo "PIAUNAME=$piauname" >> .env
-echo "PIAPASS=$piapass" >> .env
-echo "CIDR_ADDRESS=$lannet" >> .env
-echo "TZ=$time_zone" >> .env
-echo "PMSTAG=$pmstag" >> .env
-echo "PMSTOKEN=$pmstoken" >> .env
-echo "PORTAINERSTYLE=$portainerstyle" >> .env
-echo "VPN_REMOTE=$vpnremote" >> .env
+{
+echo "LOCALUSER=$localuname"
+echo "HOSTNAME=$thishost"
+echo "IP_ADDRESS=$locip"
+echo "PUID=$PUID"
+echo "PGID=$PGID"
+echo "PWD=$PWD"
+echo "DLDIR=$dldirectory"
+echo "TVDIR=$tvdirectory"
+echo "MOVIEDIR=$moviedirectory"
+echo "MUSICDIR=$musicdirectory"
+echo "PIAUNAME=$piauname"
+echo "PIAPASS=$piapass"
+echo "CIDR_ADDRESS=$lannet"
+echo "TZ=$time_zone"
+echo "PMSTAG=$pmstag"
+echo "PMSTOKEN=$pmstoken"
+echo "PORTAINERSTYLE=$portainerstyle"
+echo "VPN_REMOTE=$vpnremote" 
+} >> .env
 echo ".env file creation complete"
 printf "\\n\\n"
 
@@ -244,6 +247,9 @@ printf "\\n\\n"
 docker rm -f plexpy > /dev/null 2>&1
 # Adjust for old uhttpd web container - Noted in issue #47
 docker rm -f uhttpd > /dev/null 2>&1
+[ -d "www/" ] && mv www/ historical/www/
+# Move back-up .env files
+mv 20*.env historical/
 
 # Download & Launch the containers
 echo "The containers will now be pulled and launched"
@@ -284,11 +290,12 @@ docker start nzbget > /dev/null 2>&1
 
 # Push the Deluge Daemon and NZBGet Access info the to Auth file - and to the .env file
 echo "$daemonun":"$daemonpass":10 >> ./delugevpn/config/auth
-echo "CPDAEMONUN=$daemonun" >> .env
-echo "CPDAEMONPASS=$daemonpass" >> .env
-echo "NZBGETUN=$daemonun" >> .env
-echo "NZBGETPASS=$daemonpass" >> .env
-
+{
+echo "CPDAEMONUN=$daemonun"
+echo "CPDAEMONPASS=$daemonpass"
+echo "NZBGETUN=$daemonun"
+echo "NZBGETPASS=$daemonpass"
+} >> .env
 # Configure Muximux settings and files
 while [ ! -f muximux/www/muximux/settings.ini.php-example ]; do sleep 1; done
 docker stop muximux > /dev/null 2>&1
@@ -308,6 +315,7 @@ if [ -e plexpy/plexpy.db ]; then
     cp plexpy/plexpy.db tautulli/tautulli.db
     mv plexpy/plexpy.db plexpy/plexpy.db.moved
     docker start tautulli > /dev/null 2>&1
+    mv plexpy/ historical/plexpy/
 fi
 
 # Fix the Healthcheck in Minio
