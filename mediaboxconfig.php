@@ -128,7 +128,7 @@ The Watchtower container monitors the all of the Mediabox containers and if ther
 Watchtower will detect the change, download the new image, gracefully stop the container(s), and re-launch them with the new image.<br />
 <h1>Troubleshooting</h1>
 If you are having issues with Mediabox or any of your continers please take look at the settings being used.<br />
-Below are the variables in your .env file:
+Below are the variables in your .env file: (<b>NOTE</b>: For your security PIA credentials are no longer shown here.)
 <pre>
 <?php
 echo file_get_contents("./env.txt");
