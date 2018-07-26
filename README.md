@@ -1,6 +1,6 @@
 # Mediabox
 
-Mediabox is meant to be an all Docker Container based media aggregator stack.
+Mediabox is an all Docker Container based media aggregator stack.
 
 Components include:
 
@@ -54,7 +54,7 @@ Install the prerequisite packages:
 2. Install Docker CE: `$ sudo curl -fsSL https://get.docker.com/ | sh`
 3. Install Docker-Compose:
     ```bash
-    sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     ```
 4. Set the permissions: `$ sudo chmod +x /usr/local/bin/docker-compose`
 5. Verify the Docker Compose installation: `$ docker-compose -v`

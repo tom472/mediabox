@@ -4,55 +4,55 @@
 
 # See if we need to check GIT for updates
 if [ -e .env ]; then
-# Stash any local changes to the base files
-git stash > /dev/null 2>&1
-printf "Updating your local copy of Mediabox.\\n\\n"
-# Pull the latest files from Git
-git pull
-# Check to see if this script "mediabox.sh" was updated and restart it if necessary
-changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
-check_run() {
-	echo "$changed_files" | grep --quiet "$1" && eval "$2"
-}
-# Provide a message once the Git check/update  is complete
+    # Stash any local changes to the base files
+    git stash > /dev/null 2>&1
+    printf "Updating your local copy of Mediabox.\\n\\n"
+    # Pull the latest files from Git
+    git pull
+    # Check to see if this script "mediabox.sh" was updated and restart it if necessary
+    changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+    check_run() {
+        echo "$changed_files" | grep --quiet "$1" && eval "$2"
+    }
+    # Provide a message once the Git check/update  is complete
     if [ -z "$changed_files" ]; then
-    printf "Your Mediabox is current - No Update needed.\\n\\n"
+        printf "Your Mediabox is current - No Update needed.\\n\\n"
     else
-    printf "Mediabox Files Update complete.\\n\\nThis script will restart if necessary\\n\\n"
+        printf "Mediabox Files Update complete.\\n\\nThis script will restart if necessary\\n\\n"
     fi
-# Rename the .env file so this check fails if mediabox.sh needs to re-launch
-mv .env 1.env
-read -r -p "Press any key to continue... " -n1 -s
-printf "\\n\\n"
-# Run exec mediabox.sh if mediabox.sh changed
-check_run mediabox.sh "exec ./mediabox.sh"
+    # Rename the .env file so this check fails if mediabox.sh needs to re-launch
+    mv .env 1.env
+    read -r -p "Press any key to continue... " -n1 -s
+    printf "\\n\\n"
+    # Run exec mediabox.sh if mediabox.sh changed
+    check_run mediabox.sh "exec ./mediabox.sh"
 fi
 
 # After update collect some current known variables
 if [ -e 1.env ]; then
-# Grab the CouchPotato, NBZGet, & PIA usernames & passwords to reuse
-daemonun=$(grep CPDAEMONUN 1.env | cut -d = -f2)
-daemonpass=$(grep CPDAEMONPASS 1.env | cut -d = -f2)
-piauname=$(grep PIAUNAME 1.env | cut -d = -f2)
-piapass=$(grep PIAPASS 1.env | cut -d = -f2)
-dldirectory=$(grep DLDIR 1.env | cut -d = -f2)
-tvdirectory=$(grep TVDIR 1.env | cut -d = -f2)
-moviedirectory=$(grep MOVIEDIR 1.env | cut -d = -f2)
-musicdirectory=$(grep MUSICDIR 1.env | cut -d = -f2)
-# Echo back the media directioies to see if changes are needed
-printf "These are the Media Directory paths currently configured.\\n"
-printf "Your DOWNLOAD Directory is: %s \\n" "$dldirectory"
-printf "Your TV Directory is: %s \\n" "$tvdirectory"
-printf "Your MOVIE Directory is: %s \\n" "$moviedirectory"
-printf "Your MUSIC Directory is: %s \\n" "$musicdirectory"
-read  -r -n 1 -p "Are these directiores still correct? (y/n) " diranswer
-# Now we need ".env" to exist again so we can stop just the Medaibox containers
-mv 1.env .env
-# Stop the current Mediabox stack
-printf "\\n\\nStopping Current Mediabox containers.\\n\\n"
-docker-compose stop
-# Make a datestampted copy of the existing .env file
-mv .env "$(date +"%Y-%m-%d_%H:%M").env"
+    # Grab the CouchPotato, NBZGet, & PIA usernames & passwords to reuse
+    daemonun=$(grep CPDAEMONUN 1.env | cut -d = -f2)
+    daemonpass=$(grep CPDAEMONPASS 1.env | cut -d = -f2)
+    piauname=$(grep PIAUNAME 1.env | cut -d = -f2)
+    piapass=$(grep PIAPASS 1.env | cut -d = -f2)
+    dldirectory=$(grep DLDIR 1.env | cut -d = -f2)
+    tvdirectory=$(grep TVDIR 1.env | cut -d = -f2)
+    moviedirectory=$(grep MOVIEDIR 1.env | cut -d = -f2)
+    musicdirectory=$(grep MUSICDIR 1.env | cut -d = -f2)
+    # Echo back the media directioies to see if changes are needed
+    printf "These are the Media Directory paths currently configured.\\n"
+    printf "Your DOWNLOAD Directory is: %s \\n" "$dldirectory"
+    printf "Your TV Directory is: %s \\n" "$tvdirectory"
+    printf "Your MOVIE Directory is: %s \\n" "$moviedirectory"
+    printf "Your MUSIC Directory is: %s \\n" "$musicdirectory"
+    read  -r -n 1 -p "Are these directiores still correct? (y/n) " diranswer
+    # Now we need ".env" to exist again so we can stop just the Medaibox containers
+    mv 1.env .env
+    # Stop the current Mediabox stack
+    printf "\\n\\nStopping Current Mediabox containers.\\n\\n"
+    docker-compose stop
+    # Make a datestampted copy of the existing .env file
+    mv .env "$(date +"%Y-%m-%d_%H:%M").env"
 fi
 
 # Get local Username
@@ -74,9 +74,9 @@ time_zone=$(cat /etc/timezone)
 # Check Ubuntu version for output type
 ubunver=$(lsb_release -c | grep Codename | awk -F ' ' '{print $2}')
 if [ "$ubunver" == bionic ]; then
-subnet_mask=$(ifconfig | grep "$locip" | awk -F ' ' '{print $4}')
+    subnet_mask=$(ifconfig | grep "$locip" | awk -F ' ' '{print $4}')
 else
-subnet_mask=$(ifconfig | grep "$locip" | awk -F ':' '{print $4}')
+    subnet_mask=$(ifconfig | grep "$locip" | awk -F ':' '{print $4}')
 fi
 # Use bitwise & with ip and mask to calculate network address
 IFSold=$IFS
@@ -109,8 +109,8 @@ fi
 read -r -p "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
 read -r -p "If you have PLEXPASS what is your Claim Token from https://www.plex.tv/claim/ (Optional): " pmstoken
 # If not set - set PMS Tag to Public:
-if [ -z "$pmstag" ]; then 
-   pmstag=public 
+if [ -z "$pmstag" ]; then
+   pmstag=public
 fi
 
 # Get the info for the style of Portainer to use
@@ -120,8 +120,8 @@ if [ -z "$portainerstyle" ]; then
 elif [ "$portainerstyle" == "noauth" ]; then
    portainerstyle=--no-auth
 elif [ "$portainerstyle" == "auth" ]; then
-   portainerstyle= 
-fi   
+   portainerstyle=
+fi
 
 # Ask user if they already have TV, Movie, and Music directories
 if [ -z "$diranswer" ]; then
@@ -202,7 +202,7 @@ do
     # it'll ask for another unless we leave the loop
     break
 done
-# TODO - Add a default server selection if none selected .. 
+# TODO - Add a default server selection if none selected ..
 cp ovpn/*.crt delugevpn/config/openvpn/ > /dev/null 2>&1
 cp ovpn/*.pem delugevpn/config/openvpn/ > /dev/null 2>&1
 
@@ -238,7 +238,7 @@ echo "TZ=$time_zone"
 echo "PMSTAG=$pmstag"
 echo "PMSTOKEN=$pmstoken"
 echo "PORTAINERSTYLE=$portainerstyle"
-echo "VPN_REMOTE=$vpnremote" 
+echo "VPN_REMOTE=$vpnremote"
 } >> .env
 echo ".env file creation complete"
 printf "\\n\\n"
@@ -261,7 +261,7 @@ printf "\\n\\n"
 
 # Configure the access to the Deluge Daemon
 # The same credentials can be used for NZBGet's webui
-if [ -z "$daemonun" ]; then 
+if [ -z "$daemonun" ]; then
 echo "You need to set a username and password for programs to access"
 echo "The Deluge daemon and NZBGet's API and web interface."
 read -r -p "What would you like to use as the access username?: " daemonun
@@ -308,7 +308,7 @@ perl -i -pe "s/daemonun/$daemonun/g" muximux/www/muximux/mediaboxconfig.php
 perl -i -pe "s/daemonpass/$daemonpass/g" muximux/www/muximux/mediaboxconfig.php
 docker start muximux > /dev/null 2>&1
 
-# If PlexPy existed - copy plexpy.db to Tautulli 
+# If PlexPy existed - copy plexpy.db to Tautulli
 if [ -e plexpy/plexpy.db ]; then
     docker stop tautulli > /dev/null 2>&1
     mv tautulli/tautulli.db tautulli/tautulli.db.orig
