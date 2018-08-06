@@ -51,7 +51,7 @@ Install the prerequisite packages:
 
 1. Uninstall old versions: `$ sudo apt remove docker docker-engine docker.io`
     It’s OK if apt reports that none of these packages are installed.
-2. Install Docker CE: `$ sudo curl -fsSL https://get.docker.com/ | sh`
+2. Install Docker CE: `$ curl -fsSL https://get.docker.com/ | sudo sh`
 3. Install Docker-Compose:
     ```bash
     sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
