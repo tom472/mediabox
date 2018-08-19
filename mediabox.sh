@@ -249,7 +249,7 @@ docker rm -f plexpy > /dev/null 2>&1
 docker rm -f uhttpd > /dev/null 2>&1
 [ -d "www/" ] && mv www/ historical/www/
 # Move back-up .env files
-mv 20*.env historical/
+mv 20*.env historical/ > /dev/null 2>&1
 
 # Download & Launch the containers
 echo "The containers will now be pulled and launched"
