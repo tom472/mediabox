@@ -9,6 +9,7 @@ Components include:
 * [Duplicati Backup Software](https://www.duplicati.com/)
 * [Headphones](https://github.com/linuxserver/docker-headphones)
 * [Jackett Tracker API and Proxy](https://github.com/Jackett/Jackett)
+* [Lidarr Music collection manager](https://lidarr.audio/)
 * [Minio cloud storage](https://www.minio.io/)
 * [Muximux Web based HTPC manager](https://github.com/mescon/Muximux)
 * [NetData System Monitoring](https://github.com/firehol/netdata)

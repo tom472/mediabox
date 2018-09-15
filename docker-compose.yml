@@ -126,6 +126,25 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
+    # LIDARR
+    # ----------------------------------------
+    lidarr:
+        image: linuxserver/lidarr
+        container_name: lidarr
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:8686:8686'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './lidarr:/config'
+            - '${DLDIR}/completed:/data/completed'
+            - '${MUSICDIR}:/music'
+            - '/etc/localtime:/etc/localtime:ro'
+
+    # ----------------------------------------
     # MINIO
     # ----------------------------------------
     minio:
