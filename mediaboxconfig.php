@@ -13,8 +13,9 @@ body {
 <h1>Welcome to Mediabox!</h1>
 <h3><u>Basic Information & Configuration</u></h3>
 <b><u>Notes:</u></b><br /> 
-<li>Couchpotato and Radarr do the same thing = Movie Management</li>
+<li>Radarr and Couchpotato do the same thing = Movie Management</li>
 <li>Sonarr and Sickrage do the same thing = TV Show Management</li>
+<li>Lidar and Headphones do the same thing = Music Management</li>
 -- Generally you will only want to choose/use one of each.<br />
 <li>The <b>Minio</b> login is: minio / minio123.</li>
 <br />
@@ -55,7 +56,7 @@ After the Wizard is complete:<br />
 <li>Optional: Click on the media management tab and configure the renamer<br />
 </ul>
 <br />
-<b><u>Sonarr:</u></b><br />
+<b><u>Sonarr & Lidarr</u></b><br />
 <ul>
 <li>Same instructions as Radarr<br />
 </ul>
