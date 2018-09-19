@@ -212,7 +212,7 @@ services:
           - '${IP_ADDRESS}:6789:6789'
         volumes:
           - './nzbget:/config'
-          - '${DLDIR}/completed:/downloads'
+          - '${DLDIR}/nbzget:/downloads'
 
     # ----------------------------------------
     # OMBI

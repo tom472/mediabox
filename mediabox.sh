@@ -115,10 +115,12 @@ fi
 if [ -z "$dldirectory" ]; then
     mkdir -p content/completed
     mkdir -p content/incomplete
+    mkdir -p content/nzbget
     dldirectory="$PWD/content"
 else
   mkdir -p "$dldirectory"/completed
   mkdir -p "$dldirectory"/incomplete
+  mkdir -p "$dldirectory"/nzbget
 fi
 if [ -z "$tvdirectory" ]; then
     mkdir -p content/tv
