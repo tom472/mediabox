@@ -141,6 +141,7 @@ services:
         volumes:
             - './lidarr:/config'
             - '${DLDIR}/completed:/data/completed'
+            - '${DLDIR}:/downloads'
             - '${MUSICDIR}:/music'
             - '/etc/localtime:/etc/localtime:ro'
 
@@ -212,7 +213,7 @@ services:
           - '${IP_ADDRESS}:6789:6789'
         volumes:
           - './nzbget:/config'
-          - '${DLDIR}/completed:/downloads'
+          - '${DLDIR}:/downloads'
 
     # ----------------------------------------
     # OMBI
@@ -299,6 +300,7 @@ services:
         volumes:
             - './radarr:/config'
             - '${DLDIR}/completed:/data/completed'
+            - '${DLDIR}:/downloads'
             - '${MOVIEDIR}:/movies'
             - '/etc/localtime:/etc/localtime:ro'
 
@@ -338,6 +340,7 @@ services:
         volumes:
             - './sonarr:/config'
             - '${DLDIR}/completed:/data/completed'
+            - '${DLDIR}:/downloads'
             - '${TVDIR}:/tv'
             - '/etc/localtime:/etc/localtime:ro'
 
