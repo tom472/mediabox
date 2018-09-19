@@ -141,6 +141,7 @@ services:
         volumes:
             - './lidarr:/config'
             - '${DLDIR}/completed:/data/completed'
+            - '${DLDIR}:/downloads'
             - '${MUSICDIR}:/music'
             - '/etc/localtime:/etc/localtime:ro'
 
@@ -299,6 +300,7 @@ services:
         volumes:
             - './radarr:/config'
             - '${DLDIR}/completed:/data/completed'
+            - '${DLDIR}:/downloads'
             - '${MOVIEDIR}:/movies'
             - '/etc/localtime:/etc/localtime:ro'
 
@@ -338,6 +340,7 @@ services:
         volumes:
             - './sonarr:/config'
             - '${DLDIR}/completed:/data/completed'
+            - '${DLDIR}:/downloads'
             - '${TVDIR}:/tv'
             - '/etc/localtime:/etc/localtime:ro'
 
