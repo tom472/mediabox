@@ -162,3 +162,79 @@ scale = 1
 icon = "muximux-plexivity"
 color = "#cc7b19"
 enabled = "true"
+
+[ESXi]
+name = "ESXi"
+url = "http://192.169.10.100"
+scale = 1
+icon = "muximux-plexivity"
+color = "#cc7b19"
+enabled = "true"
+
+[Pfsense]
+name = "Pfsense"
+url = "http://192.169.1.1"
+scale = 1
+icon = "muximux-plexivity"
+color = "#cc7b19"
+enabled = "true"
+
+[Confluence]
+name = "Confluence"
+url = "http://192.169.30.5:8090"
+scale = 1
+icon = "muximux-plexivity"
+color = "#cc7b19"
+enabled = "true"
+
+
+[JIRA]
+name = "Jira"
+url = "http://192.169.30.5:8080"
+scale = 1
+icon = "muximux-plexivity"
+color = "#cc7b19"
+enabled = "true"
+
+
+[WebadminMedia]
+name = "Webadmin Media"
+url = "http://192.169.30.10:10000"
+scale = 1
+icon = "muximux-plexivity"
+color = "#cc7b19"
+enabled = "true"
+
+
+[Webadmin17]
+name = "Webadmin Ubuntu17"
+url = "http://192.169.30.20:10000"
+scale = 1
+icon = "muximux-plexivity"
+color = "#cc7b19"
+enabled = "true"
+
+
+[Webadmin18]
+name = "Webadmin Ubuntu18"
+url = "http://192.169.30.30:10000"
+scale = 1
+icon = "muximux-plexivity"
+color = "#cc7b19"
+enabled = "true"
+
+[Graphana]
+name = "Graphana"
+url = "http://192.169.30.10:3000
+scale = 1
+icon = "muximux-plexivity"
+color = "#cc7b19"
+enabled = "true"
+
+[Graylog]
+name = "Graylog"
+url = "http://192.169.30.20:9000"
+scale = 1
+icon = "muximux-plexivity"
+color = "#cc7b19"
+enabled = "true"
