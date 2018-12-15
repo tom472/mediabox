@@ -28,9 +28,10 @@ services:
             - PGID=${PGID}
         volumes:
             - './couchpotato:/config'
-            - '${DLDIR}/completed:/downloads'
+            - './content/completed:/downloads'
             - '${MOVIEDIR}:/movies'
             - '/etc/localtime:/etc/localtime:ro'
+            - '/media/Data:/media/Data'
 
     # ----------------------------------------
     # DELUGEVPN
@@ -49,13 +50,13 @@ services:
             - NET_ADMIN
         environment:
             - VPN_ENABLED=yes
-            - VPN_USER=${PIAUNAME}
-            - VPN_PASS=${PIAPASS}
+            - VPN_USER=Z7-DghcLsDG1GRJM1Ypg_tS7
+            - VPN_PASS=1VDpOHhBmwCMDH1mz9098kaP
             - VPN_REMOTE=${VPN_REMOTE}
             - VPN_PORT=1198
             - VPN_PROTOCOL=udp
             - VPN_DEVICE_TYPE=tun
-            - VPN_PROV=pia
+            - VPN_PROV=custom
             - STRONG_CERTS=no
             - ENABLE_PRIVOXY=yes
             - STRICT_PORT_FORWARD=yes
@@ -65,7 +66,7 @@ services:
             - PUID=${PUID}
             - PGID=${PGID}
         volumes:
-            - '${DLDIR}:/data'
+            - './content:/data'
             - './delugevpn/config:/config'
             - '/etc/localtime:/etc/localtime:ro'
 
@@ -104,8 +105,9 @@ services:
             - TZ=${TZ}
         volumes:
             - './headphones:/config'
-            - '${DLDIR}/completed:/downloads'
+            - './content/completed:/downloads'
             - '${MUSICDIR}:/music'
+            - '/media/Data/Music:/media/Data/Music'
 
     # ----------------------------------------
     # JACKETT
@@ -122,26 +124,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './jackett:/config'
-            - '${DLDIR}/completed:/downloads'
-            - '/etc/localtime:/etc/localtime:ro'
-
-    # ----------------------------------------
-    # LIDARR
-    # ----------------------------------------
-    lidarr:
-        image: linuxserver/lidarr
-        container_name: lidarr
-        restart: unless-stopped
-        network_mode: "bridge"
-        ports:
-            - '${IP_ADDRESS}:8686:8686'
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-        volumes:
-            - './lidarr:/config'
-            - '${DLDIR}/completed:/data/completed'
-            - '${MUSICDIR}:/music'
+            - './content/completed:/downloads'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
@@ -160,6 +143,7 @@ services:
         volumes:
             - './minio:/root/.minio'
             - '${PWD}:/export'
+            - '/media/Data:/media/Data'
         command: server /export
 
     # ----------------------------------------
@@ -212,7 +196,7 @@ services:
           - '${IP_ADDRESS}:6789:6789'
         volumes:
           - './nzbget:/config'
-          - '${DLDIR}/nbzget:/downloads'
+          - './content/completed:/downloads'
 
     # ----------------------------------------
     # OMBI
@@ -263,6 +247,7 @@ services:
             - '${MOVIEDIR}:/data/movies'
             - '${MUSICDIR}:/data/music'
             - '/etc/localtime:/etc/localtime:ro'
+            - '/media/external:/media/external'
 
     # ----------------------------------------
     # PORTAINER
@@ -298,9 +283,10 @@ services:
             - PGID=${PGID}
         volumes:
             - './radarr:/config'
-            - '${DLDIR}/completed:/data/completed'
+            - './content/completed:/data/completed'
             - '${MOVIEDIR}:/movies'
             - '/etc/localtime:/etc/localtime:ro'
+            - '/media/Data/Movies:/media/Data/Movies'
 
     # ----------------------------------------
     # SICKRAGE
@@ -317,9 +303,10 @@ services:
             - PGID=${PGID}
         volumes:
             - './sickrage:/config'
-            - '${DLDIR}/completed:/downloads'
+            - './content/completed:/downloads'
             - '${TVDIR}:/tv'
             - '/etc/localtime:/etc/localtime:ro'
+            - '/media/Data/TV:/media/Data/TV'
 
     # ----------------------------------------
     # SONARR
@@ -337,9 +324,10 @@ services:
             - TZ=${TZ}
         volumes:
             - './sonarr:/config'
-            - '${DLDIR}/completed:/data/completed'
+            - './content/completed:/data/completed'
             - '${TVDIR}:/tv'
             - '/etc/localtime:/etc/localtime:ro'
+            - '/media/Data/TV:/media/Data/TV'
 
     # ----------------------------------------
     # TAUTULLI
