@@ -139,8 +139,8 @@ icon = "muximux-sonarr"
 color = "#ffe599"
 enabled = "true"
 
-[SickRage]
-name = "SickRage"
+[SickChill]
+name = "SickChill"
 url = "http://locip:8081"
 scale = 1
 icon = "muximux-tv"

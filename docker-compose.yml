@@ -303,11 +303,11 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
-    # SICKRAGE
+    # SICKCHILL
     # ----------------------------------------
-    sickrage:
+    sickchill:
         image: linuxserver/sickrage
-        container_name: sickrage
+        container_name: sickchill
         restart: unless-stopped
         network_mode: "bridge"
         ports:

@@ -14,7 +14,7 @@ body {
 <h3><u>Basic Information & Configuration</u></h3>
 <b><u>Notes:</u></b><br /> 
 <li>Radarr and Couchpotato do the same thing = Movie Management</li>
-<li>Sonarr and Sickrage do the same thing = TV Show Management</li>
+<li>Sonarr and SickChill do the same thing = TV Show Management</li>
 <li>Lidar and Headphones do the same thing = Music Management</li>
 -- Generally you will only want to choose/use one of each.<br />
 <li>The <b>Minio</b> login is: minio / minio123.</li>
@@ -61,7 +61,7 @@ After the Wizard is complete:<br />
 <li>Same instructions as Radarr<br />
 </ul>
 <br />
-<b><u>Sickrage:</u></b><br />
+<b><u>SickChill:</u></b><br />
 <ul>
 <li>Click on the settings "gear" icon<br />
 <li>Go to > General > Misc > Show root directories<br />
