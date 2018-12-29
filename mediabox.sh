@@ -257,7 +257,7 @@ echo "The containers will now be pulled and launched"
 echo "This may take a while depending on your download speed"
 read -r -p "Press any key to continue... " -n1 -s
 printf "\\n\\n"
-docker-compose up -d
+docker-compose up -d --remove-orphans
 printf "\\n\\n"
 
 # Configure the access to the Deluge Daemon
