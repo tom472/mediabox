@@ -50,8 +50,8 @@ Install the prerequisite packages:
 
 **Note** - Mediabox uses Docker CE as the default Docker version now - if you skip this and run with older Docker versions you may have issues.
 
-1. Uninstall old versions: `$ sudo apt remove docker docker-engine docker.io`
-    It’s OK if apt reports that none of these packages are installed.
+1. Uninstall old versions: `$ sudo apt remove docker docker-engine docker.io` and `$ sudo snap remove docker`
+    It’s OK if apt and/or snap report that none of these packages are installed.
 2. Install Docker CE: `$ curl -fsSL https://get.docker.com/ | sudo sh`
 3. Install Docker-Compose:
     ```bash
