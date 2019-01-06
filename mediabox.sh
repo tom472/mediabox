@@ -161,14 +161,19 @@ if [ -z "$musicdirectory" ]; then
     mkdir -p content/music
     musicdirectory="$PWD/content/music"
 fi
+
+# Adjustments for Container name changes
+[ -d "sickrage/" ] && mv sickrage/ sickchill  # Switch from Sickrage to SickChill
+
 mkdir -p couchpotato
 mkdir -p delugevpn
 mkdir -p delugevpn/config/openvpn
 mkdir -p duplicati
 mkdir -p duplicati/backups
 mkdir -p headphones
-mkdir -p historical
+mkdir -p historical/env_files
 mkdir -p jackett
+mkdir -p jellyfin
 mkdir -p lidarr
 mkdir -p minio
 mkdir -p muximux
@@ -177,7 +182,7 @@ mkdir -p ombi
 mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"
 mkdir -p portainer
 mkdir -p radarr
-mkdir -p sickrage
+mkdir -p sickchill
 mkdir -p sonarr
 mkdir -p tautulli
 
@@ -250,7 +255,8 @@ docker rm -f plexpy > /dev/null 2>&1
 docker rm -f uhttpd > /dev/null 2>&1
 [ -d "www/" ] && mv www/ historical/www/
 # Move back-up .env files
-mv 20*.env historical/ > /dev/null 2>&1
+mv 20*.env historical/env_files/ > /dev/null 2>&1
+mv historical/20*.env historical/env_files/ > /dev/null 2>&1
 
 # Download & Launch the containers
 echo "The containers will now be pulled and launched"
@@ -316,6 +322,9 @@ if [ -e plexpy/plexpy.db ]; then
     cp plexpy/plexpy.db tautulli/tautulli.db
     mv plexpy/plexpy.db plexpy/plexpy.db.moved
     docker start tautulli > /dev/null 2>&1
+    mv plexpy/ historical/plexpy/
+fi
+if [ -e plexpy/plexpy.db.moved ]; then # Adjust for missed moves
     mv plexpy/ historical/plexpy/
 fi
 

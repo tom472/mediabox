@@ -34,7 +34,7 @@ After the Wizard is complete:<br />
 <ul>
 <li> Click on the "gear" icon and select "Settings"<br />
 <li> Go to > Downloaders > Deluge > & click the "Test Deluge" button to verify the connection.<br />
-<li> Go to > Renamer - and turn it on > Click the "slider" to the right<br />
+<li> Go to > Renamer - and turn it on > click the "slider" to the right<br />
 <li>In the From field: /downloads<br />
 <li>In the To field: /movies<br />
 </ul>
@@ -42,7 +42,7 @@ After the Wizard is complete:<br />
 <b><u>Radarr:</u></b><br />
 <ul>
 <li>Click on the Settings icon<br />
-<li>Clock on the Download Client Tab<br />
+<li>Click on the Download Client Tab<br />
 <li>Click on the + sign to add a download client<br />
 <li>Under the "Torrent" section Select Deluge<br />
 <li>Enter these settings:<br />

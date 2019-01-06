@@ -75,6 +75,13 @@ icon = "muximux-jackett"
 color = "#000000"
 enabled = "true"
 
+[Jellyfin]
+name = "JellyFin"
+url = "http://locip:8096"
+icon = "muximux-play2"
+color = "#674ea7"
+enabled = "true"
+
 [Lidarr]
 name = "Lidarr"
 url = "http://locip:8686"
