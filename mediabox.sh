@@ -279,8 +279,8 @@ echo "NZBGETPASS=$daemonpass"
 # Configure Muximux settings and files
 while [ ! -f muximux/www/muximux/settings.ini.php-example ]; do sleep 1; done
 docker stop muximux > /dev/null 2>&1
-mv settings.ini.php muximux/www/muximux/settings.ini.php
-mv mediaboxconfig.php muximux/www/muximux/mediaboxconfig.php
+cp settings.ini.php muximux/www/muximux/settings.ini.php
+cp mediaboxconfig.php muximux/www/muximux/mediaboxconfig.php
 sed '/^PIA/d' < .env > muximux/www/muximux/env.txt # Pull PIA creds from the displayed .env file
 perl -i -pe "s/locip/$locip/g" muximux/www/muximux/settings.ini.php
 perl -i -pe "s/locip/$locip/g" muximux/www/muximux/mediaboxconfig.php
