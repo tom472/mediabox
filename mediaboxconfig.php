@@ -18,6 +18,7 @@ body {
 <li>Lidar and Headphones do the same thing = Music Management</li>
 -- Generally you will only want to choose/use one of each.<br />
 <li>The <b>Minio</b> login is: minio / minio123.</li>
+<li><b>PROXY</b> The DelugeVPN Container provides an http proxy via the PIA connection at: locip:8118
 <br />
 <h3><u>Manual Configuration steps:</u></h3>  
 <b><u>Couchpotato:</u></b><br />

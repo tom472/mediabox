@@ -66,45 +66,18 @@ thishost=$(hostname)
 # Get IP Address
 locip=$(hostname -I | awk '{print $1}')
 # Get Time Zone
-time_zone=$(cat /etc/timezone)
+time_zone=$(cat /etc/timezone)	
+# Get CIDR Address
+slash=$(ip a | grep "$locip" | cut -d ' ' -f6 | awk -F '/' '{print $2}')
+lannet=$(awk -F"." '{print $1"."$2"."$3".0"}'<<<$locip)/$slash
 
-# An accurate way to calculate the local network
-# via @kspillane
-# Grab the subnet mask from ifconfig
-# Check Ubuntu version for output type
-ubunver=$(lsb_release -c | grep Codename | awk -F ' ' '{print $2}')
-if [ "$ubunver" == bionic ]; then
-    subnet_mask=$(ifconfig | grep "$locip" | awk -F ' ' '{print $4}')
-else
-    subnet_mask=$(ifconfig | grep "$locip" | awk -F ':' '{print $4}')
-fi
-# Use bitwise & with ip and mask to calculate network address
-IFSold=$IFS
-IFS=. read -r i1 i2 i3 i4 <<< "$locip"
-IFS=. read -r m1 m2 m3 m4 <<< "$subnet_mask"
-IFS=$IFSold
-lannet=$(printf "%d.%d.%d.%d\\n" "$((i1 & m1))" "$((i2 & m2))" "$((i3 & m3))" "$((i4 & m4))")
-
-# Converts subnet mask into CIDR notation
-# Thanks to https://stackoverflow.com/questions/20762575/explanation-of-convertor-of-cidr-to-netmask-in-linux-shell-netmask2cdir-and-cdir
-# Define the function first, takes subnet as positional parameters
-function mask2cdr()
-{
-   # Assumes there's no "255." after a non-255 byte in the mask
-   local x=${1##*255.}
-   set -- 0^^^128^192^224^240^248^252^254^ $(( (${#1} - ${#x})*2 )) ${x%%.*}
-   x=${1%%$3*}
-   cidr_bits=$(( $2 + (${#x}/4) ))
-}
-mask2cdr "$subnet_mask" # Call the function to convert to CIDR
-lannet="$lannet/$cidr_bits" # Combine lannet and cidr
-
-if [ -z "$piauname" ]; then
 # Get Private Internet Access Info
+if [ -z "$piauname" ]; then
 read -r -p "What is your PIA Username?: " piauname
 read -r -s -p "What is your PIA Password? (Will not be echoed): " piapass
 printf "\\n\\n"
 fi
+
 # Get info needed for PLEX Official image
 read -r -p "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
 read -r -p "If you have PLEXPASS what is your Claim Token from https://www.plex.tv/claim/ (Optional): " pmstoken
@@ -140,6 +113,7 @@ read -r -p "Where do you store your TV media? (Please use full path - /path/to/t
 read -r -p "Where do you store your MOVIE media? (Please use full path - /path/to/movies ): " moviedirectory
 read -r -p "Where do you store your MUSIC media? (Please use full path - /path/to/music ): " musicdirectory
 fi
+
 # Create the directory structure
 if [ -z "$dldirectory" ]; then
     mkdir -p content/completed
@@ -162,7 +136,7 @@ if [ -z "$musicdirectory" ]; then
     musicdirectory="$PWD/content/music"
 fi
 
-# Adjustments for Container name changes
+# Adjust for Container name changes
 [ -d "sickrage/" ] && mv sickrage/ sickchill  # Switch from Sickrage to SickChill
 
 mkdir -p couchpotato
@@ -186,8 +160,7 @@ mkdir -p sickchill
 mkdir -p sonarr
 mkdir -p tautulli
 
-# Select and Move the PIA VPN files
-# Create a menu selection
+# Create menu - Select and Move the PIA VPN files
 echo "The following PIA Servers are avialable that support port-forwarding (for DelugeVPN); Please select one:"
 PS3="Use a number to select a Server File or 'c' to cancel: "
 # List the ovpn files
@@ -277,7 +250,7 @@ printf "\\n\\n"
 fi
 
 # Finish up the config
-printf "Configuring DelugeVPN and NZBGet - Muximux files - Permissions \\n"
+printf "Configuring DelugeVPN, NZBGet, Muximux, and Permissions \\n"
 printf "This may take a few minutes...\\n\\n"
 
 # Configure DelugeVPN: Set Daemon access on, delete the core.conf~ file
@@ -306,8 +279,8 @@ echo "NZBGETPASS=$daemonpass"
 # Configure Muximux settings and files
 while [ ! -f muximux/www/muximux/settings.ini.php-example ]; do sleep 1; done
 docker stop muximux > /dev/null 2>&1
-cp settings.ini.php muximux/www/muximux/settings.ini.php
-cp mediaboxconfig.php muximux/www/muximux/mediaboxconfig.php
+mv settings.ini.php muximux/www/muximux/settings.ini.php
+mv mediaboxconfig.php muximux/www/muximux/mediaboxconfig.php
 sed '/^PIA/d' < .env > muximux/www/muximux/env.txt # Pull PIA creds from the displayed .env file
 perl -i -pe "s/locip/$locip/g" muximux/www/muximux/settings.ini.php
 perl -i -pe "s/locip/$locip/g" muximux/www/muximux/mediaboxconfig.php
