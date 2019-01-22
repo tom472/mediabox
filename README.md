@@ -47,7 +47,7 @@ Start by updating and upgrading our current packages:
 
 Install the prerequisite packages:
 
-`$ sudo apt install git python bridge-utils net-tools`
+`$ sudo apt install curl git python bridge-utils net-tools`
 
 **Note** - Mediabox uses Docker CE as the default Docker version now - if you skip this and run with older Docker versions you may have issues.
 
