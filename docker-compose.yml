@@ -200,18 +200,21 @@ services:
     # NETDATA
     # ----------------------------------------
     netdata:
-        image: titpetric/netdata
+        image: netdata/netdata:latest
         container_name: netdata
+        hostname: '${HOSTNAME}'
         restart: unless-stopped
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:19999:19999'
         cap_add:
             - SYS_PTRACE
+        environment:
+            - PGID=${DOCKERGRP}
         volumes:
             - '/proc:/host/proc:ro'
             - '/sys:/host/sys:ro'
-            - '/var/run/docker.sock:/var/run/docker.sock'
+            - '/var/run/docker.sock:/var/run/docker.sock:ro'
 
     # ----------------------------------------
     # NZBGet
@@ -247,6 +250,23 @@ services:
         volumes:
             - './ombi:/config'
             - '/etc/localtime:/etc/localtime:ro'
+
+    # ----------------------------------------
+    # OUROBOROS
+    # ----------------------------------------
+    ouroboros:
+        image: pyouroboros/ouroboros
+        container_name: ouroboros
+        restart: unless-stopped
+        hostname: '${HOSTNAME}'
+        environment:
+            - CLEANUP=true
+            - CRON="0 */6 * * *"
+            - LOG_LEVEL=info
+            - SELF_UPDATE=true
+            - TZ=${TZ}
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
 
     # ----------------------------------------
     # PLEX
@@ -377,17 +397,3 @@ services:
             - './plex/Library/Application Support/Plex Media Server/Logs:/logs:ro'
         depends_on:
             - plex
-
-    # ----------------------------------------
-    # WATCHTOWER
-    # ----------------------------------------
-    watchtower:
-        image: v2tec/watchtower
-        container_name: watchtower
-        restart: unless-stopped
-        environment:
-            - TZ=${TZ}
-        network_mode: "bridge"
-        volumes:
-            - '/var/run/docker.sock:/var/run/docker.sock'
-        command: --schedule @midnight --cleanup
