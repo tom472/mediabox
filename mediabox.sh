@@ -61,6 +61,8 @@ localuname=$(id -u -n)
 PUID=$(id -u "$localuname")
 # Get GUID
 PGID=$(id -g "$localuname")
+# Docker Group Number
+DOCKERGRP=$(grep docker /etc/group | cut -d ':' -f 3)
 # Get Hostname
 thishost=$(hostname)
 # Get IP Address
@@ -205,6 +207,7 @@ echo "HOSTNAME=$thishost"
 echo "IP_ADDRESS=$locip"
 echo "PUID=$PUID"
 echo "PGID=$PGID"
+echo "DOCKERGRP=$DOCKERGRP"
 echo "PWD=$PWD"
 echo "DLDIR=$dldirectory"
 echo "TVDIR=$tvdirectory"
@@ -224,6 +227,8 @@ printf "\\n\\n"
 
 # Adjust for the Tautulli replacement of PlexPy
 docker rm -f plexpy > /dev/null 2>&1
+# Adjust for the Ouroboros replacement of Watchtower
+docker rm -f watchtower > /dev/null 2>&1
 # Adjust for old uhttpd web container - Noted in issue #47
 docker rm -f uhttpd > /dev/null 2>&1
 [ -d "www/" ] && mv www/ historical/www/
