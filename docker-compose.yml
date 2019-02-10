@@ -258,6 +258,7 @@ services:
         image: pyouroboros/ouroboros
         container_name: ouroboros
         restart: unless-stopped
+        network_mode: "bridge"
         hostname: '${HOSTNAME}'
         environment:
             - CLEANUP=true
