@@ -30,7 +30,6 @@ Components include:
 * [VPN account from Private internet Access](https://www.privateinternetaccess.com/) (Please see [binhex's Github Repo](https://github.com/binhex/arch-delugevpn) if you want to use a different VPN)
 * [Git](https://git-scm.com/)
 * [Docker](https://www.docker.com/)
-* [Python 2.7](https://www.python.org/)
 * [Docker-Compose](https://docs.docker.com/compose/)
 
 ### **PLEASE NOTE**
@@ -47,7 +46,7 @@ Start by updating and upgrading our current packages:
 
 Install the prerequisite packages:
 
-`$ sudo apt install curl git python bridge-utils net-tools`
+`$ sudo apt install curl git bridge-utils`
 
 **Note** - Mediabox uses Docker CE as the default Docker version - if you skip this and run with older/other Docker versions you may have issues.
 

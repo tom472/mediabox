@@ -306,11 +306,8 @@ if [ -e plexpy/plexpy.db.moved ]; then # Adjust for missed moves
     mv plexpy/ historical/plexpy/
 fi
 
-# Fix the Healthcheck in Minio
-docker exec minio sed -i "s/404/403/g" /usr/bin/healthcheck.sh
-
 # Adjust the permissions on the content folder
-chmod -R 0777 content/
+[ -d "content/" ] && chmod -R 0777 content/
 
 printf "Setup Complete - Open a browser and go to: \\n\\n"
 printf "http://%s \\nOR http://%s If you have appropriate DNS configured.\\n\\n" "$locip" "$thishost"
