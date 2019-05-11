@@ -294,6 +294,8 @@ services:
             - PLEX_UID=${PUID}
             - PLEX_GID=${PGID}
         hostname: ${HOSTNAME}
+        devices:
+            - '/dev/dri:/dev/dri'
         volumes:
             - './plex:/config'
             - './plex/transcode:/transcode'
