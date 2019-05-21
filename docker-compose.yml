@@ -344,7 +344,7 @@ services:
     # SICKCHILL
     # ----------------------------------------
     sickchill:
-        image: linuxserver/sickrage
+        image: linuxserver/sickchill
         container_name: sickchill
         restart: unless-stopped
         network_mode: "bridge"

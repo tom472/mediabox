@@ -225,6 +225,8 @@ echo "VPN_REMOTE=$vpnremote"
 echo ".env file creation complete"
 printf "\\n\\n"
 
+# Adjust for the Switch to linuxserver/sickchill
+docker rm -f sickchill > /dev/null 2>&1
 # Adjust for the Tautulli replacement of PlexPy
 docker rm -f plexpy > /dev/null 2>&1
 # Adjust for the Ouroboros replacement of Watchtower
