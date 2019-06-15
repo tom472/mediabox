@@ -269,10 +269,12 @@ perl -i -pe 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/co
 docker start delugevpn > /dev/null 2>&1
 
 # Configure NZBGet
+[ -d "content/nbzget" ] && mv content/nbzget/* content/ && rmdir content/nbzget
 while [ ! -f nzbget/nzbget.conf ]; do sleep 1; done
 docker stop nzbget > /dev/null 2>&1
 perl -i -pe "s/ControlUsername=nzbget/ControlUsername=$daemonun/g"  nzbget/nzbget.conf
 perl -i -pe "s/ControlPassword=tegbzn6789/ControlPassword=$daemonpass/g"  nzbget/nzbget.conf
+perl -i -pe "s/{MainDir}\/intermediate/{MainDir}\/incomplete/g" nzbget/nzbget.conf
 docker start nzbget > /dev/null 2>&1
 
 # Push the Deluge Daemon and NZBGet Access info the to Auth file - and to the .env file
