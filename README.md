@@ -4,33 +4,34 @@ Mediabox is an all Docker Container based media aggregator stack.
 
 Components include:
 
-* [Couchpotato movie library manager](https://couchpota.to/)
-* [Deluge torrent client (using VPN)](http://deluge-torrent.org/)
-* [Duplicati Backup Software](https://www.duplicati.com/)
-* [Headphones](https://github.com/linuxserver/docker-headphones)
-* [Jackett Tracker API and Proxy](https://github.com/Jackett/Jackett)
-* [Jellyfin Free Software Media System](https://github.com/jellyfin/jellyfin)
-* [Lidarr Music collection manager](https://lidarr.audio/)
-* [Minio cloud storage](https://www.minio.io/)
-* [Muximux Web based HTPC manager](https://github.com/mescon/Muximux)
-* [NetData System Monitoring](https://github.com/netdata/netdata)
-* [NZBGet Usenet Downloader](https://nzbget.net/)  
-* [Ombi media assistant](http://www.ombi.io/)
-* [Ouroboros Automatic container updater](https://github.com/pyouroboros/ouroboros)
-* [Plex media server](https://www.plex.tv/)
-* [Portainer Docker Container manager](https://portainer.io/)
-* [Radarr movie library manager](https://radarr.video/)
-* [SickChill TV library manager](https://github.com/SickChill/SickChill)
-* [Sonarr TV library manager](https://sonarr.tv/)
-* [Tautulli Plex Media Server monitor](https://github.com/tautulli/tautulli)
+*   [Couchpotato movie library manager](https://couchpota.to/)
+*   [Deluge torrent client (using VPN)](http://deluge-torrent.org/)
+*   [Duplicati Backup Software](https://www.duplicati.com/)
+*   [Headphones](https://github.com/linuxserver/docker-headphones)
+*   [Jackett Tracker API and Proxy](https://github.com/Jackett/Jackett)
+*   [Jellyfin Free Software Media System](https://github.com/jellyfin/jellyfin)
+*   [Lidarr Music collection manager](https://lidarr.audio/)
+*   [Minio cloud storage](https://www.minio.io/)
+*   [Muximux Web based HTPC manager](https://github.com/mescon/Muximux)
+*   [NetData System Monitoring](https://github.com/netdata/netdata)
+*   [NZBGet Usenet Downloader](https://nzbget.net/)  
+*   [Ombi media assistant](http://www.ombi.io/)
+*   [Ouroboros Automatic container updater](https://github.com/pyouroboros/ouroboros)
+*   [Plex media server](https://www.plex.tv/)
+*   [Portainer Docker Container manager](https://portainer.io/)
+*   [Radarr movie library manager](https://radarr.video/)
+*   [SABnzbd Usenet download tool](https://github.com/sabnzbd/sabnzbd)
+*   [SickChill TV library manager](https://github.com/SickChill/SickChill)
+*   [Sonarr TV library manager](https://sonarr.tv/)
+*   [Tautulli Plex Media Server monitor](https://github.com/tautulli/tautulli)
 
 ## Prerequisites
 
-* [Ubuntu 16.04 LTS](https://www.ubuntu.com/) Or [Ubuntu 18.04 LTS](https://www.ubuntu.com/)
-* [VPN account from Private internet Access](https://www.privateinternetaccess.com/) (Please see [binhex's Github Repo](https://github.com/binhex/arch-delugevpn) if you want to use a different VPN)
-* [Git](https://git-scm.com/)
-* [Docker](https://www.docker.com/)
-* [Docker-Compose](https://docs.docker.com/compose/)
+*   [Ubuntu 16.04 LTS](https://www.ubuntu.com/) Or [Ubuntu 18.04 LTS](https://www.ubuntu.com/)
+*   [VPN account from Private internet Access](https://www.privateinternetaccess.com/) (Please see [binhex's Github Repo](https://github.com/binhex/arch-delugevpn) if you want to use a different VPN)
+*   [Git](https://git-scm.com/)
+*   [Docker](https://www.docker.com/)
+*   [Docker-Compose](https://docs.docker.com/compose/)
 
 ### **PLEASE NOTE**
 
@@ -50,22 +51,23 @@ Install the prerequisite packages:
 
 **Note** - Mediabox uses Docker CE as the default Docker version - if you skip this and run with older/other Docker versions you may have issues.
 
-1. Uninstall old versions - It’s OK if apt and/or snap report that none of these packages are installed.  
+1.  Uninstall old versions - It’s OK if apt and/or snap report that none of these packages are installed.  
     `$ sudo apt remove docker docker-engine docker.io containerd runc`  
     `$ sudo snap remove docker`  
 
-2. Install Docker CE:  
+2.  Install Docker CE:  
     `$ curl -fsSL https://get.docker.com -o get-docker.sh`  
     `$ sudo sh get-docker.sh`  
 
-3. Install Docker-Compose:  
+3.  Install Docker-Compose:  
 
     ```bash
-    sudo curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    sudo curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     ```
 
-4. Set the permissions: `$ sudo chmod +x /usr/local/bin/docker-compose`  
-5. Verify the Docker Compose installation: `$ docker-compose -v`  
+4.  Set the permissions: `$ sudo chmod +x /usr/local/bin/docker-compose`  
+
+5.  Verify the Docker Compose installation: `$ docker-compose -v`  
 
 Add the current user to the docker group:
 
@@ -83,45 +85,38 @@ Reboot your machine manually, or using the command line:
 
 Once the prerequisites are all taken care of you can move forward with using mediabox.
 
-1. Clone the mediabox repository: `$ git clone https://github.com/tom472/mediabox.git`
-2. Change directory into mediabox: `$ cd mediabox/`
-3. Run the mediabox.sh script: `$ ./mediabox.sh`  **Read below for the script questions**
-4. To upgrade Mediabox at anytime, re-run the mediabox script: `$ ./mediabox.sh`
-    * See Upgrading Mediabox below if you need to do a one-time upgrade to get to the self-updating version.
+1.  Clone the mediabox repository: `$ git clone https://github.com/tom472/mediabox.git`
 
-**Please be prepared to supply the following details after you run Step 4 above.**
+2.  Change directory into mediabox: `$ cd mediabox/`
+
+3.  Run the mediabox.sh script: `$ ./mediabox.sh`  (**See below for the script questions**)
+
+4.  To upgrade Mediabox at anytime, re-run the mediabox script: `$ ./mediabox.sh`
+
+### Please be prepared to supply the following details after you run Step 3 above
 
 As the script runs you will be prompted for:
 
-1. Your Private Internet Access credentials
-    * **username**
-    * **password**
+1.  Your Private Internet Access credentials
+    *   **username**
+    *   **password**
 
-2. The version of Plex you want to run
-    * **latest**
-    * **public**
-    * **plexpass**
+2.  The version of Plex you want to run
+    *   **latest**
+    *   **public**
+    *   **plexpass**
 
     Note: If you choose plexpass as your version you may optionally specify CLAIM_TOKEN - you can get your claim token by logging in at [plex.tv/claim](https://www.plex.tv/claim)
 
-3. The "style" of Portainer to use
-    * **auth** (will require a password, require a persistent volume map, and will need you to select the endpoint to manage)
-    * **noauth** (will not require a password for access and will automatically connect to the local Docker sock endpoint)
+3.  The "style" of Portainer to use
+    *   **auth** (will require a password, require a persistent volume map, and will need you to select the endpoint to manage)
+    *   **noauth** (will not require a password for access and will automatically connect to the local Docker sock endpoint)
 
-4. Credentials for the NBZGet interface and the Deluge daemon which needed for the CouchPotato container.
-    * **username**
-    * **password**
+4.  Credentials for the NBZGet interface and the Deluge daemon which needed for the CouchPotato container.
+    *   **username**
+    *   **password**
 
 Upon completion, the script will launch your mediabox containers.
-
-**Upgrading mediabox:**
-
-This is only necessary once - and only if you dowloaded Mediabox before auto-update was added into the project.
-
-1. Change directory into mediabox: `$ cd your/path/to/mediabox/`
-2. Git Stash any alterations to local files: `$ git stash`
-3. Git pull the changes to the Mediabox Project: `$ git pull`
-4. Run the mediabox.sh script: `$ ./mediabox.sh` << Redo just this step anytime you want/need to upgrade Mediabox
 
 ### **Mediabox has been tested to work on Ubuntu 16.04 LTS / 18.04 LTS - Server and Desktop**
 
