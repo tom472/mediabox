@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Check that script was run not as root or with sudo
+if [ "$EUID" -eq 0 ]
+  then echo "Please do not run this script as root or using sudo"
+  exit
+fi
+
 # set -x
 
 # See if we need to check GIT for updates
@@ -309,9 +315,6 @@ fi
 if [ -e plexpy/plexpy.db.moved ]; then # Adjust for missed moves
     mv plexpy/ historical/plexpy/
 fi
-
-# Adjust the permissions on the content folder
-[ -d "content/" ] && chmod -R 0777 content/
 
 printf "Setup Complete - Open a browser and go to: \\n\\n"
 printf "http://%s \\nOR http://%s If you have appropriate DNS configured.\\n\\n" "$locip" "$thishost"

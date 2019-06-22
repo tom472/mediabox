@@ -209,6 +209,8 @@ services:
             - '${IP_ADDRESS}:19999:19999'
         cap_add:
             - SYS_PTRACE
+        security_opt:
+            - apparmor:unconfined    
         environment:
             - PGID=${DOCKERGRP}
         volumes:
