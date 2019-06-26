@@ -73,9 +73,11 @@ Add the current user to the docker group:
 
 `$ sudo usermod -aG docker $USER`
 
-Adjustment for the the DelugeVPN container
+Adjustments for the the DelugeVPN container
 
 `$ sudo /sbin/modprobe iptable_mangle`
+
+`$ sudo bash -c "echo iptable_mangle >> /etc/modules"`
 
 Reboot your machine manually, or using the command line:
 
