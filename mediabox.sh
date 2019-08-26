@@ -51,8 +51,8 @@ if [ -e 1.env ]; then
     printf "Your TV Directory is: %s \\n" "$tvdirectory"
     printf "Your MOVIE Directory is: %s \\n" "$moviedirectory"
     printf "Your MUSIC Directory is: %s \\n" "$musicdirectory"
-    read  -r -p "Are these directiores still correct? (y/n) \\n" diranswer
-    read  -r -p "Do you need to change your PIA Credentials? (y/n) \\n" piaanswer
+    read  -r -p "Are these directiores still correct? (y/n)" diranswer `echo \n`
+    read  -r -p "Do you need to change your PIA Credentials? (y/n)" piaanswer `echo \n`
     # Now we need ".env" to exist again so we can stop just the Medaibox containers
     mv 1.env .env
     # Stop the current Mediabox stack
