@@ -41,17 +41,21 @@ if [ -e 1.env ]; then
     daemonpass=$(grep CPDAEMONPASS 1.env | cut -d = -f2)
     piauname=$(grep PIAUNAME 1.env | cut -d = -f2)
     piapass=$(grep PIAPASS 1.env | cut -d = -f2)
+    vpnremote=$(grep VPN_REMOTE 1.env | cut -d = -f2)
     dldirectory=$(grep DLDIR 1.env | cut -d = -f2)
     tvdirectory=$(grep TVDIR 1.env | cut -d = -f2)
     moviedirectory=$(grep MOVIEDIR 1.env | cut -d = -f2)
     musicdirectory=$(grep MUSICDIR 1.env | cut -d = -f2)
-    # Echo back the media directioies to see if changes are needed
+    # Echo back the media directioies, and other info to see if changes are needed
     printf "These are the Media Directory paths currently configured.\\n"
     printf "Your DOWNLOAD Directory is: %s \\n" "$dldirectory"
     printf "Your TV Directory is: %s \\n" "$tvdirectory"
     printf "Your MOVIE Directory is: %s \\n" "$moviedirectory"
     printf "Your MUSIC Directory is: %s \\n" "$musicdirectory"
-    read  -r -p "Are these directiores still correct? (y/n) " diranswer
+    read  -r -p "Are these directiores still correct? (y/n) \\n" diranswer
+    read  -r -p "Do you need to change your PIA Credentials? (y/n) \\n" piaanswer
+    printf "You are currently using PIA Server: %s\\n" "$vpnremote"
+    read  -r -p "Do you need to change your PIA Server? (y/n) \\n" piaserver
     # Now we need ".env" to exist again so we can stop just the Medaibox containers
     mv 1.env .env
     # Stop the current Mediabox stack
@@ -80,9 +84,14 @@ slash=$(ip a | grep "$locip" | cut -d ' ' -f6 | awk -F '/' '{print $2}')
 lannet=$(awk -F"." '{print $1"."$2"."$3".0"}'<<<$locip)/$slash
 
 # Get Private Internet Access Info
-if [ -z "$piauname" ]; then
+if [ -z "$piaanswer" ]; then
 read -r -p "What is your PIA Username?: " piauname
 read -r -s -p "What is your PIA Password? (Will not be echoed): " piapass
+printf "\\n\\n"
+fi
+if [ "$piaanswer" == "y" ]; then
+read -r -p "What is your New PIA Username?: " piauname
+read -r -s -p "What is your New PIA Password? (Will not be echoed): " piapass
 printf "\\n\\n"
 fi
 
@@ -169,6 +178,8 @@ mkdir -p sonarr
 mkdir -p tautulli
 
 # Create menu - Select and Move the PIA VPN files
+if [ "$piaserver" = "y" ]; then "$vpnremote" == "" fi
+if [ -z "$vpnremote" ]; then
 echo "The following PIA Servers are avialable that support port-forwarding (for DelugeVPN); Please select one:"
 PS3="Use a number to select a Server File or 'c' to cancel: "
 # List the ovpn files
@@ -192,6 +203,7 @@ done
 # TODO - Add a default server selection if none selected ..
 cp ovpn/*.crt delugevpn/config/openvpn/ > /dev/null 2>&1
 cp ovpn/*.pem delugevpn/config/openvpn/ > /dev/null 2>&1
+fi
 
 # Create the .env file
 echo "Creating the .env file with the values we have gathered"
@@ -255,8 +267,8 @@ printf "\\n\\n"
 # Configure the access to the Deluge Daemon
 # The same credentials can be used for NZBGet's webui
 if [ -z "$daemonun" ]; then
-echo "You need to set a username and password for programs to access"
-echo "The Deluge daemon and NZBGet's API and web interface."
+echo "You need to set a username and password for a of the programs - including."
+echo "The Deluge daemon, NZBGet's API & web interface, and Minio."
 read -r -p "What would you like to use as the access username?: " daemonun
 read -r -p "What would you like to use as the access password?: " daemonpass
 printf "\\n\\n"
@@ -283,13 +295,15 @@ perl -i -pe "s/ControlPassword=tegbzn6789/ControlPassword=$daemonpass/g"  nzbget
 perl -i -pe "s/{MainDir}\/intermediate/{MainDir}\/incomplete/g" nzbget/nzbget.conf
 docker start nzbget > /dev/null 2>&1
 
-# Push the Deluge Daemon and NZBGet Access info the to Auth file - and to the .env file
+# Push the Deluge Daemon, NZBGet Access, and Minio info the to Auth file and the .env file
 echo "$daemonun":"$daemonpass":10 >> ./delugevpn/config/auth
 {
 echo "CPDAEMONUN=$daemonun"
 echo "CPDAEMONPASS=$daemonpass"
 echo "NZBGETUN=$daemonun"
 echo "NZBGETPASS=$daemonpass"
+echo "MINIOUN=$daemonun"
+echo "MINIOPASS=$daemonpass"
 } >> .env
 # Configure Muximux settings and files
 while [ ! -f muximux/www/muximux/settings.ini.php-example ]; do sleep 1; done

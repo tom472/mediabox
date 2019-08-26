@@ -172,12 +172,18 @@ services:
         ports:
             - '${IP_ADDRESS}:9009:9000'
         environment:
-            - MINIO_ACCESS_KEY=minio
-            - MINIO_SECRET_KEY=minio123
+            - MINIO_ACCESS_KEY=${MINIOUN}
+            - MINIO_SECRET_KEY=${MINIOPASS}
         volumes:
             - './minio:/root/.minio'
             - '${PWD}:/export'
         command: server /export
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://${IP_ADDRESS}:9009/minio/health/live"]
+            interval: 5m
+            timeout: 20s
+            retries: 3
+            start_period: 3m
 
     # ----------------------------------------
     # MUXIMUX

@@ -21,7 +21,7 @@ body {
 </ul>
 -- Generally you will only want to choose/use one of each.<br />
 <ul>
-<li>The <b>Minio</b> login is: minio / minio123.</li>
+<li>The <b>Minio</b> login is: daemonun / daemonpass.</li>
 <li><b>PROXY</b> The DelugeVPN Container provides an http proxy via the PIA connection at: locip:8118
 </ul>
 <br />
