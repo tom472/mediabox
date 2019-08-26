@@ -41,7 +41,6 @@ if [ -e 1.env ]; then
     daemonpass=$(grep CPDAEMONPASS 1.env | cut -d = -f2)
     piauname=$(grep PIAUNAME 1.env | cut -d = -f2)
     piapass=$(grep PIAPASS 1.env | cut -d = -f2)
-    vpnremote=$(grep VPN_REMOTE 1.env | cut -d = -f2)
     dldirectory=$(grep DLDIR 1.env | cut -d = -f2)
     tvdirectory=$(grep TVDIR 1.env | cut -d = -f2)
     moviedirectory=$(grep MOVIEDIR 1.env | cut -d = -f2)
@@ -54,8 +53,6 @@ if [ -e 1.env ]; then
     printf "Your MUSIC Directory is: %s \\n" "$musicdirectory"
     read  -r -p "Are these directiores still correct? (y/n) \\n" diranswer
     read  -r -p "Do you need to change your PIA Credentials? (y/n) \\n" piaanswer
-    printf "You are currently using PIA Server: %s\\n" "$vpnremote"
-    read  -r -p "Do you need to change your PIA Server? (y/n) \\n" piaserver
     # Now we need ".env" to exist again so we can stop just the Medaibox containers
     mv 1.env .env
     # Stop the current Mediabox stack
@@ -178,8 +175,6 @@ mkdir -p sonarr
 mkdir -p tautulli
 
 # Create menu - Select and Move the PIA VPN files
-if [ "$piaserver" = "y" ]; then "$vpnremote" == "" fi
-if [ -z "$vpnremote" ]; then
 echo "The following PIA Servers are avialable that support port-forwarding (for DelugeVPN); Please select one:"
 PS3="Use a number to select a Server File or 'c' to cancel: "
 # List the ovpn files
@@ -203,7 +198,6 @@ done
 # TODO - Add a default server selection if none selected ..
 cp ovpn/*.crt delugevpn/config/openvpn/ > /dev/null 2>&1
 cp ovpn/*.pem delugevpn/config/openvpn/ > /dev/null 2>&1
-fi
 
 # Create the .env file
 echo "Creating the .env file with the values we have gathered"
