@@ -296,8 +296,6 @@ echo "CPDAEMONUN=$daemonun"
 echo "CPDAEMONPASS=$daemonpass"
 echo "NZBGETUN=$daemonun"
 echo "NZBGETPASS=$daemonpass"
-echo "MINIOUN=$daemonun"
-echo "MINIOPASS=$daemonpass"
 } >> .env
 # Configure Muximux settings and files
 while [ ! -f muximux/www/muximux/settings.ini.php-example ]; do sleep 1; done

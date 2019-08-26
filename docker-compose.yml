@@ -172,8 +172,8 @@ services:
         ports:
             - '${IP_ADDRESS}:9009:9000'
         environment:
-            - MINIO_ACCESS_KEY=${MINIOUN}
-            - MINIO_SECRET_KEY=${MINIOPASS}
+            - MINIO_ACCESS_KEY=minio
+            - MINIO_SECRET_KEY=minio123
         volumes:
             - './minio:/root/.minio'
             - '${PWD}:/export'
