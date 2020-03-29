@@ -62,7 +62,7 @@ Install the prerequisite packages:
 3.  Install Docker-Compose:  
 
     ```bash
-    sudo curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    sudo curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "browser_download_url" | grep -m1 `uname -s`-`uname -m` | cut -d '"' -f4 | xargs sudo curl -L -o /usr/local/bin/docker-compose
     ```
 
 4.  Set the permissions: `$ sudo chmod +x /usr/local/bin/docker-compose`  

@@ -36,7 +36,7 @@ services:
     # DELUGEVPN
     # ----------------------------------------
     arch-delugevpn:
-        image: binhex/arch-delugevpn:1.3.15_18_ge050905b2-1-04
+        image: binhex/arch-delugevpn
         container_name: delugevpn
         restart: unless-stopped
         network_mode: "bridge"
