@@ -50,6 +50,9 @@ Install the prerequisite packages:
 `$ sudo apt install curl git bridge-utils`
 
 **Note** - Mediabox uses Docker CE as the default Docker version - if you skip this and run with older/other Docker versions you may have issues.
+**Note 2** - in ubuntu 20.04 LTS instead of steps 1-4 do:
+'$ sudo apt install docker-compose
+
 
 1.  Uninstall old versions - It’s OK if apt and/or snap report that none of these packages are installed.  
     `$ sudo apt remove docker docker-engine docker.io containerd runc`  
