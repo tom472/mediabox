@@ -120,6 +120,8 @@ As the script runs you will be prompted for:
 
 Upon completion, the script will launch your mediabox containers.
 
+'''note''' remember to change folders in deluge to /data/incomplete and /data/downloads
+
 ### **Mediabox has been tested to work on Ubuntu 16.04 LTS / 18.04 LTS - Server and Desktop**
 
 **Thanks go out to:**
