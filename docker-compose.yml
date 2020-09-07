@@ -402,6 +402,7 @@ services:
             - WATCHTOWER_CLEANUP=true
             - WATCHTOWER_SCHEDULE="0 0 4 * * *"
             - WATCHTOWER_INCLUDE_STOPPED=true
+            - LOG_LEVEL=info
             - TZ=${TZ}
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'            
