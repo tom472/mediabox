@@ -241,8 +241,8 @@ printf "\\n\\n"
 docker rm -f sickchill > /dev/null 2>&1
 # Adjust for the Tautulli replacement of PlexPy
 docker rm -f plexpy > /dev/null 2>&1
-# Adjust for the Ouroboros replacement of Watchtower
-docker rm -f watchtower > /dev/null 2>&1
+# Adjust for the Watchtower replacement of Ouroboros
+docker rm -f ouroboros > /dev/null 2>&1
 # Adjust for old uhttpd web container - Noted in issue #47
 docker rm -f uhttpd > /dev/null 2>&1
 [ -d "www/" ] && mv www/ historical/www/

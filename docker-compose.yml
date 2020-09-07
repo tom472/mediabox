@@ -260,24 +260,6 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
-    # OUROBOROS
-    # ----------------------------------------
-    ouroboros:
-        image: pyouroboros/ouroboros
-        container_name: ouroboros
-        restart: unless-stopped
-        network_mode: "bridge"
-        hostname: '${HOSTNAME}'
-        environment:
-            - CLEANUP=true
-            - CRON="0 */6 * * *"
-            - LOG_LEVEL=info
-            - SELF_UPDATE=true
-            - TZ=${TZ}
-        volumes:
-            - '/var/run/docker.sock:/var/run/docker.sock'
-
-    # ----------------------------------------
     # PLEX
     # ----------------------------------------
     plex:
@@ -406,3 +388,21 @@ services:
             - './plex/Library/Application Support/Plex Media Server/Logs:/logs:ro'
         depends_on:
             - plex
+
+    # ----------------------------------------
+    # WATCHTOWER
+    # ----------------------------------------
+        watchtower:
+            image: containrrr/watchtower
+            container_name: watchtower
+            restart: unless-stopped
+            network_mode: "bridge"
+            hostname: '${HOSTNAME}'
+            environment:
+                - CLEANUP=true
+                - CRON="0 */6 * * *"
+                - LOG_LEVEL=info
+                - SELF_UPDATE=true
+                - TZ=${TZ}
+            volumes:
+                - '/var/run/docker.sock:/var/run/docker.sock'            
