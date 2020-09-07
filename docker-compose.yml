@@ -392,17 +392,17 @@ services:
     # ----------------------------------------
     # WATCHTOWER
     # ----------------------------------------
-        watchtower:
-            image: containrrr/watchtower
-            container_name: watchtower
-            restart: unless-stopped
-            network_mode: "bridge"
-            hostname: '${HOSTNAME}'
-            environment:
-                - CLEANUP=true
-                - CRON="0 */6 * * *"
-                - LOG_LEVEL=info
-                - SELF_UPDATE=true
-                - TZ=${TZ}
-            volumes:
-                - '/var/run/docker.sock:/var/run/docker.sock'            
+    watchtower:
+        image: containrrr/watchtower
+        container_name: watchtower
+        restart: unless-stopped
+        network_mode: "bridge"
+        hostname: '${HOSTNAME}'
+        environment:
+            - CLEANUP=true
+            - CRON="0 */6 * * *"
+            - LOG_LEVEL=info
+            - SELF_UPDATE=true
+            - TZ=${TZ}
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'            
