@@ -400,7 +400,7 @@ services:
         hostname: '${HOSTNAME}'
         environment:
             - WATCHTOWER_CLEANUP=true
-            - WATCHTOWER_SCHEDULE="0 0 4 * * *"
+            - WATCHTOWER_SCHEDULE=0 0 4 * * *
             - WATCHTOWER_INCLUDE_STOPPED=true
             - TZ=${TZ}
         volumes:
