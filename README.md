@@ -16,7 +16,6 @@ Components include:
 *   [NetData System Monitoring](https://github.com/netdata/netdata)
 *   [NZBGet Usenet Downloader](https://nzbget.net/)  
 *   [Ombi media assistant](http://www.ombi.io/)
-*   [Ouroboros Automatic container updater](https://github.com/pyouroboros/ouroboros)
 *   [Plex media server](https://www.plex.tv/)
 *   [Portainer Docker Container manager](https://portainer.io/)
 *   [Radarr movie library manager](https://radarr.video/)
@@ -24,6 +23,7 @@ Components include:
 *   [SickChill TV library manager](https://github.com/SickChill/SickChill)
 *   [Sonarr TV library manager](https://sonarr.tv/)
 *   [Tautulli Plex Media Server monitor](https://github.com/tautulli/tautulli)
+*   [Watchtower Automatic container updater](https://github.com/containrrr/watchtower)
 
 ## Prerequisites
 
@@ -120,7 +120,7 @@ As the script runs you will be prompted for:
 
 Upon completion, the script will launch your mediabox containers.
 
-### **Mediabox has been tested to work on Ubuntu 16.04 LTS / 18.04 LTS - Server and Desktop**
+### **Mediabox has been tested to work on Ubuntu 18.04 LTS / 20.04 LTS - Server and Desktop**
 
 **Thanks go out to:**
 

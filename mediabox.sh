@@ -190,6 +190,9 @@ do
     fi
     # now we can use the selected file
     echo "$filename selected"
+    # remove any existing ovpn file in the deluge config/ovpn
+    rm delugevpn/config/openvpn/*.ovpn > /dev/null 2>&1
+    # copy the selected ovpn file to deluge config/ovpn
     cp "$filename" delugevpn/config/openvpn/ > /dev/null 2>&1
     vpnremote=$(grep "remote" "$filename" | cut -d ' ' -f2  | head -1)
     # it'll ask for another unless we leave the loop
@@ -261,8 +264,8 @@ printf "\\n\\n"
 # Configure the access to the Deluge Daemon
 # The same credentials can be used for NZBGet's webui
 if [ -z "$daemonun" ]; then
-echo "You need to set a username and password for a of the programs - including."
-echo "The Deluge daemon, NZBGet's API & web interface, and Minio."
+echo "You need to set a username and password for some of the programs - including."
+echo "The Deluge daemon, NZBGet's API & web interface."
 read -r -p "What would you like to use as the access username?: " daemonun
 read -r -p "What would you like to use as the access password?: " daemonpass
 printf "\\n\\n"
@@ -289,7 +292,7 @@ perl -i -pe "s/ControlPassword=tegbzn6789/ControlPassword=$daemonpass/g"  nzbget
 perl -i -pe "s/{MainDir}\/intermediate/{MainDir}\/incomplete/g" nzbget/nzbget.conf
 docker start nzbget > /dev/null 2>&1
 
-# Push the Deluge Daemon, NZBGet Access, and Minio info the to Auth file and the .env file
+# Push the Deluge Daemon and NZBGet Access info the to Auth file and the .env file
 echo "$daemonun":"$daemonpass":10 >> ./delugevpn/config/auth
 {
 echo "CPDAEMONUN=$daemonun"
