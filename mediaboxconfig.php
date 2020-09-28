@@ -126,9 +126,9 @@ When adding libraries to PLEX use these settings:<br />
 To help you manage your Mediabox Docker containers Portainer is available.<br />
 Portainer is a Docker Management UI to help you work with the containers etc.<br />
 <br /><br />
-<b><u>Ouroboros:</u></b><br />
-The ouroboros container monitors the all of the Mediabox containers and if there is an update to any container's base image it updates the container.<br />
-ouroboros will detect the change, download the new image, gracefully stop the container(s), and re-launch them with the new image.<br />
+<b><u>Watchtower:</u></b><br />
+The Watchtower container monitors the all of the Mediabox containers and if there is an update to any container's base image it updates the container.<br />
+Watchtower will detect the change, download the new image, gracefully stop the container(s), and re-launch them with the new image.<br />
 <h1>Troubleshooting</h1>
 If you are having issues with Mediabox or any of your continers please take look at the settings being used.<br />
 Below are the variables in your .env file: (<b>NOTE</b>: For your security PIA credentials are no longer shown here.)
