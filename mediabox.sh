@@ -190,8 +190,10 @@ do
     fi
     # now we can use the selected file
     echo "$filename selected"
-    # remove any existing ovpn file in the deluge config/ovpn
+    # remove any existing ovpn, crt & pem files in the deluge config/ovpn
     rm delugevpn/config/openvpn/*.ovpn > /dev/null 2>&1
+    rm delugevpn/config/openvpn/*.crt > /dev/null 2>&1
+    rm delugevpn/config/openvpn/*.pem > /dev/null 2>&1
     # copy the selected ovpn file to deluge config/ovpn
     cp "$filename" delugevpn/config/openvpn/ > /dev/null 2>&1
     vpnremote=$(grep "remote" "$filename" | cut -d ' ' -f2  | head -1)
