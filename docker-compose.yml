@@ -216,7 +216,7 @@ services:
         cap_add:
             - SYS_PTRACE
         security_opt:
-            - apparmor:unconfined    
+            - apparmor:unconfined
         environment:
             - PGID=${DOCKERGRP}
         volumes:
@@ -404,4 +404,4 @@ services:
             - WATCHTOWER_INCLUDE_STOPPED=true
             - TZ=${TZ}
         volumes:
-            - '/var/run/docker.sock:/var/run/docker.sock'            
+            - '/var/run/docker.sock:/var/run/docker.sock'

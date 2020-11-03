@@ -197,6 +197,8 @@ do
     # copy the selected ovpn file to deluge config/ovpn
     cp "$filename" delugevpn/config/openvpn/ > /dev/null 2>&1
     vpnremote=$(grep "remote" "$filename" | cut -d ' ' -f2  | head -1)
+    # Adjust for the PIA OpenVPN ciphers fallback
+    echo "data-ciphers-fallback aes-256-gcm" >> delugevpn/config/openvpn/$filename
     # it'll ask for another unless we leave the loop
     break
 done
