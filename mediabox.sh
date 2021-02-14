@@ -100,16 +100,6 @@ if [ -z "$pmstag" ]; then
    pmstag=public
 fi
 
-# Get the info for the style of Portainer to use
-read -r -p "Which style of Portainer do you want to use? By default 'No Auth' will be used. (noauth, auth): " portainerstyle
-if [ -z "$portainerstyle" ]; then
-   portainerstyle=--no-auth
-elif [ "$portainerstyle" == "noauth" ]; then
-   portainerstyle=--no-auth
-elif [ "$portainerstyle" == "auth" ]; then
-   portainerstyle=
-fi
-
 # Ask user if they already have TV, Movie, and Music directories
 if [ -z "$diranswer" ]; then
 printf "\\n\\n"
@@ -166,6 +156,7 @@ mkdir -p lidarr
 mkdir -p minio
 mkdir -p muximux
 mkdir -p nzbget
+mkdir -p nzbhydra2
 mkdir -p ombi
 mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"
 mkdir -p portainer
@@ -239,7 +230,6 @@ echo "CIDR_ADDRESS=$lannet"
 echo "TZ=$time_zone"
 echo "PMSTAG=$pmstag"
 echo "PMSTOKEN=$pmstoken"
-echo "PORTAINERSTYLE=$portainerstyle"
 echo "VPN_REMOTE=$vpnremote"
 } >> .env
 echo ".env file creation complete"

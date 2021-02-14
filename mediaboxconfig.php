@@ -20,6 +20,11 @@ body {
 <li>Lidar and Headphones do the same thing = Music Management</li>
 </ul>
 -- Generally you will only want to choose/use one of each.<br />
+<h3>Mediabox Container Management</h3>
+<b><u>Portainer:</u></b><br />
+To help you manage your Mediabox Docker containers Portainer is available.<br />
+Portainer is a Docker Management UI to help you work with the containers etc.<br />
+A password will need to be set for the <b>admin</b> account upon initial login <a href="locip:9000" target="_blank">Here</a>.<br />
 <ul>
 <li>The <b>Minio</b> login is: minio / minio123.</li>
 <li><b>PROXY</b> The DelugeVPN Container provides an http proxy via the PIA connection at: locip:8118
@@ -121,11 +126,7 @@ When adding libraries to PLEX use these settings:<br />
 <li>Username: daemonun<br />
 <li>Password: daemonpass<br />
 </ul>
-<h3>Mediabox Management Containers</h3>
-<b><u>Portainer:</u></b><br />
-To help you manage your Mediabox Docker containers Portainer is available.<br />
-Portainer is a Docker Management UI to help you work with the containers etc.<br />
-<br /><br />
+<h3>Container Updates</h3>
 <b><u>Watchtower:</u></b><br />
 The Watchtower container monitors the all of the Mediabox containers and if there is an update to any container's base image it updates the container.<br />
 Watchtower will detect the change, download the new image, gracefully stop the container(s), and re-launch them with the new image.<br />

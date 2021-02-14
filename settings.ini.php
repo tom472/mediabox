@@ -114,6 +114,14 @@ icon = "muximux-download"
 color = "#3f8927"
 enabled = "true"
 
+[NZBHydra2]
+name = "NZBHydra2"
+url = "http://locip:5076"
+scale = 1
+icon = "muximux-download"
+color = "#3f8927"
+enabled = "true"
+
 [Ombi]
 name = "Ombi"
 url = "http://locip:3579"

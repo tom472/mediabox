@@ -17,7 +17,7 @@ services:
     # COUCHPOTATO
     # ----------------------------------------
     couchpotato:
-        image: linuxserver/couchpotato
+        image: ghcr.io/linuxserver/couchpotato
         container_name: couchpotato
         restart: unless-stopped
         network_mode: "bridge"
@@ -73,7 +73,7 @@ services:
     # DUPLICATI
     # ----------------------------------------
     duplicati:
-        image: linuxserver/duplicati
+        image: ghcr.io/linuxserver/duplicati
         container_name: duplicati
         restart: unless-stopped
         network_mode: "bridge"
@@ -92,7 +92,7 @@ services:
     # HEADPHONES
     # ----------------------------------------
     headphones:
-        image: linuxserver/headphones
+        image: ghcr.io/linuxserver/headphones
         container_name: headphones
         restart: unless-stopped
         network_mode: "bridge"
@@ -111,7 +111,7 @@ services:
     # JACKETT
     # ----------------------------------------
     jackett:
-        image: linuxserver/jackett
+        image: ghcr.io/linuxserver/jackett
         container_name: jackett
         restart: unless-stopped
         network_mode: "bridge"
@@ -146,7 +146,7 @@ services:
     # LIDARR
     # ----------------------------------------
     lidarr:
-        image: linuxserver/lidarr
+        image: ghcr.io/linuxserver/lidarr
         container_name: lidarr
         restart: unless-stopped
         network_mode: "bridge"
@@ -189,7 +189,7 @@ services:
     # MUXIMUX
     # ----------------------------------------
     muximux:
-        image: linuxserver/muximux
+        image: ghcr.io/linuxserver/muximux
         container_name: muximux
         restart: unless-stopped
         network_mode: "bridge"
@@ -228,7 +228,7 @@ services:
     # NZBGet
     # ----------------------------------------
     nzbget:
-        image: linuxserver/nzbget
+        image: ghcr.io/linuxserver/nzbget
         container_name: nzbget
         restart: unless-stopped
         environment:
@@ -243,10 +243,28 @@ services:
           - '${DLDIR}:/downloads'
 
     # ----------------------------------------
+    # NZBHydra2
+    # ----------------------------------------
+    nzbhydra2:
+        image: ghcr.io/linuxserver/nzbhydra2
+        container_name: nzbhydra2
+        restart: unless-stopped
+        environment:
+          - PUID=${PUID}
+          - PGID=${PGID}
+          - TZ=${TZ}
+        network_mode: 'bridge'
+        ports:
+          - '${IP_ADDRESS}:5076:5076'
+        volumes:
+          - './nzbhydra2:/config'
+          - '${DLDIR}:/downloads'
+
+    # ----------------------------------------
     # OMBI
     # ----------------------------------------
     ombi:
-        image: linuxserver/ombi
+        image: ghcr.io/linuxserver/ombi
         container_name: ombi
         restart: unless-stopped
         network_mode: "bridge"
@@ -296,7 +314,7 @@ services:
     # PORTAINER
     # ----------------------------------------
     portainer:
-        image: portainer/portainer:latest
+        image: portainer/portainer-ce
         container_name: portainer
         restart: unless-stopped
         network_mode: "bridge"
@@ -309,13 +327,13 @@ services:
             - './portainer:/data'
             - '/var/run/docker.sock:/var/run/docker.sock'
             - '/etc/localtime:/etc/localtime:ro'
-        command: ${PORTAINERSTYLE} -H unix:///var/run/docker.sock
+        command: -H unix:///var/run/docker.sock
 
     # ----------------------------------------
     # RADARR
     # ----------------------------------------
     radarr:
-        image: linuxserver/radarr
+        image: ghcr.io/linuxserver/radarr
         container_name: radarr
         restart: unless-stopped
         network_mode: "bridge"
@@ -334,7 +352,7 @@ services:
     # SICKCHILL
     # ----------------------------------------
     sickchill:
-        image: linuxserver/sickchill
+        image: ghcr.io/linuxserver/sickchill
         container_name: sickchill
         restart: unless-stopped
         network_mode: "bridge"
@@ -353,7 +371,7 @@ services:
     # SONARR
     # ----------------------------------------
     sonarr:
-        image: linuxserver/sonarr
+        image: ghcr.io/linuxserver/sonarr
         container_name: sonarr
         restart: unless-stopped
         network_mode: "bridge"

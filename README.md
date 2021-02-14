@@ -15,6 +15,7 @@ Components include:
 *   [Muximux Web based HTPC manager](https://github.com/mescon/Muximux)
 *   [NetData System Monitoring](https://github.com/netdata/netdata)
 *   [NZBGet Usenet Downloader](https://nzbget.net/)  
+*   [NZBHydra2 Meta Search](https://github.com/theotherp/nzbhydra2)  
 *   [Ombi media assistant](http://www.ombi.io/)
 *   [Plex media server](https://www.plex.tv/)
 *   [Portainer Docker Container manager](https://portainer.io/)
@@ -110,9 +111,9 @@ As the script runs you will be prompted for:
 
     Note: If you choose plexpass as your version you may optionally specify CLAIM_TOKEN - you can get your claim token by logging in at [plex.tv/claim](https://www.plex.tv/claim)
 
-3.  The "style" of Portainer to use
-    *   **auth** (will require a password, require a persistent volume map, and will need you to select the endpoint to manage)
-    *   **noauth** (will not require a password for access and will automatically connect to the local Docker sock endpoint)
+3.  Portainer has been switched to the **CE** branch
+    *   **A Password** will now be required - the password can be set at initial login to Portiner.  
+    *   **Initial Username** The initial username for Portainer is **admin**  
 
 4.  Credentials for the NBZGet interface and the Deluge daemon which needed for the CouchPotato container.
     *   **username**
