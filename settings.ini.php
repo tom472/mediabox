@@ -118,7 +118,7 @@ enabled = "true"
 name = "NZBHydra2"
 url = "http://locip:5076"
 scale = 1
-icon = "muximux-download"
+icon = "muximux-nzbhydra"
 color = "#3f8927"
 enabled = "true"
 
