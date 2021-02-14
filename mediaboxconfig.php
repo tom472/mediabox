@@ -28,7 +28,7 @@ body {
 <b><u>Portainer:</u></b><br />
 To help you manage your Mediabox Docker containers Portainer is available.<br />
 Portainer is a Docker Management UI to help you work with the containers etc.<br />
-A password will need to be set for the <b>admin</b> account upon initial login <a href=":9000" target="_blank">Here</a>.<br />
+A password will need to be set for the <b>admin</b> account upon initial login.<br />
 <br />
 <h3><u>Manual Configuration steps:</u></h3>  
 <b><u>Couchpotato:</u></b><br />
