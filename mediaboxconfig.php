@@ -20,15 +20,15 @@ body {
 <li>Lidar and Headphones do the same thing = Music Management</li>
 </ul>
 -- Generally you will only want to choose/use one of each.<br />
-<h3>Mediabox Container Management</h3>
-<b><u>Portainer:</u></b><br />
-To help you manage your Mediabox Docker containers Portainer is available.<br />
-Portainer is a Docker Management UI to help you work with the containers etc.<br />
-A password will need to be set for the <b>admin</b> account upon initial login <a href="locip:9000" target="_blank">Here</a>.<br />
 <ul>
 <li>The <b>Minio</b> login is: minio / minio123.</li>
 <li><b>PROXY</b> The DelugeVPN Container provides an http proxy via the PIA connection at: locip:8118
 </ul>
+<h3>Mediabox Container Management</h3>
+<b><u>Portainer:</u></b><br />
+To help you manage your Mediabox Docker containers Portainer is available.<br />
+Portainer is a Docker Management UI to help you work with the containers etc.<br />
+A password will need to be set for the <b>admin</b> account upon initial login <a href=":9000" target="_blank">Here</a>.<br />
 <br />
 <h3><u>Manual Configuration steps:</u></h3>  
 <b><u>Couchpotato:</u></b><br />
