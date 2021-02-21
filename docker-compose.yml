@@ -111,7 +111,7 @@ services:
         network_mode: "bridge"
         user: "${PUID}:${PGID}"
         ports:
-            - '${IP_ADDRESS}:8088:8080'
+            - '${IP_ADDRESS}:8080:8080'
         environment:
             - FB_BASEURL=/filebrowser
         volumes:
@@ -162,7 +162,7 @@ services:
         image: jellyfin/jellyfin
         container_name: jellyfin
         restart: unless-stopped
-        network_mode: "host"
+        # network_mode: "host"
         user: "${PUID}:${PGID}"
         ports:
             - '${IP_ADDRESS}:8096:8096'
@@ -314,7 +314,7 @@ services:
         container_name: plex
         image: plexinc/pms-docker:${PMSTAG}
         restart: unless-stopped
-        network_mode: "host"
+        # network_mode: "host"
         ports:
             - '${IP_ADDRESS}:32400:32400/tcp'
             - '${IP_ADDRESS}:3005:3005/tcp'

@@ -69,7 +69,7 @@ enabled = "true"
 
 [Filebrowser]
 name = "Filebrowser"
-url = "http://locip:8088"
+url = "http://locip:8080"
 scale = 1
 icon = "muximux-folder-open"
 color = "#f9be03"
