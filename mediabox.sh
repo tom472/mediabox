@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -Eeuo pipefail
-
 # Check that script was run not as root or with sudo
 if [ "$EUID" -eq 0 ]
   then echo "Please do not run this script as root or using sudo"
