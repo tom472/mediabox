@@ -109,14 +109,14 @@ services:
         container_name: filebrowser
         restart: unless-stopped
         network_mode: "bridge"
-		user: "${PUID}:${PGID}"
+        user: "${PUID}:${PGID}"
         ports:
             - '${IP_ADDRESS}:8088:8080'
-		environment:
+        environment:
             - FB_BASEURL=/filebrowser
-		volumes:
+        volumes:
             - './filebrowser:/config'
-			- '${PWD}:/data'
+            - '${PWD}:/data'
 
     # ----------------------------------------
     # HEADPHONES
@@ -432,7 +432,7 @@ services:
             - PGID=${PGID}
             - PUID=${PUID}
             - OOKLA_EULA_GDPR=true
-		volumes:
+        volumes:
             - './speedtest:/config'
 
     # ----------------------------------------
@@ -482,6 +482,6 @@ services:
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:8008:8000'
-		volumes:
+        volumes:
             - './yacht:/config'
-			- '/var/run/docker.sock:/var/run/docker.sock'          
+            - '/var/run/docker.sock:/var/run/docker.sock'
