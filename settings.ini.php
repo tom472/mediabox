@@ -51,12 +51,28 @@ icon = "muximux-deluge"
 color = "#385171"
 enabled = "true"
 
+[Doozle]
+name = "Dozzle"
+url = "http://locip:9999"
+scale = 1
+icon = "muximux-file-text"
+color = "#999999"
+enabled = "true"
+
 [Duplicati]
 name = "Duplicati"
 url = "http://locip:8200"
 scale = 1
 icon = "muximux-copy2"
 color = "#6fa8dc"
+enabled = "true"
+
+[Filebrowser]
+name = "Filebrowser"
+url = "http://locip:8088"
+scale = 1
+icon = "muximux-folder-open"
+color = "#f9be03"
 enabled = "true"
 
 [Headphones]
@@ -170,10 +186,26 @@ icon = "muximux-sonarr"
 color = "#674ea7"
 enabled = "true"
 
+[Speedest]
+name = "Speedtest"
+url = "http://locip:8765"
+scale = 1
+icon = "muximux-stopwatch"
+color = "#cc0000"
+enabled = "true"
+
 [Tautulli]
 name = "Tautulli"
 url = "http://locip:8181"
 scale = 1
 icon = "muximux-plexivity"
 color = "#cc7b19"
+enabled = "true"
+
+[Yacht]
+name = "Yacht"
+url = "http://locip:8008"
+scale = 1
+icon = "muximux-ship"
+color = "#f85c22"
 enabled = "true"

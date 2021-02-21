@@ -70,6 +70,19 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
+    # DOZZLE
+    # ----------------------------------------
+    dozzle:
+        image: amir20/dozzle:latest
+        container_name: doozle
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:9999:8080'
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+
+    # ----------------------------------------
     # DUPLICATI
     # ----------------------------------------
     duplicati:
@@ -87,6 +100,23 @@ services:
             - './duplicati/backups:/backups'
             - '${PWD}:/source'
             - '/etc/localtime:/etc/localtime:ro'
+
+    # ----------------------------------------
+    # FILEBROWSER
+    # ----------------------------------------
+    filebrowser:
+        image: hurlenko/filebrowser 
+        container_name: filebrowser
+        restart: unless-stopped
+        network_mode: "bridge"
+		user: "${PUID}:${PGID}"
+        ports:
+            - '${IP_ADDRESS}:8088:8080'
+		environment:
+            - FB_BASEURL=/filebrowser
+		volumes:
+            - './filebrowser:/config'
+			- '${PWD}:/data'
 
     # ----------------------------------------
     # HEADPHONES
@@ -388,6 +418,24 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
+    # SPEEDTEST
+    # ----------------------------------------
+    speedtest:
+        image: henrywhitaker3/speedtest-tracker:dev
+        container_name: speedtest
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:8765:80'
+        environment:
+            - TZ=${TZ}
+            - PGID=${PGID}
+            - PUID=${PUID}
+            - OOKLA_EULA_GDPR=true
+		volumes:
+            - './speedtest:/config'
+
+    # ----------------------------------------
     # TAUTULLI
     # ----------------------------------------
     tautulli:
@@ -423,3 +471,17 @@ services:
             - TZ=${TZ}
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
+
+    # ----------------------------------------
+    # YACHT
+    # ----------------------------------------
+    yacht:
+        image: selfhostedpro/yacht 
+        container_name: yacht
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:8008:8000'
+		volumes:
+            - './yacht:/config'
+			- '/var/run/docker.sock:/var/run/docker.sock'          

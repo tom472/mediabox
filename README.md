@@ -6,8 +6,10 @@ Components include:
 
 *   [Couchpotato movie library manager](https://couchpota.to/)
 *   [Deluge torrent client (using VPN)](http://deluge-torrent.org/)
+*   [Dozzle realtime log viewer](https://github.com/amir20/dozzle)
 *   [Duplicati Backup Software](https://www.duplicati.com/)
-*   [Headphones](https://github.com/linuxserver/docker-headphones)
+*   [Filebrowser web-based file manager](https://hub.docker.com/r/hurlenko/filebrowser)
+*   [Headphones automated music downloader](https://github.com/linuxserver/docker-headphones)
 *   [Jackett Tracker API and Proxy](https://github.com/Jackett/Jackett)
 *   [Jellyfin Free Software Media System](https://github.com/jellyfin/jellyfin)
 *   [Lidarr Music collection manager](https://lidarr.audio/)
@@ -23,8 +25,10 @@ Components include:
 *   [SABnzbd Usenet download tool](https://github.com/sabnzbd/sabnzbd)
 *   [SickChill TV library manager](https://github.com/SickChill/SickChill)
 *   [Sonarr TV library manager](https://sonarr.tv/)
+*   [Speedtest - Tracker](https://github.com/henrywhitaker3/Speedtest-Tracker)
 *   [Tautulli Plex Media Server monitor](https://github.com/tautulli/tautulli)
 *   [Watchtower Automatic container updater](https://github.com/containrrr/watchtower)
+*   [Yacht container management UI](https://github.com/SelfhostedPro/Yacht/)
 
 ## Prerequisites
 

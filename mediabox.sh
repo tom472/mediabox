@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -Eeuo pipefail
+IFS=$'\n\t'
+
 # Check that script was run not as root or with sudo
 if [ "$EUID" -eq 0 ]
   then echo "Please do not run this script as root or using sudo"
@@ -148,6 +151,7 @@ mkdir -p delugevpn
 mkdir -p delugevpn/config/openvpn
 mkdir -p duplicati
 mkdir -p duplicati/backups
+mkdir -p filesbrowser
 mkdir -p headphones
 mkdir -p historical/env_files
 mkdir -p jackett
@@ -163,7 +167,9 @@ mkdir -p portainer
 mkdir -p radarr
 mkdir -p sickchill
 mkdir -p sonarr
+mkdir -p speedtest
 mkdir -p tautulli
+mkdir -p yacht
 
 # Create menu - Select and Move the PIA VPN files
 echo "The following PIA Servers are avialable that support port-forwarding (for DelugeVPN); Please select one:"
