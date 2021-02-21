@@ -67,14 +67,6 @@ icon = "muximux-copy2"
 color = "#6fa8dc"
 enabled = "true"
 
-[Filebrowser]
-name = "Filebrowser"
-url = "http://locip:8080"
-scale = 1
-icon = "muximux-folder-open"
-color = "#f9be03"
-enabled = "true"
-
 [Headphones]
 name = "Headphones"
 url = "http://locip:8282"
@@ -200,12 +192,4 @@ url = "http://locip:8181"
 scale = 1
 icon = "muximux-plexivity"
 color = "#cc7b19"
-enabled = "true"
-
-[Yacht]
-name = "Yacht"
-url = "http://locip:8000"
-scale = 1
-icon = "muximux-ship"
-color = "#385171"
 enabled = "true"

@@ -148,7 +148,6 @@ mkdir -p delugevpn
 mkdir -p delugevpn/config/openvpn
 mkdir -p duplicati
 mkdir -p duplicati/backups
-mkdir -p filebrowser
 mkdir -p headphones
 mkdir -p historical/env_files
 mkdir -p jackett
@@ -166,7 +165,6 @@ mkdir -p sickchill
 mkdir -p sonarr
 mkdir -p speedtest
 mkdir -p tautulli
-mkdir -p yacht
 
 # Create menu - Select and Move the PIA VPN files
 echo "The following PIA Servers are avialable that support port-forwarding (for DelugeVPN); Please select one:"

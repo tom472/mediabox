@@ -30,11 +30,6 @@ To help you manage your Mediabox Docker containers Portainer is available.<br />
 Portainer is a Docker Management UI to help you work with the containers etc.<br />
 A password will need to be set for the <b>admin</b> account upon initial login.<br />
 <br />
-<b><u>Yacht:</u></b><br />
-To help you manage your Mediabox Docker containers Yacht is available.<br />
-Yacht is a Docker Management UI to help you work with the containers etc.<br />
-The initial login info is: <b>admin@yacht.local</b> and <b>pass</b><br />
-<br />
 <h3><u>Manual Configuration steps:</u></h3>  
 <b><u>Couchpotato:</u></b><br />
 As you go through the Couchpotato Setup Wizard use these settings:<br />

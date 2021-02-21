@@ -102,23 +102,6 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
-    # FILEBROWSER
-    # ----------------------------------------
-    filebrowser:
-        image: hurlenko/filebrowser 
-        container_name: filebrowser
-        restart: unless-stopped
-        network_mode: "bridge"
-        user: "${PUID}:${PGID}"
-        ports:
-            - '${IP_ADDRESS}:8080:8080'
-        environment:
-            - FB_BASEURL=/filebrowser
-        volumes:
-            - './filebrowser:/config'
-            - '${PWD}:/data'
-
-    # ----------------------------------------
     # HEADPHONES
     # ----------------------------------------
     headphones:
@@ -472,16 +455,3 @@ services:
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
 
-    # ----------------------------------------
-    # YACHT
-    # ----------------------------------------
-    yacht:
-        image: selfhostedpro/yacht 
-        container_name: yacht
-        restart: unless-stopped
-        network_mode: "bridge"
-        ports:
-            - '${IP_ADDRESS}:8000:8000'
-        volumes:
-            - './yacht:/config'
-            - '/var/run/docker.sock:/var/run/docker.sock'
