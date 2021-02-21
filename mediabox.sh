@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -Eeuo pipefail
-IFS=$'\n\t'
 
 # Check that script was run not as root or with sudo
 if [ "$EUID" -eq 0 ]
