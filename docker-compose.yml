@@ -481,7 +481,7 @@ services:
         restart: unless-stopped
         network_mode: "bridge"
         ports:
-            - '${IP_ADDRESS}:8008:8000'
+            - '${IP_ADDRESS}:8000:8000'
         volumes:
             - './yacht:/config'
             - '/var/run/docker.sock:/var/run/docker.sock'

@@ -204,8 +204,8 @@ enabled = "true"
 
 [Yacht]
 name = "Yacht"
-url = "http://locip:8008"
+url = "http://locip:8000"
 scale = 1
 icon = "muximux-ship"
-color = "#f85c22"
+color = "#385171"
 enabled = "true"

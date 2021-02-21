@@ -148,7 +148,7 @@ mkdir -p delugevpn
 mkdir -p delugevpn/config/openvpn
 mkdir -p duplicati
 mkdir -p duplicati/backups
-mkdir -p filesbrowser
+mkdir -p filebrowser
 mkdir -p headphones
 mkdir -p historical/env_files
 mkdir -p jackett
