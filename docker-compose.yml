@@ -109,6 +109,7 @@ services:
         container_name: glances
         restart: unless-stopped
         network_mode: "bridge"
+        pid: host
         ports:
             - '${IP_ADDRESS}:61208:61208'
         environment:
@@ -164,7 +165,7 @@ services:
         image: jellyfin/jellyfin
         container_name: jellyfin
         restart: unless-stopped
-        # network_mode: "host"
+        network_mode: "bridge"
         user: "${PUID}:${PGID}"
         ports:
             - '${IP_ADDRESS}:8096:8096'
@@ -172,6 +173,7 @@ services:
             - './jellyfin:/config'
             - '${TVDIR}:/media/tv'
             - '${MOVIEDIR}:/media/movies'
+            - '${MUSICDIR}:/music'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
