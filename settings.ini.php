@@ -67,6 +67,14 @@ icon = "muximux-copy2"
 color = "#6fa8dc"
 enabled = "true"
 
+[Glances]
+name = "Glances"
+url = "http://locip:61208"
+scale = 1
+icon = "muximux-eye-plus"
+color = "#6aa84f"
+enabled = "true"
+
 [Headphones]
 name = "Headphones"
 url = "http://locip:8282"

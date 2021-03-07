@@ -102,6 +102,25 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
+    # GLANCES
+    # ----------------------------------------
+    glances:
+        image: nicolargo/glances:latest-alpine
+        container_name: glances
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:61208:61208'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+            - GLANCES_OPT=-w
+        volumes:
+            - './glances:/config'
+            - '/var/run/docker.sock:/var/run/docker.sock:ro'
+
+    # ----------------------------------------
     # HEADPHONES
     # ----------------------------------------
     headphones:
