@@ -208,7 +208,7 @@ services:
         ports:
             - '${IP_ADDRESS}:8281:8081'
         volumes:
-            - './${MISCDIR}:/downloads'
+            - '${MISCDIR}:/downloads'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
