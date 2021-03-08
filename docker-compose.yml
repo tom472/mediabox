@@ -218,6 +218,7 @@ services:
         image: minio/minio
         container_name: minio
         restart: unless-stopped
+        user: "${PUID}:${PGID}"
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:9009:9000'
