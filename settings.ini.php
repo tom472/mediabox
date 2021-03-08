@@ -106,6 +106,14 @@ icon = "muximux-music"
 color = "#93c47d"
 enabled = "true"
 
+[Metube]
+name = "Metube"
+url = "http://locip:8281"
+scale = 1
+icon = "muximux-youtube"
+color = "#cc0000"
+enabled = "true"
+
 [Minio]
 name = "Minio"
 url = "http://locip:9009"

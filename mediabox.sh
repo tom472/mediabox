@@ -131,6 +131,10 @@ if [ -z "$tvdirectory" ]; then
     mkdir -p content/tv
     tvdirectory="$PWD/content/tv"
 fi
+if [ -z "$miscdirectory" ]; then
+    mkdir -p content/misc
+    musicdirectory="$PWD/content/misc"
+fi
 if [ -z "$moviedirectory" ]; then
     mkdir -p content/movies
     moviedirectory="$PWD/content/movies"
@@ -224,6 +228,7 @@ echo "DOCKERGRP=$DOCKERGRP"
 echo "PWD=$PWD"
 echo "DLDIR=$dldirectory"
 echo "TVDIR=$tvdirectory"
+echo "MISCDIR=$miscdirectory"
 echo "MOVIEDIR=$moviedirectory"
 echo "MUSICDIR=$musicdirectory"
 echo "PIAUNAME=$piauname"
