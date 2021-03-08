@@ -137,7 +137,7 @@ if [ -z "$tvdirectory" ]; then
 fi
 if [ -z "$miscdirectory" ]; then
     mkdir -p content/misc
-    musicdirectory="$PWD/content/misc"
+    miscdirectory="$PWD/content/misc"
 fi
 if [ -z "$moviedirectory" ]; then
     mkdir -p content/movies
