@@ -293,7 +293,7 @@ docker start delugevpn > /dev/null 2>&1
 # Configure FlareSolverr URL for Jackett
 while [ ! -f jackett/Jackett/ServerConfig.json ]; do sleep 1; done
 docker stop jackett > /dev/null 2>&1
-perl -i -pe 's/"FlareSolverrUrl": ".*",/"FlareSolverrUrl": "http:\/\/$locip:8191",/g' jackett/Jackett/ServerConfig.json
+perl -i -pe 's/"FlareSolverrUrl": ".*",/"FlareSolverrUrl": "http:\/\/'$locip':8191",/g' jackett/Jackett/ServerConfig.json
 docker start jackett > /dev/null 2>&1
 
 # Configure NZBGet
