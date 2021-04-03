@@ -8,6 +8,7 @@ Components include:
 *   [Deluge torrent client (using VPN)](http://deluge-torrent.org/)
 *   [Dozzle realtime log viewer](https://github.com/amir20/dozzle)
 *   [Duplicati Backup Software](https://www.duplicati.com/)
+*   [Flaresolverr proxy server to bypass Cloudflare protection (Used with Jackett)](https://github.com/FlareSolverr/FlareSolverr)
 *   [Glances system monitoring](https://nicolargo.github.io/glances/)
 *   [Headphones automated music downloader](https://github.com/linuxserver/docker-headphones)
 *   [Jackett Tracker API and Proxy](https://github.com/Jackett/Jackett)
@@ -32,7 +33,7 @@ Components include:
 
 ## Prerequisites
 
-*   [Ubuntu 16.04 LTS](https://www.ubuntu.com/) Or [Ubuntu 18.04 LTS](https://www.ubuntu.com/)
+*   [Ubuntu 18.04 LTS](https://www.ubuntu.com/) Or [Ubuntu 20.04 LTS](https://www.ubuntu.com/)
 *   [VPN account from Private internet Access](https://www.privateinternetaccess.com/) (Please see [binhex's Github Repo](https://github.com/binhex/arch-delugevpn) if you want to use a different VPN)
 *   [Git](https://git-scm.com/)
 *   [Docker](https://www.docker.com/)

@@ -156,6 +156,7 @@ mkdir -p delugevpn
 mkdir -p delugevpn/config/openvpn
 mkdir -p duplicati
 mkdir -p duplicati/backups
+mkdir -p flaresolverr
 mkdir -p glances
 mkdir -p headphones
 mkdir -p historical/env_files
@@ -288,6 +289,12 @@ rm delugevpn/config/core.conf~ > /dev/null 2>&1
 perl -i -pe 's/"allow_remote": false,/"allow_remote": true,/g'  delugevpn/config/core.conf
 perl -i -pe 's/"move_completed": false,/"move_completed": true,/g'  delugevpn/config/core.conf
 docker start delugevpn > /dev/null 2>&1
+
+# Configure FlareSolverr URL for Jackett
+while [ ! -f jackett/Jackett/ServerConfig.json ]; do sleep 1; done
+docker stop jackett > /dev/null 2>&1
+perl -i -pe 's/"FlareSolverrUrl": "",/"FlareSolverrUrl": "http:\/\/$locip:8191",/g' jackett/Jackett/ServerConfig.json
+docker start jackett > /dev/null 2>&1
 
 # Configure NZBGet
 [ -d "content/nbzget" ] && mv content/nbzget/* content/ && rmdir content/nbzget
