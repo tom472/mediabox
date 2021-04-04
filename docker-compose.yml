@@ -346,6 +346,23 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
+    # OVERSEERR
+    # ----------------------------------------
+    overseerr:
+        image: sctx/overseerr:latest
+        container_name: overseerr
+        restart: unless-stopped
+        network_mode: "bridge"
+        user: "${PUID}:${PGID}"
+        environment:
+            - LOG_LEVEL=info
+            - TZ=${TZ}
+        ports:
+            - ${IP_ADDRESS}:5055:5055
+        volumes:
+            - ./overseerr:/app/config
+
+    # ----------------------------------------
     # PLEX
     # ----------------------------------------
     plex:

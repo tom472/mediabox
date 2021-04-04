@@ -154,6 +154,14 @@ icon = "muximux-plex"
 color = "#f9be03"
 enabled = "true"
 
+[Overseerr]
+name = "Overseerr"
+url = "http://locip:5055"
+scale = 1
+icon = "muximux-search"
+color = "#674ea7"
+enabled = "true"
+
 [Plex]
 name = "Plex"
 url = "http://locip:32400/web"

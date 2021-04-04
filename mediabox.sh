@@ -26,6 +26,10 @@ if [ -e .env ]; then
     else
         printf "Mediabox Files Update complete.\\n\\nThis script will restart if necessary\\n\\n"
     fi
+    # Check for Updated Docker-Compose
+    printf "Checking for updates to Docker-Compose (You will be prompted for SUDO credentials).\\n\\n"
+    sudo curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "browser_download_url" | grep -m1 `uname -s`-`uname -m` | cut -d '"' -f4 | xargs sudo curl -L -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
     # Rename the .env file so this check fails if mediabox.sh needs to re-launch
     mv .env 1.env
     read -r -p "Press any key to continue... " -n1 -s
@@ -168,6 +172,7 @@ mkdir -p muximux
 mkdir -p nzbget
 mkdir -p nzbhydra2
 mkdir -p ombi
+mkdir -p overseerr
 mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"
 mkdir -p portainer
 mkdir -p radarr
