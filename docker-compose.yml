@@ -349,18 +349,19 @@ services:
     # OVERSEERR
     # ----------------------------------------
     overseerr:
-        image: sctx/overseerr:latest
+        image: ghcr.io/linuxserver/overseerr
         container_name: overseerr
         restart: unless-stopped
         network_mode: "bridge"
-        user: "${PUID}:${PGID}"
         environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
             - LOG_LEVEL=info
             - TZ=${TZ}
         ports:
             - ${IP_ADDRESS}:5055:5055
         volumes:
-            - ./overseerr:/app/config
+            - ./overseerr:/config
 
     # ----------------------------------------
     # PLEX
