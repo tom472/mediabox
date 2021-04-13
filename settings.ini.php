@@ -210,10 +210,26 @@ icon = "muximux-stopwatch"
 color = "#cc0000"
 enabled = "true"
 
+[Sqlitebrowser]
+name = "SQLitebrowser"
+url = "http://locip:3000"
+scale = 1
+icon = "muximux-database"
+color = "#9fc5e8"
+enabled = "true"
+
 [Tautulli]
 name = "Tautulli"
 url = "http://locip:8181"
 scale = 1
 icon = "muximux-plexivity"
 color = "#cc7b19"
+enabled = "true"
+
+[Tdarr]
+name = "Tdarr"
+url = "http://locip:8265"
+scale = 1
+icon = "muximux-spinner10"
+color = "#0b5394"
 enabled = "true"
