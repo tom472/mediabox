@@ -191,7 +191,7 @@ services:
             - '${MISCDIR}:/media/misc'
             - '${MOVIEDIR}:/media/movies'
             - '${MUSICDIR}:/media/music'
-            - '${TVDIR}:/media/tv
+            - '${TVDIR}:/media/tv'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
@@ -393,7 +393,7 @@ services:
             - '${MISCDIR}:/data/misc'
             - '${MOVIEDIR}:/data/movies'
             - '${MUSICDIR}:/data/music'
-            - '${TVDIR}:/media/tv
+            - '${TVDIR}:/media/tv'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
