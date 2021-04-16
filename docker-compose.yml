@@ -393,7 +393,7 @@ services:
             - '${MISCDIR}:/data/misc'
             - '${MOVIEDIR}:/data/movies'
             - '${MUSICDIR}:/data/music'
-            - '${TVDIR}:/media/tv'
+            - '${TVDIR}:/data/tv'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------

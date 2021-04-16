@@ -31,7 +31,7 @@ Components include:
 *   [Speedtest - Tracker](https://github.com/henrywhitaker3/Speedtest-Tracker)
 *   [SQLitebrowser DB browser for SQLite](https://sqlitebrowser.org/) 
 *   [Tautulli Plex Media Server monitor](https://github.com/tautulli/tautulli)
-*   [Tdarr Distributed Transcoding System](tdarr.io)
+*   [Tdarr Distributed Transcoding System](https://tdarr.io)
 *   [Watchtower Automatic container updater](https://github.com/containrrr/watchtower)
 
 ## Prerequisites
