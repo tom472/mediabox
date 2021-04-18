@@ -11,9 +11,17 @@ fi
 # See if we need to check GIT for updates
 if [ -e .env ]; then
     # Check for Updated Docker-Compose
-    printf "Checking for updates to Docker-Compose (You will be prompted for SUDO credentials).\\n\\n"
-    sudo curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "browser_download_url" | grep -m1 `uname -s`-`uname -m` | cut -d '"' -f4 | xargs sudo curl -L -o /usr/local/bin/docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose
+    printf "Checking for update to Docker-Compose (If needed - You will be prompted for SUDO credentials).\\n\\n"
+    onlinever=`curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "tag_name" | cut -d ":" -f2 | sed 's/"//g' | sed 's/,//g' | sed 's/ //g'`
+    printf "Current online version is: $onlinever\\n"
+    localver=`docker-compose -v | cut -d " " -f3 | sed 's/,//g'`
+    printf "Current local version is: $localver\\n"
+    if [ $localver != $onlinever ]; then
+        sudo curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "browser_download_url" | grep -m1 `uname -s`-`uname -m` | cut -d '"' -f4 | xargs sudo curl -L -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+    else
+        printf "No Docker-Compose Update needed."
+    fi
     # Stash any local changes to the base files
     git stash > /dev/null 2>&1
     printf "Updating your local copy of Mediabox.\\n\\n"
@@ -45,6 +53,7 @@ if [ -e 1.env ]; then
     daemonpass=$(grep CPDAEMONPASS 1.env | cut -d = -f2)
     piauname=$(grep PIAUNAME 1.env | cut -d = -f2)
     piapass=$(grep PIAPASS 1.env | cut -d = -f2)
+    pmstag=$(grep PMSTAG 1.env | cut -d = -f2)
     dldirectory=$(grep DLDIR 1.env | cut -d = -f2)
     tvdirectory=$(grep TVDIR 1.env | cut -d = -f2)
     miscdirectory=$(grep MISCDIR 1.env | cut -d = -f2)
@@ -58,6 +67,8 @@ if [ -e 1.env ]; then
     printf "Your MOVIE Directory is: %s \\n" "$moviedirectory"
     printf "Your MUSIC Directory is: %s \\n" "$musicdirectory"
     read  -r -p "Are these directiores still correct? (y/n) " diranswer `echo \n`
+    printf "Your PLEX Release Type is: %s \\n" "$pmstag"
+    read  -r -p "Do you need to change your PLEX Release Type? (y/n) " pmsanswer `echo \n`
     read  -r -p "Do you need to change your PIA Credentials? (y/n) " piaanswer `echo \n`
     # Now we need ".env" to exist again so we can stop just the Medaibox containers
     mv 1.env .env
@@ -87,18 +98,14 @@ slash=$(ip a | grep "$locip" | cut -d ' ' -f6 | awk -F '/' '{print $2}')
 lannet=$(awk -F"." '{print $1"."$2"."$3".0"}'<<<$locip)/$slash
 
 # Get Private Internet Access Info
-if [ -z "$piaanswer" ]; then
+if [ -z "$piaanswer" ] || [ "$piaanswer" == "y" ]; then
 read -r -p "What is your PIA Username?: " piauname
 read -r -s -p "What is your PIA Password? (Will not be echoed): " piapass
 printf "\\n\\n"
 fi
-if [ "$piaanswer" == "y" ]; then
-read -r -p "What is your New PIA Username?: " piauname
-read -r -s -p "What is your New PIA Password? (Will not be echoed): " piapass
-printf "\\n\\n"
-fi
 
 # Get info needed for PLEX Official image
+if [ -z "$pmstag" ] || [ "$pmsanswer" == "y" ]; then
 read -r -p "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
 read -r -p "If you have PLEXPASS what is your Claim Token from https://www.plex.tv/claim/ (Optional): " pmstoken
 # If not set - set PMS Tag to Public:
