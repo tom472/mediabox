@@ -20,7 +20,7 @@ if [ -e .env ]; then
         sudo curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "browser_download_url" | grep -m1 `uname -s`-`uname -m` | cut -d '"' -f4 | xargs sudo curl -L -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
     else
-        printf "No Docker-Compose Update needed."
+        printf "No Docker-Compose Update needed.\\n\\n"
     fi
     # Stash any local changes to the base files
     git stash > /dev/null 2>&1
@@ -66,9 +66,13 @@ if [ -e 1.env ]; then
     printf "Your MISC Directory is: %s \\n" "$miscdirectory"
     printf "Your MOVIE Directory is: %s \\n" "$moviedirectory"
     printf "Your MUSIC Directory is: %s \\n" "$musicdirectory"
+    printf "\\n\\n"
     read  -r -p "Are these directiores still correct? (y/n) " diranswer `echo \n`
-    printf "Your PLEX Release Type is: %s \\n" "$pmstag"
+    printf "\\n\\n"
+    printf "Your PLEX Release Type is: %s" "$pmstag"
+    printf "\\n\\n"
     read  -r -p "Do you need to change your PLEX Release Type? (y/n) " pmsanswer `echo \n`
+    printf "\\n\\n"
     read  -r -p "Do you need to change your PIA Credentials? (y/n) " piaanswer `echo \n`
     # Now we need ".env" to exist again so we can stop just the Medaibox containers
     mv 1.env .env
