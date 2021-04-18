@@ -108,6 +108,7 @@ fi
 if [ -z "$pmstag" ] || [ "$pmsanswer" == "y" ]; then
 read -r -p "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
 read -r -p "If you have PLEXPASS what is your Claim Token from https://www.plex.tv/claim/ (Optional): " pmstoken
+fi
 # If not set - set PMS Tag to Public:
 if [ -z "$pmstag" ]; then
    pmstag=public
