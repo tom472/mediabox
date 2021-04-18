@@ -119,25 +119,24 @@ As the script runs you will be prompted for:
 
     Note: If you choose plexpass as your version you may optionally specify CLAIM_TOKEN - you can get your claim token by logging in at [plex.tv/claim](https://www.plex.tv/claim)
 
-3.  Portainer has been switched to the **CE** branch
-    *   **A Password** will now be required - the password can be set at initial login to Portiner.  
-    *   **Initial Username** The initial username for Portainer is **admin**  
-
-4.  Credentials for the NBZGet interface and the Deluge daemon which needed for the CouchPotato container.
+3.  Credentials for the NBZGet interface and the Deluge daemon which needed for the CouchPotato container.
     *   **username**
     *   **password**
 
-Upon completion, the script will launch your mediabox containers.
+Upon completion, the script will launch your mediabox containers.  
 
+Portainer has been switched to the **CE** branch
+    *   **A Password** will now be required - the password can be set at initial login to Portiner.  
+    *   **Initial Username** The initial username for Portainer is **admin**  
 ### **Mediabox has been tested to work on Ubuntu 18.04 LTS / 20.04 LTS - Server and Desktop**
 
 **Thanks go out to:**
 
-[@kspillane](https://github.com/kspillane) - Jumped right in and is providing helpful commits / PRs
+[@kspillane](https://github.com/kspillane)
 
-[@mnkhouri](https://github.com/mnkhouri) - provided a large amount of code clean-up.
+[@mnkhouri](https://github.com/mnkhouri)
 
-[@danipolo](https://github.com/danipolo) for the bridge-utils tip
+[@danipolo](https://github.com/danipolo)
 
 [binhex](https://github.com/binhex)
 

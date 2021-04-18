@@ -19,6 +19,7 @@ if [ -e .env ]; then
     if [ $localver != $onlinever ]; then
         sudo curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "browser_download_url" | grep -m1 `uname -s`-`uname -m` | cut -d '"' -f4 | xargs sudo curl -L -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
+        printf "\\n\\n"
     else
         printf "No Docker-Compose Update needed.\\n\\n"
     fi

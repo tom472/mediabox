@@ -10,6 +10,7 @@ body {
   background-color: lightblue;
 }
 </style>
+If you enjoy the project -- Fuel it with some caffeine :)<br /><br />
 <a href="https://cash.me/$TomMorgan" target="_blank"><img src="https://img.shields.io/badge/Donate-SquareCash-brightgreen.svg" alt="badge"></a><br />
 <h1>Welcome to Mediabox!</h1>
 <h3><u>Basic Information & Configuration</u></h3>
