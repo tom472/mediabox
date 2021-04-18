@@ -125,9 +125,9 @@ As the script runs you will be prompted for:
 
 Upon completion, the script will launch your mediabox containers.  
 
-Portainer has been switched to the **CE** branch
-    *   **A Password** will now be required - the password can be set at initial login to Portiner.  
-    *   **Initial Username** The initial username for Portainer is **admin**  
+Portainer has been switched to the **CE** branch  
+*   **A Password** will now be required - the password can be set at initial login to Portiner.  
+*   **Initial Username** The initial username for Portainer is **admin**  
 ### **Mediabox has been tested to work on Ubuntu 18.04 LTS / 20.04 LTS - Server and Desktop**
 
 **Thanks go out to:**
