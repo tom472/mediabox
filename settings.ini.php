@@ -186,6 +186,14 @@ icon = "muximux-sonarr"
 color = "#ffe599"
 enabled = "true"
 
+[Requestrr]
+name = "Requestrr"
+url = "http://locip:4545"
+scale = 1
+icon = "muximux-search"
+color = "#674ea7"
+enabled = "true"
+
 [SickChill]
 name = "SickChill"
 url = "http://locip:8081"

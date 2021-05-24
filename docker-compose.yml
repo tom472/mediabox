@@ -435,6 +435,23 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
+    # REQUESTRR
+    # ----------------------------------------
+    requestrr:
+        image: ghcr.io/linuxserver/requestrr
+        container_name: requestrr
+        restart: unless-stopped
+        network_mode: "bridge"
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - TZ=${TZ}
+        ports:
+            - ${IP_ADDRESS}:4545:4545
+        volumes:
+            - ./requestrr:/config
+
+    # ----------------------------------------
     # SICKCHILL
     # ----------------------------------------
     sickchill:
