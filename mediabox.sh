@@ -84,6 +84,7 @@ if [ -e 1.env ]; then
     mv .env "$(date +"%Y-%m-%d_%H:%M").env"
 fi
 
+# Collect Server/User info:
 # Get local Username
 localuname=$(id -u -n)
 # Get PUID
@@ -334,6 +335,7 @@ echo "CPDAEMONPASS=$daemonpass"
 echo "NZBGETUN=$daemonun"
 echo "NZBGETPASS=$daemonpass"
 } >> .env
+
 # Configure Muximux settings and files
 while [ ! -f muximux/www/muximux/settings.ini.php-example ]; do sleep 1; done
 docker stop muximux > /dev/null 2>&1
@@ -359,6 +361,7 @@ if [ -e plexpy/plexpy.db.moved ]; then # Adjust for missed moves
     mv plexpy/ historical/plexpy/
 fi
 
+# Completion Message
 printf "Setup Complete - Open a browser and go to: \\n\\n"
 printf "http://%s \\nOR http://%s If you have appropriate DNS configured.\\n\\n" "$locip" "$thishost"
 printf "Start with the MEDIABOX Icon for settings and configuration info.\\n"

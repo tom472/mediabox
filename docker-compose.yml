@@ -238,13 +238,14 @@ services:
         network_mode: "bridge"
         ports:
             - '${IP_ADDRESS}:9009:9000'
+            - '${IP_ADDRESS}:9001:9001'
         environment:
-            - MINIO_ACCESS_KEY=minio
-            - MINIO_SECRET_KEY=minio123
+            - MINIO_ROOT_USER=minio
+            - MINIO_ROOT_PASSWORD=minio123
         volumes:
             - './minio:/root/.minio'
             - '${PWD}:/export'
-        command: server /export
+        command: server --console-address ":9001" /export
         healthcheck:
             test: ["CMD", "curl", "-f", "http://${IP_ADDRESS}:9009/minio/health/live"]
             interval: 5m

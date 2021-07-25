@@ -116,7 +116,7 @@ enabled = "true"
 
 [Minio]
 name = "Minio"
-url = "http://locip:9009"
+url = "http://locip:9001"
 scale = 1
 icon = "muximux-stack"
 color = "#999999"
