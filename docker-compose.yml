@@ -16,7 +16,7 @@ services:
     # COUCHPOTATO
     # ----------------------------------------
     couchpotato:
-        image: ghcr.io/linuxserver/couchpotato
+        image: lscr.io/linuxserver/couchpotato
         container_name: couchpotato
         restart: unless-stopped
         network_mode: "bridge"
@@ -85,7 +85,7 @@ services:
     # DUPLICATI
     # ----------------------------------------
     duplicati:
-        image: ghcr.io/linuxserver/duplicati
+        image: lscr.io/linuxserver/duplicati
         container_name: duplicati
         restart: unless-stopped
         network_mode: "bridge"
@@ -142,7 +142,7 @@ services:
     # HEADPHONES
     # ----------------------------------------
     headphones:
-        image: ghcr.io/linuxserver/headphones
+        image: lscr.io/linuxserver/headphones
         container_name: headphones
         restart: unless-stopped
         network_mode: "bridge"
@@ -161,7 +161,7 @@ services:
     # JACKETT
     # ----------------------------------------
     jackett:
-        image: ghcr.io/linuxserver/jackett
+        image: lscr.io/linuxserver/jackett
         container_name: jackett
         restart: unless-stopped
         network_mode: "bridge"
@@ -198,7 +198,7 @@ services:
     # LIDARR
     # ----------------------------------------
     lidarr:
-        image: ghcr.io/linuxserver/lidarr
+        image: lscr.io/linuxserver/lidarr
         container_name: lidarr
         restart: unless-stopped
         network_mode: "bridge"
@@ -257,7 +257,7 @@ services:
     # MUXIMUX
     # ----------------------------------------
     muximux:
-        image: ghcr.io/linuxserver/muximux
+        image: lscr.io/linuxserver/muximux
         container_name: muximux
         restart: unless-stopped
         network_mode: "bridge"
@@ -296,7 +296,7 @@ services:
     # NZBGet
     # ----------------------------------------
     nzbget:
-        image: ghcr.io/linuxserver/nzbget
+        image: lscr.io/linuxserver/nzbget
         container_name: nzbget
         restart: unless-stopped
         environment:
@@ -314,7 +314,7 @@ services:
     # NZBHydra2
     # ----------------------------------------
     nzbhydra2:
-        image: ghcr.io/linuxserver/nzbhydra2
+        image: lscr.io/linuxserver/nzbhydra2
         container_name: nzbhydra2
         restart: unless-stopped
         environment:
@@ -332,7 +332,7 @@ services:
     # OMBI
     # ----------------------------------------
     ombi:
-        image: ghcr.io/linuxserver/ombi
+        image: lscr.io/linuxserver/ombi
         container_name: ombi
         restart: unless-stopped
         network_mode: "bridge"
@@ -349,7 +349,7 @@ services:
     # OVERSEERR
     # ----------------------------------------
     overseerr:
-        image: ghcr.io/linuxserver/overseerr
+        image: lscr.io/linuxserver/overseerr
         container_name: overseerr
         restart: unless-stopped
         network_mode: "bridge"
@@ -420,7 +420,7 @@ services:
     # RADARR
     # ----------------------------------------
     radarr:
-        image: ghcr.io/linuxserver/radarr
+        image: lscr.io/linuxserver/radarr
         container_name: radarr
         restart: unless-stopped
         network_mode: "bridge"
@@ -439,7 +439,7 @@ services:
     # REQUESTRR
     # ----------------------------------------
     requestrr:
-        image: ghcr.io/linuxserver/requestrr
+        image: lscr.io/linuxserver/requestrr
         container_name: requestrr
         restart: unless-stopped
         network_mode: "bridge"
@@ -456,7 +456,7 @@ services:
     # SICKCHILL
     # ----------------------------------------
     sickchill:
-        image: ghcr.io/linuxserver/sickchill
+        image: lscr.io/linuxserver/sickchill
         container_name: sickchill
         restart: unless-stopped
         network_mode: "bridge"
@@ -475,7 +475,7 @@ services:
     # SONARR
     # ----------------------------------------
     sonarr:
-        image: ghcr.io/linuxserver/sonarr
+        image: lscr.io/linuxserver/sonarr
         container_name: sonarr
         restart: unless-stopped
         network_mode: "bridge"
@@ -513,7 +513,7 @@ services:
     # SQLITEBROWSER
     # ----------------------------------------
     sqlitebrowser:
-        image: ghcr.io/linuxserver/sqlitebrowser
+        image: lscr.io/linuxserver/sqlitebrowser
         container_name: sqlitebrowser
         restart: unless-stopped
         network_mode: "bridge"
