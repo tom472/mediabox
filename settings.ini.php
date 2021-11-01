@@ -241,3 +241,11 @@ scale = 1
 icon = "muximux-spinner10"
 color = "#0b5394"
 enabled = "true"
+
+[Tubesync]
+name = "TubeSync"
+url = "http://locip:4848"
+scale = 1
+icon = "muximux-youtube"
+color = "#cc0000"
+enabled = "true"

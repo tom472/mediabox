@@ -33,6 +33,7 @@ Components include:
 * [SQLitebrowser DB browser for SQLite](https://sqlitebrowser.org/)
 * [Tautulli Plex Media Server monitor](https://github.com/tautulli/tautulli)
 * [Tdarr Distributed Transcoding System](https://tdarr.io)
+* [TubeSync - YouTube PVR](https://github.com/meeb/tubesync)
 * [Watchtower Automatic container updater](https://github.com/containrrr/watchtower)
 
 ## Prerequisites
@@ -72,7 +73,7 @@ Install the prerequisite packages:
 3. Install Docker-Compose:  
 
     ```bash
-    sudo curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "browser_download_url" | grep -m1 `uname -s`-`uname -m` | cut -d '"' -f4 | xargs sudo curl -L -o /usr/local/bin/docker-compose
+    sudo curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "browser_download_url" | grep -i -m1 `uname -s`-`uname -m` | cut -d '"' -f4 | xargs sudo curl -L -o /usr/local/bin/docker-compose
     ```
 
 4. Set the permissions: `$ sudo chmod +x /usr/local/bin/docker-compose`  

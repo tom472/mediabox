@@ -607,6 +607,24 @@ services:
             - plex
 
     # ----------------------------------------
+    # TUBESYNC
+    # ----------------------------------------
+    tubesync:
+       image: ghcr.io/meeb/tubesync:latest
+       container_name: tubesync
+       restart: unless-stopped
+       network_mode: "bridge"
+       ports:
+            - '${IP_ADDRESS}:4848:4848'
+       volumes:
+            - './tubesync:/config'
+            - '${MISCDIR}:/downloads'
+       environment:
+            - TZ=${TZ}
+            - PUID=${PUID}
+            - PGID=${PGID}
+
+    # ----------------------------------------
     # WATCHTOWER
     # ----------------------------------------
     watchtower:
