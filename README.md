@@ -12,6 +12,7 @@ Components include:
 * [Glances system monitoring](https://nicolargo.github.io/glances/)
 * [Headphones automated music downloader](https://github.com/linuxserver/docker-headphones)
 * [Homer - Server Home Page](https://github.com/bastienwirtz/homer)
+* [Homer Icons - Icons for Homer](https://github.com/NX211/homer-icons)
 * [Jackett Tracker API and Proxy](https://github.com/Jackett/Jackett)
 * [Jellyfin Free Software Media System](https://github.com/jellyfin/jellyfin)
 * [Lidarr Music collection manager](https://lidarr.audio/)
