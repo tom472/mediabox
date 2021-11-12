@@ -167,8 +167,8 @@ services:
     ports:
         - '${IP_ADDRESS}:80:8080'
     environment:
-        - PUID=${PUID}
-        - PGID=${PGID}
+        - UID=${PUID}
+        - GID=${PGID}
     volumes:
         - './homer:/www/assets'
 
