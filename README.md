@@ -11,6 +11,7 @@ Components include:
 * [Flaresolverr proxy server to bypass Cloudflare protection (Used with Jackett)](https://github.com/FlareSolverr/FlareSolverr)
 * [Glances system monitoring](https://nicolargo.github.io/glances/)
 * [Headphones automated music downloader](https://github.com/linuxserver/docker-headphones)
+* [Homer - Server Home Page](https://github.com/bastienwirtz/homer)
 * [Jackett Tracker API and Proxy](https://github.com/Jackett/Jackett)
 * [Jellyfin Free Software Media System](https://github.com/jellyfin/jellyfin)
 * [Lidarr Music collection manager](https://lidarr.audio/)

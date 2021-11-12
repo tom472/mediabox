@@ -44,7 +44,7 @@ if [ -e .env ]; then
     read -r -p "Press any key to continue... " -n1 -s
     printf "\\n\\n"
     # Run exec mediabox.sh if mediabox.sh changed
-    check_run mediabox.sh "exec ./mediabox.sh"
+    check_run mediabox.sh `exec ./mediabox.sh`
 fi
 
 # After update collect some current known variables
@@ -178,6 +178,7 @@ mkdir -p flaresolverr
 mkdir -p glances
 mkdir -p headphones
 mkdir -p historical/env_files
+mkdir -p homer
 mkdir -p jackett
 mkdir -p jellyfin
 mkdir -p lidarr
@@ -282,6 +283,9 @@ docker rm -f uhttpd > /dev/null 2>&1
 # Move back-up .env files
 mv 20*.env historical/env_files/ > /dev/null 2>&1
 mv historical/20*.env historical/env_files/ > /dev/null 2>&1
+# Remove files after switch to using Prep folder
+rm -f mediaboxconfig.php
+rm -f settings.ini.php
 
 # Download & Launch the containers
 echo "The containers will now be pulled and launched"
@@ -337,11 +341,25 @@ echo "NZBGETUN=$daemonun"
 echo "NZBGETPASS=$daemonpass"
 } >> .env
 
+# Configure Homer settings and files
+while [ ! -f homer/config.yml ]; do sleep 1; done
+docker stop homer > /dev/null 2>&1
+cp prep/config.yml homer/config.yml
+cp prep/mediaboxconfig.html homer/mediaboxconfig.html
+cp prep/portmap.html homer/portmap.html
+cp prep/icons/* homer/icons/
+sed '/^PIA/d' < .env > homer/env.txt # Pull PIA creds from the displayed .env file
+perl -i -pe "s/locip/$locip/g" homer/config.yml
+perl -i -pe "s/locip/$locip/g" homer/mediaboxconfig.html
+perl -i -pe "s/daemonun/$daemonun/g" homer/mediaboxconfig.html
+perl -i -pe "s/daemonpass/$daemonpass/g" homer/mediaboxconfig.html
+docker start homer > /dev/null 2>&1
+
 # Configure Muximux settings and files
 while [ ! -f muximux/www/muximux/settings.ini.php-example ]; do sleep 1; done
 docker stop muximux > /dev/null 2>&1
-cp settings.ini.php muximux/www/muximux/settings.ini.php
-cp mediaboxconfig.php muximux/www/muximux/mediaboxconfig.php
+cp prep/settings.ini.php muximux/www/muximux/settings.ini.php
+cp prep/mediaboxconfig.php muximux/www/muximux/mediaboxconfig.php
 sed '/^PIA/d' < .env > muximux/www/muximux/env.txt # Pull PIA creds from the displayed .env file
 perl -i -pe "s/locip/$locip/g" muximux/www/muximux/settings.ini.php
 perl -i -pe "s/locip/$locip/g" muximux/www/muximux/mediaboxconfig.php
@@ -365,4 +383,3 @@ fi
 # Completion Message
 printf "Setup Complete - Open a browser and go to: \\n\\n"
 printf "http://%s \\nOR http://%s If you have appropriate DNS configured.\\n\\n" "$locip" "$thishost"
-printf "Start with the MEDIABOX Icon for settings and configuration info.\\n"
