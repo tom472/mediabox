@@ -349,6 +349,7 @@ cp prep/mediaboxconfig.html homer/mediaboxconfig.html
 cp prep/portmap.html homer/portmap.html
 cp prep/icons/* homer/icons/
 sed '/^PIA/d' < .env > homer/env.txt # Pull PIA creds from the displayed .env file
+perl -i -pe "s/thishost/$thishost/g" homer/config.yml
 perl -i -pe "s/locip/$locip/g" homer/config.yml
 perl -i -pe "s/locip/$locip/g" homer/mediaboxconfig.html
 perl -i -pe "s/daemonun/$daemonun/g" homer/mediaboxconfig.html
@@ -379,6 +380,9 @@ fi
 if [ -e plexpy/plexpy.db.moved ]; then # Adjust for missed moves
     mv plexpy/ historical/plexpy/
 fi
+
+# Create Port Mapping file
+for i in $(docker ps --format {{.Names}} | sort); do printf "\n === $i Ports ===\n" && docker port $i; done > homer/ports.txt
 
 # Completion Message
 printf "Setup Complete - Open a browser and go to: \\n\\n"
