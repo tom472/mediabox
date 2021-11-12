@@ -44,7 +44,7 @@ if [ -e .env ]; then
     read -r -p "Press any key to continue... " -n1 -s
     printf "\\n\\n"
     # Run exec mediabox.sh if mediabox.sh changed
-    check_run mediabox.sh `exec ./mediabox.sh`
+    check_run mediabox.sh "exec ./mediabox.sh"
 fi
 
 # After update collect some current known variables
