@@ -12,12 +12,12 @@ fi
 if [ -e .env ]; then
     # Check for Updated Docker-Compose
     printf "Checking for update to Docker-Compose (If needed - You will be prompted for SUDO credentials).\\n\\n"
-    onlinever=`curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "tag_name" | cut -d ":" -f2 | sed 's/"//g' | sed 's/,//g' | sed 's/ //g'`
-    printf "Current online version is: $onlinever\\n"
-    localver=`docker-compose -v | cut -d " " -f4 | sed 's/,//g'`
-    printf "Current local version is: $localver\\n"
-    if [ $localver != $onlinever ]; then
-        sudo curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "browser_download_url" | grep -i -m1 `uname -s`-`uname -m` | cut -d '"' -f4 | xargs sudo curl -L -o /usr/local/bin/docker-compose
+    onlinever=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "tag_name" | cut -d ":" -f2 | sed 's/"//g' | sed 's/,//g' | sed 's/ //g')
+    printf "Current online version is: %s \\n" "$onlinever"
+    localver=$(docker-compose -v | cut -d " " -f4 | sed 's/,//g')
+    printf "Current local version is: %s \\n" "$localver"
+    if [ "$localver" != "$onlinever" ]; then
+        sudo curl -s https://api.github.com/repos/docker/compose/releases/latest | grep "browser_download_url" | grep -i -m1 "$(uname -s)"-"$(uname -m)" | cut -d '"' -f4 | xargs sudo curl -L -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
         printf "\\n\\n"
     else
@@ -68,13 +68,13 @@ if [ -e 1.env ]; then
     printf "Your MOVIE Directory is: %s \\n" "$moviedirectory"
     printf "Your MUSIC Directory is: %s \\n" "$musicdirectory"
     printf "\\n\\n"
-    read  -r -p "Are these directiores still correct? (y/n) " diranswer `echo \n`
+    read  -r -p "Are these directiores still correct? (y/n) " diranswer "$(echo \n)"
     printf "\\n\\n"
     printf "Your PLEX Release Type is: %s" "$pmstag"
     printf "\\n\\n"
-    read  -r -p "Do you need to change your PLEX Release Type? (y/n) " pmsanswer `echo \n`
+    read  -r -p "Do you need to change your PLEX Release Type? (y/n) " pmsanswer "$(echo \n)"
     printf "\\n\\n"
-    read  -r -p "Do you need to change your PIA Credentials? (y/n) " piaanswer `echo \n`
+    read  -r -p "Do you need to change your PIA Credentials? (y/n) " piaanswer "$(echo \n)"
     # Now we need ".env" to exist again so we can stop just the Medaibox containers
     mv 1.env .env
     # Stop the current Mediabox stack
@@ -101,7 +101,7 @@ locip=$(hostname -I | awk '{print $1}')
 time_zone=$(cat /etc/timezone)	
 # Get CIDR Address
 slash=$(ip a | grep "$locip" | cut -d ' ' -f6 | awk -F '/' '{print $2}')
-lannet=$(awk -F"." '{print $1"."$2"."$3".0"}'<<<$locip)/$slash
+lannet=$(awk -F"." '{print $1"."$2"."$3".0"}'<<<"$locip")/$slash
 
 # Get Private Internet Access Info
 if [ -z "$piaanswer" ] || [ "$piaanswer" == "y" ]; then
@@ -320,7 +320,7 @@ docker start delugevpn > /dev/null 2>&1
 # Configure FlareSolverr URL for Jackett
 while [ ! -f jackett/Jackett/ServerConfig.json ]; do sleep 1; done
 docker stop jackett > /dev/null 2>&1
-perl -i -pe 's/"FlareSolverrUrl": ".*",/"FlareSolverrUrl": "http:\/\/'$locip':8191",/g' jackett/Jackett/ServerConfig.json
+perl -i -pe 's/"FlareSolverrUrl": ".*",/"FlareSolverrUrl": "http:\/\/'"$locip"':8191",/g' jackett/Jackett/ServerConfig.json
 docker start jackett > /dev/null 2>&1
 
 # Configure NZBGet
@@ -382,7 +382,7 @@ if [ -e plexpy/plexpy.db.moved ]; then # Adjust for missed moves
 fi
 
 # Create Port Mapping file
-for i in $(docker ps --format {{.Names}} | sort); do printf "\n === $i Ports ===\n" && docker port $i; done > homer/ports.txt
+for i in $(docker ps --format {{.Names}} | sort); do printf "\n === $i Ports ===\n" && docker port "$i"; done > homer/ports.txt
 
 # Completion Message
 printf "Setup Complete - Open a browser and go to: \\n\\n"
