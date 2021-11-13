@@ -83,6 +83,14 @@ icon = "muximux-headphones3"
 color = "#000000"
 enabled = "true"
 
+[Homer]
+name = "Homer"
+url = "http://locip"
+scale = 1
+icon = "muximux-home"
+color = "#0b5394"
+enabled = "true"
+
 [Jackett]
 name = "Jackett"
 url = "http://locip:9117"
