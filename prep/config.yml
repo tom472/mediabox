@@ -58,7 +58,7 @@ links:
     url: "/assets/portmap.html"
     target: "_blank"
   - name: "Muximux"
-    icon: "fas fa-border-all"
+    icon: "fas fa-table"
     url: "http://locip:8080"
 
 # Services
