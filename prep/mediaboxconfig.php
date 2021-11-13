@@ -117,6 +117,7 @@ Go to the Quality & Post Processing Tab<br />
 <b><u>PLEX:</u></b><br />
 When adding libraries to PLEX use these settings:<br />
 <ul>
+<li>Miscellaneous = /data/misc<br />
 <li>Movies = /data/movies<br />
 <li>Music = /data/music<br />
 <li>TV = /data/tvshows<br />
@@ -133,7 +134,7 @@ The Watchtower container monitors the all of the Mediabox containers and if ther
 Watchtower will detect the change, download the new image, gracefully stop the container(s), and re-launch them with the new image.<br />
 <h1>Troubleshooting</h1>
 If you are having issues with Mediabox or any of your continers please take look at the settings being used.<br />
-Below are the variables in your .env file: (<b>NOTE</b>: For your security PIA credentials are no longer shown here.)
+Below are the variables in your .env file: (<b>NOTE</b>: For your security PIA credentials are not shown here.)
 <pre>
 <?php
 echo file_get_contents("./env.txt");
