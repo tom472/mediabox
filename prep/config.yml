@@ -4,12 +4,11 @@
 
 title: "Mediabox"
 subtitle: "thishost"
-# logo: "logo.png"
 icon: "far fa-play-circle" # Optional icon
 
 header: true
 footer: false
-columns: "4" 
+columns: "4"
 # Optional theme customization
 theme: default
 colors:
