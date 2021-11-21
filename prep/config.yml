@@ -123,7 +123,7 @@ services:
         tagstyle: "is-info"
         url: "http://locip:5050"
         target: "_blank"
-      - name: "Filerowser"
+      - name: "Filebrowser"
         logo: "assets/icons/filebrowser.png"
         tag: "manage"
         tagstyle: "is-info"
