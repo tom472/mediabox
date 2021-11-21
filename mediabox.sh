@@ -272,8 +272,6 @@ echo "VPN_REMOTE=$vpnremote"
 echo ".env file creation complete"
 printf "\\n\\n"
 
-# Adjust for the Switch to linuxserver/sickchill
-docker rm -f sickchill > /dev/null 2>&1
 # Adjust for the Tautulli replacement of PlexPy
 docker rm -f plexpy > /dev/null 2>&1
 # Adjust for the Watchtower replacement of Ouroboros
@@ -289,6 +287,7 @@ rm -f mediaboxconfig.php > /dev/null 2>&1
 rm -f settings.ini.php > /dev/null 2>&1
 rm -f prep/mediaboxconfig.php > /dev/null 2>&1
 rm -f muximux/www/muximux/mediaboxconfig.php > /dev/null 2>&1
+rm -f muximux/www/muximux/env.txt > /dev/null 2>&1
 
 # Download & Launch the containers
 echo "The containers will now be pulled and launched"
