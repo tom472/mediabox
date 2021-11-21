@@ -174,6 +174,7 @@ mkdir -p delugevpn
 mkdir -p delugevpn/config/openvpn
 mkdir -p duplicati
 mkdir -p duplicati/backups
+mkdir -p filebrowser
 mkdir -p flaresolverr
 mkdir -p glances
 mkdir -p headphones
@@ -284,8 +285,10 @@ docker rm -f uhttpd > /dev/null 2>&1
 mv 20*.env historical/env_files/ > /dev/null 2>&1
 mv historical/20*.env historical/env_files/ > /dev/null 2>&1
 # Remove files after switch to using Prep folder
-rm -f mediaboxconfig.php
-rm -f settings.ini.php
+rm -f mediaboxconfig.php > /dev/null 2>&1
+rm -f settings.ini.php > /dev/null 2>&1
+rm -f prep/mediaboxconfig.php > /dev/null 2>&1
+rm -f muximux/www/muximux/mediaboxconfig.php > /dev/null 2>&1
 
 # Download & Launch the containers
 echo "The containers will now be pulled and launched"
@@ -360,12 +363,8 @@ docker start homer > /dev/null 2>&1
 while [ ! -f muximux/www/muximux/settings.ini.php-example ]; do sleep 1; done
 docker stop muximux > /dev/null 2>&1
 cp prep/settings.ini.php muximux/www/muximux/settings.ini.php
-cp prep/mediaboxconfig.php muximux/www/muximux/mediaboxconfig.php
 sed '/^PIA/d' < .env > muximux/www/muximux/env.txt # Pull PIA creds from the displayed .env file
 perl -i -pe "s/locip/$locip/g" muximux/www/muximux/settings.ini.php
-perl -i -pe "s/locip/$locip/g" muximux/www/muximux/mediaboxconfig.php
-perl -i -pe "s/daemonun/$daemonun/g" muximux/www/muximux/mediaboxconfig.php
-perl -i -pe "s/daemonpass/$daemonpass/g" muximux/www/muximux/mediaboxconfig.php
 docker start muximux > /dev/null 2>&1
 
 # If PlexPy existed - copy plexpy.db to Tautulli

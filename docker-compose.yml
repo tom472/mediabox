@@ -101,6 +101,23 @@ services:
         - '/etc/localtime:/etc/localtime:ro'
 
   # ----------------------------------------
+  # FILEBROWSER
+  # ----------------------------------------
+  filebrowser:
+    image: hurlenko/filebrowser
+    container_name: filebrowser
+    restart: unless-stopped
+    network_mode: "bridge"
+    user: "${PUID}:${PGID}"
+    ports:
+        - '${IP_ADDRESS}:8008:8080'
+    environment:
+        - FB_BASEURL=/filebrowser
+    volumes:
+        - './filebrowser:/config'
+        - '${PWD}:/data/mediabox'
+
+  # ----------------------------------------
   # FLARESOLVERR
   # ----------------------------------------
   flaresolverr:

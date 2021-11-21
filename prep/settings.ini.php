@@ -29,7 +29,7 @@ last_check = 1519604635
 
 [Mediabox]
 name = "Mediabox"
-url = "http://locip/mediaboxconfig.php"
+url = "http://locip/assets/mediaboxconfig.html"
 scale = 1
 icon = "muximux-bullhorn"
 color = "#93c47d"
@@ -65,6 +65,14 @@ url = "http://locip:8200"
 scale = 1
 icon = "muximux-copy2"
 color = "#6fa8dc"
+enabled = "true"
+
+[Filebrowser]
+name = "Filebrowser"
+url = "http://locip:8008"
+scale = 1
+icon = "muximux-find_in_page"
+color = "#9fc5e8"
 enabled = "true"
 
 [Glances]

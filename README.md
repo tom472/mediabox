@@ -8,6 +8,7 @@ Components include:
 * [Deluge torrent client (using VPN)](http://deluge-torrent.org/)
 * [Dozzle realtime log viewer](https://github.com/amir20/dozzle)
 * [Duplicati Backup Software](https://www.duplicati.com/)
+* [Filebrowser Web-Based File Manager](https://github.com/filebrowser/filebrowser)
 * [Flaresolverr proxy server to bypass Cloudflare protection (Used with Jackett)](https://github.com/FlareSolverr/FlareSolverr)
 * [Glances system monitoring](https://nicolargo.github.io/glances/)
 * [Headphones automated music downloader](https://github.com/linuxserver/docker-headphones)
