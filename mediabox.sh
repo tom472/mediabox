@@ -183,6 +183,7 @@ mkdir -p homer
 mkdir -p jackett
 mkdir -p jellyfin
 mkdir -p lidarr
+mkdir -p metube
 mkdir -p minio
 mkdir -p muximux
 mkdir -p nzbget
