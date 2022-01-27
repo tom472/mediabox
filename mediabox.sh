@@ -30,9 +30,6 @@ if [ -e .env ]; then
     git pull
     # Check to see if this script "mediabox.sh" was updated and restart it if necessary
     changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
-    check_run() {
-        echo "$changed_files" | grep -q "$1" && eval "$2"
-    }
     # Provide a message once the Git check/update  is complete
     if [ -z "$changed_files" ]; then
         printf "Your Mediabox is current - No Update needed.\\n\\n"
@@ -44,7 +41,7 @@ if [ -e .env ]; then
     read -r -p "Press any key to continue... " -n1 -s
     printf "\\n\\n"
     # Run exec mediabox.sh if mediabox.sh changed
-    grep --quiet "$changed_files" mediabox.sh && echo "Mediabox.sh Restarting" && exec $0
+    grep --q "$changed_files" mediabox.sh && echo "mediabox.sh restarting" && exec $0
 fi
 
 # After update collect some current known variables
