@@ -189,6 +189,7 @@ mkdir -p ombi
 mkdir -p overseerr
 mkdir -p "plex/Library/Application Support/Plex Media Server/Logs"
 mkdir -p portainer
+mkdir -p prowlarr
 mkdir -p radarr
 mkdir -p requestrr
 mkdir -p sickchill

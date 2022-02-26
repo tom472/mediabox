@@ -27,6 +27,7 @@ Components include:
 * [Overseerr Media Library Request Management](https://github.com/sct/overseerr)
 * [Plex media server](https://www.plex.tv/)
 * [Portainer Docker Container manager](https://portainer.io/)
+* [Prowlarr indexer manager/proxy](https://github.com/Prowlarr/Prowlarr)
 * [Radarr movie library manager](https://radarr.video/)
 * [Requestrr Chatbot for Sonarr/Radarr/Ombi](https://github.com/darkalfx/requestrr)
 * [SABnzbd Usenet download tool](https://github.com/sabnzbd/sabnzbd)

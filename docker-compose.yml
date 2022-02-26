@@ -451,6 +451,23 @@ services:
     command: -H unix:///var/run/docker.sock
 
   # ----------------------------------------
+  # PROWLARR
+  # ----------------------------------------
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:develop
+    container_name: prowlarr
+    restart: unless-stopped
+    network_mode: "bridge"
+    ports:
+      - '${IP_ADDRESS}:9696:9696'
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - './prowlarr:/config'
+
+  # ----------------------------------------
   # RADARR
   # ----------------------------------------
   radarr:

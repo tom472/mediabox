@@ -194,6 +194,14 @@ icon = "muximux-tree"
 color = "#00ffff"
 enabled = "true"
 
+[Prowlarr]
+name = "Prowlarr"
+url = "http://locip:9696"
+scale = 1
+icon = "muximux-upload"
+color = "#f85c22"
+enabled = "true"
+
 [Radarr]
 name = "Radarr"
 url = "http://locip:7878"
