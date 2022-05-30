@@ -271,7 +271,7 @@ services:
     restart: unless-stopped
     network_mode: "bridge"
     ports:
-        - '${IP_ADDRESS}:9009:9000'
+        - '${IP_ADDRESS}:9000:9000'
         - '${IP_ADDRESS}:9001:9001'
     environment:
         - MINIO_ROOT_USER=minio
@@ -440,7 +440,8 @@ services:
     restart: unless-stopped
     network_mode: "bridge"
     ports:
-        - '${IP_ADDRESS}:9000:9000'
+        - '${IP_ADDRESS}:8000:8000'
+        - '${IP_ADDRESS}:9443:9443'
     environment:
         - PUID=${PUID}
         - PGID=${PGID}
