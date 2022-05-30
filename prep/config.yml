@@ -208,7 +208,7 @@ services:
         logo: "assets/icons/portainer.png"
         tag: "monitor"
         tagstyle: "is-danger"
-        url: "http://locip:9443"
+        url: "https://locip:9443"
         target: "_blank"
       - name: "Speedtest"
         logo: "assets/icons/librespeed.png"
