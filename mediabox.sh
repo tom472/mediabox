@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euo pipefail
 
 # Check that script was run not as root or with sudo
 if [ "$EUID" -eq 0 ]
@@ -40,7 +39,7 @@ if [ -e .env ]; then
     read -r -p "Press any key to continue... " -n1 -s
     printf "\\n\\n"
     # Run exec mediabox.sh if mediabox.sh changed
-    # grep --q "$changed_files" mediabox.sh && echo "mediabox.sh restarting" && exec $0
+    grep --q "$changed_files" mediabox.sh && echo "mediabox.sh restarting" && exec $0
 fi
 
 # After update collect some current known variables
