@@ -109,7 +109,6 @@ fi
 # Get info needed for PLEX Official image
 if [ -z "$pmstag" ] || [ "$pmsanswer" == "y" ]; then
 read -r -p "Which PLEX release do you want to run? By default 'public' will be used. (latest, public, plexpass): " pmstag
-read -r -p "If you have PLEXPASS what is your Claim Token from https://www.plex.tv/claim/ (Optional): " pmstoken
 fi
 # If not set - set PMS Tag to Public:
 if [ -z "$pmstag" ]; then
@@ -264,7 +263,6 @@ echo "PIAPASS=$piapass"
 echo "CIDR_ADDRESS=$lannet"
 echo "TZ=$time_zone"
 echo "PMSTAG=$pmstag"
-echo "PMSTOKEN=$pmstoken"
 echo "VPN_REMOTE=$vpnremote"
 } >> .env
 echo ".env file creation complete"
