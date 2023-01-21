@@ -32,14 +32,13 @@ if [ -e .env ]; then
     if [ -z "$changed_files" ]; then
         printf "Your Mediabox is current - No Update needed.\\n\\n"
     else
-        printf "Mediabox Files Update complete.\\n\\nThis script will restart if necessary\\n\\n"
+        printf "Mediabox Files Update complete.\\n\\nYOU NEED TO RE-RUN ./mediabox.sh\\n\\n"
+        # Rename the .env file so this check fails if mediabox.sh needs to re-launch
+        mv .env 1.env
+        read -r -p "Press any key to continue... " -n1 -s
+        printf "\\n\\nREMEMBER TO RE-RUN ./mediabox.sh"
+        exit
     fi
-    # Rename the .env file so this check fails if mediabox.sh needs to re-launch
-    mv .env 1.env
-    read -r -p "Press any key to continue... " -n1 -s
-    printf "\\n\\n"
-    # Run exec mediabox.sh if mediabox.sh changed
-    grep --q "$changed_files" mediabox.sh && echo "mediabox.sh restarting" && exec $0
 fi
 
 # After update collect some current known variables
