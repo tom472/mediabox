@@ -1,12 +1,11 @@
 #!/bin/bash
+set -euo pipefail
 
 # Check that script was run not as root or with sudo
 if [ "$EUID" -eq 0 ]
   then echo "Please do not run this script as root or using sudo"
   exit
 fi
-
-# set -x
 
 # See if we need to check GIT for updates
 if [ -e .env ]; then
@@ -171,6 +170,7 @@ mkdir -p delugevpn
 mkdir -p delugevpn/config/openvpn
 mkdir -p duplicati
 mkdir -p duplicati/backups
+mkdir -p emby
 mkdir -p filebrowser
 mkdir -p flaresolverr
 mkdir -p glances
@@ -182,7 +182,6 @@ mkdir -p jellyfin
 mkdir -p lidarr
 mkdir -p metube
 mkdir -p minio
-mkdir -p muximux
 mkdir -p nzbget
 mkdir -p nzbhydra2
 mkdir -p ombi
@@ -278,6 +277,9 @@ docker rm -f ouroboros > /dev/null 2>&1
 # Adjust for old uhttpd web container - Noted in issue #47
 docker rm -f uhttpd > /dev/null 2>&1
 [ -d "www/" ] && mv www/ historical/www/
+# Adjust for removal of Muximux
+docker rm -f muximux > /dev/null 2>&1
+[ -d "muximux/" ] && mv muximux/ historical/muximux/
 # Move back-up .env files
 mv 20*.env historical/env_files/ > /dev/null 2>&1
 mv historical/20*.env historical/env_files/ > /dev/null 2>&1
@@ -285,6 +287,7 @@ mv historical/20*.env historical/env_files/ > /dev/null 2>&1
 rm -f mediaboxconfig.php > /dev/null 2>&1
 rm -f settings.ini.php > /dev/null 2>&1
 rm -f prep/mediaboxconfig.php > /dev/null 2>&1
+rm -f prep/settings.ini.php > /dev/null 2>&1
 rm -f muximux/www/muximux/mediaboxconfig.php > /dev/null 2>&1
 rm -f muximux/www/muximux/env.txt > /dev/null 2>&1
 

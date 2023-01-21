@@ -101,6 +101,24 @@ services:
         - '/etc/localtime:/etc/localtime:ro'
 
   # ----------------------------------------
+  # EMBY
+  # ----------------------------------------
+  emby:
+    image: lscr.io/linuxserver/emby:latest
+    container_name: emby
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - './emby:/config'
+      - '${TVDIR}:/data/tvshows'
+      - '${MOVIEDIR}:/data/movies'
+    ports:
+      - '${IP_ADDRESS}:8696:8096'
+
+  # ----------------------------------------
   # FILEBROWSER
   # ----------------------------------------
   filebrowser:
@@ -280,23 +298,6 @@ services:
         - './minio:/root/.minio'
         - '${PWD}:/export'
     command: server --console-address ":9001" /export
-
-  # ----------------------------------------
-  # MUXIMUX
-  # ----------------------------------------
-  muximux:
-    image: lscr.io/linuxserver/muximux
-    container_name: muximux
-    restart: unless-stopped
-    network_mode: "bridge"
-    ports:
-        - '${IP_ADDRESS}:8080:80'
-    environment:
-        - PUID=${PUID}
-        - PGID=${PGID}
-    volumes:
-        - './muximux:/config'
-        - '/etc/localtime:/etc/localtime:ro'
 
   # ----------------------------------------
   # NETDATA

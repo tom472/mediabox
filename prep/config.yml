@@ -56,9 +56,6 @@ links:
     icon: "fas fa-network-wired"
     url: "/assets/portmap.html"
     target: "_blank"
-  - name: "Muximux"
-    icon: "fas fa-table"
-    url: "http://locip:8080"
 
 # Services
 # First level array represent a group.
@@ -237,6 +234,12 @@ services:
   - name: "Watch It"
     icon: "fas fa-tv"
     items:
+      - name: "Emby"
+        logo: "assets/icons/emby.png"
+        tag: "watch"
+        tagstyle: "is-success"
+        url: "http://locip:8696"
+        target: "_blank"
       - name: "JellyFin"
         logo: "assets/icons/jellyfin.png"
         tag: "watch"
