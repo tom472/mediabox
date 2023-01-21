@@ -38,13 +38,15 @@ if [ -e .env ]; then
         # Rename the .env file so this check fails if mediabox.sh needs to re-launch
         mv .env 1.env
         read -r -p "Press any key to continue... " -n1 -s
-        printf "\\n\\nREMEMBER TO RE-RUN ./mediabox.sh"
+        printf "\\n\\nREMEMBER TO RE-RUN ./mediabox.sh\\n\\n"
         exit
     fi
 fi
 
 # After update collect some current known variables
 if [ -e 1.env ]; then
+    # Give updated Message
+    printf "Docker Compose and Mediabox have been updated.\\n\\n"
     # Grab the CouchPotato, NBZGet, & PIA usernames & passwords to reuse
     daemonun=$(grep CPDAEMONUN 1.env | cut -d = -f2)
     daemonpass=$(grep CPDAEMONPASS 1.env | cut -d = -f2)
@@ -357,14 +359,6 @@ perl -i -pe "s/locip/$locip/g" homer/mediaboxconfig.html
 perl -i -pe "s/daemonun/$daemonun/g" homer/mediaboxconfig.html
 perl -i -pe "s/daemonpass/$daemonpass/g" homer/mediaboxconfig.html
 docker start homer > /dev/null 2>&1
-
-# Configure Muximux settings and files
-while [ ! -f muximux/www/muximux/settings.ini.php-example ]; do sleep 1; done
-docker stop muximux > /dev/null 2>&1
-cp prep/settings.ini.php muximux/www/muximux/settings.ini.php
-sed '/^PIA/d' < .env > muximux/www/muximux/env.txt # Pull PIA creds from the displayed .env file
-perl -i -pe "s/locip/$locip/g" muximux/www/muximux/settings.ini.php
-docker start muximux > /dev/null 2>&1
 
 # If PlexPy existed - copy plexpy.db to Tautulli
 if [ -e plexpy/plexpy.db ]; then
