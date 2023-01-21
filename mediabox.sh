@@ -31,6 +31,8 @@ if [ -e .env ]; then
     # Provide a message once the Git check/update  is complete
     if [ -z "$changed_files" ]; then
         printf "Your Mediabox is current - No Update needed.\\n\\n"
+        # Rename the .env file so this check fails if mediabox.sh needs to re-launch
+        mv .env 1.env
     else
         printf "Mediabox Files Update complete.\\n\\nYOU NEED TO RE-RUN ./mediabox.sh\\n\\n"
         # Rename the .env file so this check fails if mediabox.sh needs to re-launch
