@@ -306,7 +306,7 @@ printf "\\n\\n"
 fi
 
 # Finish up the config
-printf "Configuring DelugeVPN, NZBGet, Muximux, and Permissions \\n"
+printf "Configuring DelugeVPN and Permissions \\n"
 printf "This may take a few minutes...\\n\\n"
 
 # Configure DelugeVPN: Set Daemon access on, delete the core.conf~ file
