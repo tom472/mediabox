@@ -21,26 +21,24 @@ if [ -e .env ]; then
     else
         printf "No Docker-Compose Update needed.\\n\\n"
     fi
-    # Stash any local changes to the base files
-    git stash > /dev/null 2>&1
+    # Check for updates to the Mediabox repo
     printf "Updating your local copy of Mediabox.\\n\\n"
-    # Pull the latest files from Git
-    git pull
-    # Check to see if this script "mediabox.sh" was updated and restart it if necessary
-    changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
-    # Provide a message once the Git check/update  is complete
-    if [ -z "$changed_files" ]; then
+    printf "If this file 'mediabox.sh' is updated it will be re-run automatically.\\n\\n"
+  while true; do
+        git stash -u > /dev/null 2>&1
+        git pull
+    if git diff-tree --no-commit-id --name-only -r HEAD | grep -q "mediabox.sh"; then
+        mv .env 1.env
+        ./mediabox.sh
+    elif [[ -z "$(git diff-tree --no-commit-id --name-only -r HEAD)" ]]; then
         printf "Your Mediabox is current - No Update needed.\\n\\n"
-        # Rename the .env file so this check fails if mediabox.sh needs to re-launch
         mv .env 1.env
+        break
     else
-        printf "Mediabox Files Update complete.\\n\\nYOU NEED TO RE-RUN ./mediabox.sh\\n\\n"
-        # Rename the .env file so this check fails if mediabox.sh needs to re-launch
         mv .env 1.env
-        read -r -p "Press any key to continue... " -n1 -s
-        printf "\\n\\nREMEMBER TO RE-RUN ./mediabox.sh\\n\\n"
-        exit
+        break
     fi
+  done
 fi
 
 # After update collect some current known variables
