@@ -223,7 +223,7 @@ do
     vpnremote=$(grep "remote" "$filename" | cut -d ' ' -f2  | head -1)
     # Adjust for the PIA OpenVPN ciphers fallback
     echo "cipher aes-256-gcm" >> delugevpn/config/openvpn/*.ovpn
-    echo "ncp-disable" >> delugevpn/config/openvpn/*.ovpn
+    # echo "ncp-disable" >> delugevpn/config/openvpn/*.ovpn -- possibly not needed anymore
     # it'll ask for another unless we leave the loop
     break
 done
