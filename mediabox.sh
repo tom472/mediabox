@@ -378,3 +378,5 @@ for i in $(docker ps --format {{.Names}} | sort); do printf "\n === $i Ports ===
 # Completion Message
 printf "Setup Complete - Open a browser and go to: \\n\\n"
 printf "http://%s \\nOR http://%s If you have appropriate DNS configured.\\n\\n" "$locip" "$thishost"
+
+exit
