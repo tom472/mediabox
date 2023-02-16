@@ -30,7 +30,8 @@ if [ -e .env ]; then
         mv .env 1.env
         printf "Restarting mediabox.sh"
         ./mediabox.sh
-    else [[ -z "$(git diff-tree --no-commit-id --name-only -r HEAD)" ]]; then
+    fi
+    if [[ -z "$(git diff-tree --no-commit-id --name-only -r HEAD)" ]]; then
         printf "Your Mediabox is current - No Update needed.\\n\\n"
         mv .env 1.env
     fi
