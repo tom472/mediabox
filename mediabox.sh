@@ -30,6 +30,7 @@ if [ -e .env ]; then
     if git diff-tree --no-commit-id --name-only -r HEAD | grep -q "mediabox.sh"; then
         mv .env 1.env
         ./mediabox.sh
+        break
     elif [[ -z "$(git diff-tree --no-commit-id --name-only -r HEAD)" ]]; then
         printf "Your Mediabox is current - No Update needed.\\n\\n"
         mv .env 1.env
