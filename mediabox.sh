@@ -24,22 +24,17 @@ if [ -e .env ]; then
     # Check for updates to the Mediabox repo
     printf "Updating your local copy of Mediabox.\\n\\n"
     printf "If this file 'mediabox.sh' is updated it will be re-run automatically.\\n\\n"
-  while true; do
-        git stash > /dev/null 2>&1
-        git pull
+    git stash > /dev/null 2>&1
+    git pull
     if git diff-tree --no-commit-id --name-only -r HEAD | grep -q "mediabox.sh"; then
         mv .env 1.env
         ./mediabox.sh
-        break
     elif [[ -z "$(git diff-tree --no-commit-id --name-only -r HEAD)" ]]; then
         printf "Your Mediabox is current - No Update needed.\\n\\n"
         mv .env 1.env
-        break
     else
         mv .env 1.env
-        break
     fi
-  done
 fi
 
 # After update collect some current known variables
