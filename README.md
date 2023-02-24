@@ -4,6 +4,7 @@ Mediabox is an all Docker Container based media aggregator stack.
 
 Components include:
 
+* [Bazarr subtitle manager](https://www.bazarr.media/)
 * [Couchpotato movie library manager](https://couchpota.to/)
 * [Deluge torrent client (using VPN)](http://deluge-torrent.org/)
 * [Dozzle realtime log viewer](https://github.com/amir20/dozzle)

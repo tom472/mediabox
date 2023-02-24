@@ -13,6 +13,27 @@ version: '3.5'
 services:
 
   # ----------------------------------------
+  # BAZARR
+  # ----------------------------------------
+  bazarr:
+    image: lscr.io/linuxserver/bazarr
+    container_name: bazarr
+    restart: unless-stopped
+    network_mode: "bridge"
+    ports:
+        - '${IP_ADDRESS}:6767:6767'
+    environment:
+        - PUID=${PUID}
+        - PGID=${PGID}
+        - TZ=${TZ}
+    volumes:
+        - './bazarr:/config'
+        - '${MOVIEDIR}:/movies'
+        - '${TVDIR}:/tv'
+        - '${MISCDIR}:/misc'
+        - '/etc/localtime:/etc/localtime:ro'
+
+  # ----------------------------------------
   # COUCHPOTATO
   # ----------------------------------------
   couchpotato:
